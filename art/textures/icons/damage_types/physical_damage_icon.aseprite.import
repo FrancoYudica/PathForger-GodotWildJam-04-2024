@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c62m7djh0x4qk"
+path="res://.godot/imported/physical_damage_icon.aseprite-006844b93836daff5b4b50097d5390ec.res"
+
+[deps]
+
+source_file="res://art/textures/icons/damage_types/physical_damage_icon.aseprite"
+dest_files=["res://.godot/imported/physical_damage_icon.aseprite-006844b93836daff5b4b50097d5390ec.res"]
+
+[params]
+

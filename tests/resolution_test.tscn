@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://i5te5kmajtyh"]
+
+[ext_resource type="Texture2D" uid="uid://dc87ft81d54t2" path="res://tests/resolution_test.png" id="1_u8ksh"]
+
+[node name="ResolutionTest" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(160, 90)
+texture = ExtResource("1_u8ksh")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/test/resolution_test.aseprite"
+}

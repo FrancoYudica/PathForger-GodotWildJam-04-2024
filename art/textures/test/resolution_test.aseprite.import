@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dew45t3i7ptd7"
+path="res://.godot/imported/resolution_test.aseprite-409d4e3f170114c729a31f13d037b728.res"
+
+[deps]
+
+source_file="res://art/textures/test/resolution_test.aseprite"
+dest_files=["res://.godot/imported/resolution_test.aseprite-409d4e3f170114c729a31f13d037b728.res"]
+
+[params]
+
