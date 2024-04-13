@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqnpob0vccqx0"]
+
+[ext_resource type="Script" path="res://entities/path_node/path_node_movement.gd" id="1_12hsk"]
+[ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://levels/circle.png" id="2_nwljl"]
+
+[node name="PathNodeMovement" type="Node2D"]
+script = ExtResource("1_12hsk")
+
+[node name="Edge1" type="Sprite2D" parent="."]
+position = Vector2(-75, 0)
+texture = ExtResource("2_nwljl")
+
+[node name="Edge2" type="Sprite2D" parent="."]
+position = Vector2(75, 0)
+texture = ExtResource("2_nwljl")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-75, 0, 75, 0)

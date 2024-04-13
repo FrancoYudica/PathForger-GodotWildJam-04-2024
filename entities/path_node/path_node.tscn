@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ju0p3v6aejso"]
+
+[ext_resource type="Script" path="res://entities/path_node/PathNode.gd" id="1_mlfh3"]
+[ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="2_4r52w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_agc30"]
+radius = 32.0156
+
+[node name="PathNode" type="VisibleOnScreenNotifier2D"]
+script = ExtResource("1_mlfh3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_4r52w")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://art/textures/circle_64x64.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_agc30")

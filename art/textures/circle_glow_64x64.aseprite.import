@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dqlo0evtmwk43"
+path="res://.godot/imported/circle_glow_64x64.aseprite-25dca29fc5c69d509e43456ca98ca961.res"
+
+[deps]
+
+source_file="res://art/textures/circle_glow_64x64.aseprite"
+dest_files=["res://.godot/imported/circle_glow_64x64.aseprite-25dca29fc5c69d509e43456ca98ca961.res"]
+
+[params]
+

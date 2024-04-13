@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bajy40qhic0ds"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_anyxi"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_js2kc"]
+[ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="3_bwow2"]
+[ext_resource type="Script" path="res://levels/PathNodeHandler.gd" id="4_e8iqu"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="5_jkf4d"]
+[ext_resource type="PackedScene" uid="uid://dqnpob0vccqx0" path="res://entities/path_node/path_node_movement.tscn" id="6_ql43t"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="6_ud4xo"]
+[ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="7_4nr7t"]
+
+[sub_resource type="Curve" id="Curve_0awvd"]
+_data = [Vector2(0, 0), 0.0, 3.09249, 0, 0, Vector2(1, 1), 1.92803e-07, 0.0, 0, 0]
+point_count = 2
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_anyxi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(270, -240)
+limit_left = 0
+limit_right = 540
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("1_js2kc")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(270, -240)
+script = ExtResource("5_jkf4d")
+priority_override = false
+priority = 1
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(0, -240)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = 0
+limit/top = -10000000
+limit/right = 540
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="Player" parent="." node_paths=PackedStringArray("path_node_handler") instance=ExtResource("3_bwow2")]
+position = Vector2(270, 0)
+path_node_handler = NodePath("../PathNodeHandler")
+
+[node name="PathNodeHandler" type="Node2D" parent="."]
+z_index = -2
+script = ExtResource("4_e8iqu")
+
+[node name="PathNode" parent="PathNodeHandler" instance=ExtResource("6_ud4xo")]
+position = Vector2(200, -437)
+
+[node name="PathNodeMovement" parent="PathNodeHandler/PathNode" node_paths=PackedStringArray("path_node") instance=ExtResource("6_ql43t")]
+position = Vector2(72, 2)
+rotation = 1.56359
+path_node = NodePath("..")
+curve = SubResource("Curve_0awvd")
+
+[node name="LevelBuilder" type="Node2D" parent="." node_paths=PackedStringArray("path_node_handler")]
+script = ExtResource("7_4nr7t")
+path_node_handler = NodePath("../PathNodeHandler")
+nodes_vertical_gap = 200
+
+[node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("6_ud4xo")]
+position = Vector2(270, -200)
