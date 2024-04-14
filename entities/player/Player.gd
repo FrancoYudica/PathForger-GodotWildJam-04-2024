@@ -6,8 +6,6 @@ class_name Player
 @onready var hook: Hook = $Hook
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 
-@export var path_node_handler: PathNodeHandler
-
 var current_path_node: PathNode = null
 
 func _ready():

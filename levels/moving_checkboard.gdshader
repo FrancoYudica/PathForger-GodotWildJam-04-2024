@@ -20,13 +20,13 @@ void fragment() {
 	// i, j are the offsetted grid indices
 	
 	// Takes value 1 if the row is even, if odd takes -1
-	float even_row_value = sign(float(row_index % 2) - 0.5f);
+	float even_row_value = float((row_index % 2) * 2 - 1);
 	
 	// Uses the value to get the grid cell with offset
 	float i = floor((UV.x + rows_offset * even_row_value) * num_cells);
 
 	// Same but with columns
-	float even_column_value = sign(float(column_index % 2) - 0.5f);
+	float even_column_value = float((column_index % 2) * 2 - 1);
 	float j = floor((UV.y + columns_offset * even_column_value) * num_cells);
 	
 	// Final value t used to mix colors

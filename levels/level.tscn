@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://bajy40qhic0ds"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
+[ext_resource type="Shader" path="res://levels/moving_checkboard.gdshader" id="2_rql3e"]
+[ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://levels/checkboard_background.png" id="3_a5du7"]
+[ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
+[ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="7_fcahg"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
+[ext_resource type="PackedScene" uid="uid://dqnpob0vccqx0" path="res://entities/path_node/path_node_movement.tscn" id="10_3ryop"]
+[ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
+[ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
+[ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
+[ext_resource type="PackedScene" uid="uid://ba05jn6tk6o1a" path="res://levels/level_segments/test_level_segment_0.tscn" id="15_wj400"]
+[ext_resource type="PackedScene" uid="uid://8kb6vgkgau5o" path="res://levels/level_segments/test_level_segment_1.tscn" id="16_k4p47"]
+[ext_resource type="PackedScene" uid="uid://c5i2wd8idrhj7" path="res://levels/level_segments/test_level_segment_2.tscn" id="17_mlj08"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
+shader = ExtResource("2_rql3e")
+shader_parameter/num_cells = 25.0
+shader_parameter/color_cell_0 = Color(0.0823529, 0.0352941, 0.145098, 1)
+shader_parameter/color_cell_1 = Color(0.101961, 0.0392157, 0.164706, 1)
+shader_parameter/columns_offset_strength = 0.0
+shader_parameter/rows_offset_strength = 0.0
+
+[sub_resource type="Curve" id="Curve_nb5rq"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_0awvd"]
+_data = [Vector2(0, 0), 0.0, 3.09249, 0, 0, Vector2(1, 1), 1.92803e-07, 0.0, 0, 0]
+point_count = 2
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_gbe2q")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(0, 1448)
+
+[node name="CheckboardBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_ehsn3")
+position = Vector2(306, 469)
+rotation = 0.785398
+scale = Vector2(20, 20)
+texture = ExtResource("3_a5du7")
+script = ExtResource("4_kejbq")
+curve = SubResource("Curve_nb5rq")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/level/checkboard_background.aseprite"
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(270, -240)
+limit_left = 0
+limit_right = 540
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("5_f5i52")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(270, -240)
+script = ExtResource("6_c8hyj")
+priority_override = false
+priority = 1
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("../Player")
+follow_parameters/target_offset = Vector2(0, -240)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = 0
+limit/top = -10000000
+limit/right = 540
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="Player" parent="." instance=ExtResource("7_fcahg")]
+position = Vector2(270, 0)
+
+[node name="PathNode" parent="." instance=ExtResource("9_fy437")]
+position = Vector2(436, -407)
+
+[node name="PathNodeMovement" parent="PathNode" node_paths=PackedStringArray("path_node") instance=ExtResource("10_3ryop")]
+rotation = 1.56359
+path_node = NodePath("..")
+curve = SubResource("Curve_0awvd")
+
+[node name="LevelBuilder" type="Node2D" parent="."]
+script = ExtResource("11_gospp")
+
+[node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("9_fy437")]
+position = Vector2(270, -200)
+
+[node name="GeneratorPicker" type="Node2D" parent="LevelBuilder"]
+script = ExtResource("11_2xxqe")
+
+[node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
+script = ExtResource("14_m3m3h")
+packed_level_segments = Array[PackedScene]([ExtResource("15_wj400"), ExtResource("16_k4p47"), ExtResource("17_mlj08")])

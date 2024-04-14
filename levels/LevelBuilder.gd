@@ -1,21 +1,53 @@
 extends Node2D
 
-@export var path_node_handler: PathNodeHandler
-@export var nodes_vertical_gap: int = 80
 @onready var first_path_node: PathNode = $FirstPathNode
+@onready var level_generator: SegmentGenerator = $GeneratorPicker
+@onready var camera = $"../Camera2D"
 
-var path_node_packed = preload("res://entities/path_node/path_node.tscn")
+@export var viewport_height = 960
+
+## Generates a new segment when the camera is 'edge_height' from the generated map _top_position
+@export var edge_height: int = 300
+var _top_position: Vector2 = Vector2.ZERO
+
+var _segments: Array[LevelSegment] = []
 
 func _ready():
-	first_path_node.reparent(path_node_handler)
-	path_node_handler.add_path_node(first_path_node)
+	_top_position = first_path_node.position
+	_top_position.y -= Globals.vertical_gap
 	
-	for i in range(1, 20):
-		var y = first_path_node.position.y - i * nodes_vertical_gap
-		var x = randf_range(30.0, 150.0)
-		var path_node: PathNode = path_node_packed.instantiate()
-		path_node.position.x = x
-		path_node.position.y = y
-		path_node_handler.add_child(path_node)
-		path_node_handler.add_path_node(path_node)
+func _process(_delta):
 	
+	# When it's time to generate a new segment
+	if camera.position.y - viewport_height / 2 - _top_position.y < edge_height:
+		_add_random_segment()
+		
+	_try_remove_traversed_segments()
+
+func _add_random_segment():
+	var level_segment = level_generator.generate()
+	_add_segment(level_segment)
+
+func _add_segment(segment: LevelSegment):
+	segment.position = _top_position
+	add_child(segment)
+	
+	segment.calculate_segment_height()
+	_top_position.y -= segment.segment_height + Globals.vertical_gap
+	_segments.append(segment)
+
+## Tries to remove all the traversed/completed invisible segments
+func _try_remove_traversed_segments():
+	
+	# Valued used to ensure that the deletion of the segment isn't visible
+	var _extra_safety_height = 300
+	
+	for segment: LevelSegment in _segments:
+		
+		# Tests visibility for all segments
+		var segment_top = segment.global_position.y - segment.segment_height - _extra_safety_height
+		if segment_top > camera.position.y + viewport_height / 2:
+			
+			# Removes segment when not visible
+			_segments.erase(segment)
+			remove_child(segment)

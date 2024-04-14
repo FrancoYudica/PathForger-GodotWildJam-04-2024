@@ -3,8 +3,8 @@ extends PlayerStateMachineNode
 func _state_enter():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
-	tween.tween_property(player, "position", player.current_path_node.position, 0.35)
-	player.line_path.add_point(position)
+	tween.tween_property(player, "position", player.current_path_node.global_position, 0.35)
+	player.line_path.add_point(global_position)
 	tween.connect("finished", _translation_completed)
 
 func _translation_completed():

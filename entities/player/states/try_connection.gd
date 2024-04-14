@@ -17,7 +17,7 @@ func _state_input(event: InputEvent):
 func _state_process(_delta):
 	# Updates position to node position
 	if player.current_path_node != null:
-		player.position = player.current_path_node.position
+		player.position = player.current_path_node.global_position
 	
 func _state_physics_process(_delta):
 	pass

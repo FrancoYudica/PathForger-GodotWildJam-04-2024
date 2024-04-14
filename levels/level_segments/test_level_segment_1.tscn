@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://8kb6vgkgau5o"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_s0nxa"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_72gua"]
+
+[node name="TestLevelSegment" type="Node2D"]
+script = ExtResource("1_s0nxa")
+
+[node name="PathNode" parent="." instance=ExtResource("2_72gua")]
+
+[node name="PathNode2" parent="." instance=ExtResource("2_72gua")]
+position = Vector2(100, -132)
+
+[node name="PathNode3" parent="." instance=ExtResource("2_72gua")]
+position = Vector2(160, -247)
+
+[node name="PathNode4" parent="." instance=ExtResource("2_72gua")]
+position = Vector2(100, -396)
+
+[node name="PathNode5" parent="." instance=ExtResource("2_72gua")]
+position = Vector2(0, -496)

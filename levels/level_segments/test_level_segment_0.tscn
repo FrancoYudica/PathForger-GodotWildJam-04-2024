@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba05jn6tk6o1a"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_806he"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_w8iwq"]
+[ext_resource type="Shader" path="res://entities/path_node/segmented_ring.gdshader" id="3_spv8f"]
+[ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="4_gjgcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjwv7"]
+shader = ExtResource("3_spv8f")
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
+shader_parameter/edge_blur = 0.05
+shader_parameter/segments_count = 5
+shader_parameter/rotation_speed = 2.0
+
+[node name="TestLevelSegment" type="Node2D"]
+script = ExtResource("1_806he")
+
+[node name="PathNode0" parent="." instance=ExtResource("2_w8iwq")]
+
+[node name="PathNode1" parent="." instance=ExtResource("2_w8iwq")]
+position = Vector2(152, -225)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qjwv7")
+position = Vector2(78, -116)
+texture = ExtResource("4_gjgcy")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://art/textures/circle_64x64.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
