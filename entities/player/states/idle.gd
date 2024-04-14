@@ -1,7 +1,7 @@
 extends PlayerStateMachineNode
 
 func _state_enter():
-	player.sprite.modulate = Color.GREEN
+	pass
 
 func _state_exit():
 	pass
@@ -10,8 +10,6 @@ func _state_input(event: InputEvent):
 	if event.is_action_pressed("click"):
 		var point = get_global_mouse_position()
 		player.hook.throw(point)
-		# var path_node: PathNode = player.path_node_handler.get_nearest_to_point(point)
-		# player.current_path_node = path_node
 		transition("try_connection")
 		
 func _state_process(_delta):

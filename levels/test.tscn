@@ -1,20 +1,74 @@
-[gd_scene load_steps=10 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=18 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_anyxi"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_js2kc"]
+[ext_resource type="Shader" path="res://levels/moving_checkboard.gdshader" id="2_ei71j"]
+[ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://levels/checkboard_background.png" id="2_ouojj"]
 [ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="3_bwow2"]
+[ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_2sfhb"]
 [ext_resource type="Script" path="res://levels/PathNodeHandler.gd" id="4_e8iqu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="5_jkf4d"]
 [ext_resource type="PackedScene" uid="uid://dqnpob0vccqx0" path="res://entities/path_node/path_node_movement.tscn" id="6_ql43t"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="6_ud4xo"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="7_4nr7t"]
+[ext_resource type="Shader" path="res://entities/path_node/segmented_ring.gdshader" id="12_h08p0"]
+[ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="13_gvbvy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
+shader = ExtResource("2_ei71j")
+shader_parameter/num_cells = 25.0
+shader_parameter/color_cell_0 = Color(0.0823529, 0.0352941, 0.145098, 1)
+shader_parameter/color_cell_1 = Color(0.101961, 0.0392157, 0.164706, 1)
+shader_parameter/columns_offset_strength = 0.0
+shader_parameter/rows_offset_strength = 0.0
+
+[sub_resource type="Curve" id="Curve_nb5rq"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_0awvd"]
 _data = [Vector2(0, 0), 0.0, 3.09249, 0, 0, Vector2(1, 1), 1.92803e-07, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgmsu"]
+shader = ExtResource("12_h08p0")
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
+shader_parameter/edge_blur = 0.05
+shader_parameter/segments_count = 5
+shader_parameter/rotation_speed = 2.0
+
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_anyxi")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(0, 1448)
+
+[node name="CheckboardBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_ehsn3")
+position = Vector2(306, 469)
+rotation = 0.785398
+scale = Vector2(20, 20)
+texture = ExtResource("2_ouojj")
+script = ExtResource("4_2sfhb")
+curve = SubResource("Curve_nb5rq")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/level/checkboard_background.aseprite"
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(270, -240)
@@ -72,3 +126,46 @@ nodes_vertical_gap = 200
 
 [node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("6_ud4xo")]
 position = Vector2(270, -200)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tgmsu")
+position = Vector2(94, -238)
+texture = ExtResource("13_gvbvy")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://art/textures/circle_64x64.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_tgmsu")
+position = Vector2(461, -365)
+texture = ExtResource("13_gvbvy")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://art/textures/circle_64x64.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}

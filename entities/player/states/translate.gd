@@ -1,7 +1,6 @@
 extends PlayerStateMachineNode
 
 func _state_enter():
-	player.sprite.modulate = Color.ORANGE_RED
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.tween_property(player, "position", player.current_path_node.position, 0.35)

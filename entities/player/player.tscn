@@ -34,10 +34,12 @@ hook_launch_duration = 0.5
 curve = SubResource("Curve_aht7w")
 
 [node name="Head" type="Sprite2D" parent="Hook"]
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 texture = ExtResource("2_am5xp")
 
 [node name="HookBody" type="Line2D" parent="Hook" node_paths=PackedStringArray("start_node", "end_node")]
 top_level = true
+default_color = Color(0.909804, 0.854902, 0.964706, 1)
 script = ExtResource("4_p21ks")
 start_node = NodePath("../..")
 end_node = NodePath("..")
@@ -49,12 +51,13 @@ shape = SubResource("RectangleShape2D_t4p04")
 [node name="LinePath" type="Line2D" parent="."]
 top_level = true
 z_index = -1
+default_color = Color(0.909804, 0.854902, 0.964706, 1)
 script = ExtResource("2_8rfi1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.14902, 0.14902, 1)
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 texture_filter = 1
-position = Vector2(2, 2)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_6ifge")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,

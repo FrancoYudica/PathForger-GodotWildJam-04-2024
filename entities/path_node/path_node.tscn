@@ -1,16 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://ju0p3v6aejso"]
+[gd_scene load_steps=8 format=3 uid="uid://ju0p3v6aejso"]
 
 [ext_resource type="Script" path="res://entities/path_node/PathNode.gd" id="1_mlfh3"]
 [ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="2_4r52w"]
+[ext_resource type="Shader" path="res://entities/path_node/path_node.gdshader" id="2_jx46s"]
+[ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://levels/circle.png" id="4_pni3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70e0i"]
+shader = ExtResource("2_jx46s")
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
+shader_parameter/edge_blur = 0.05
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agc30"]
 radius = 32.0156
+
+[sub_resource type="Curve" id="Curve_ije8c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.00825741, 0.0, 0, 0]
+point_count = 2
 
 [node name="PathNode" type="VisibleOnScreenNotifier2D"]
 script = ExtResource("1_mlfh3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 texture_filter = 1
+material = SubResource("ShaderMaterial_70e0i")
 texture = ExtResource("2_4r52w")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,
@@ -34,4 +47,19 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_agc30")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture = ExtResource("4_pni3d")
+emission_shape = 5
+emission_points = PackedVector2Array(30, 0, -30, 0, 0, 30, 0, -30)
+emission_normals = PackedVector2Array(1, 0, -1, 0, 0, 1, 0, -1)
+emission_colors = PackedColorArray()
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_ije8c")
+color = Color(0.909804, 0.854902, 0.964706, 1)
