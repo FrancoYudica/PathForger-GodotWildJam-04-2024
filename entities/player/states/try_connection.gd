@@ -3,8 +3,8 @@ extends PlayerStateMachineNode
 var in_state = false
 
 func _state_enter():
-	if not player.hook.is_connected("path_node_reached", _path_node_reached):
-		player.hook.connect("path_node_reached", _path_node_reached)
+	if not player.hook.is_connected("hookable_reached", _on_hookable_reached):
+		player.hook.connect("hookable_reached", _on_hookable_reached)
 		player.hook.connect("miss", _hook_miss)
 	in_state = true
 
@@ -16,15 +16,16 @@ func _state_input(event: InputEvent):
 
 func _state_process(_delta):
 	# Updates position to node position
-	if player.current_path_node != null:
-		player.position = player.current_path_node.global_position
+	#if player.current_hookable != null:
+	#	player.position = player.current_hookable.global_position
+	pass
 	
 func _state_physics_process(_delta):
 	pass
 
-func _path_node_reached(path_node: PathNode):
+func _on_hookable_reached(hookable: Hookable):
 	if in_state:
-		player.current_path_node = path_node
+		player.current_hookable = hookable
 		transition("translate")
 		
 func _hook_miss():

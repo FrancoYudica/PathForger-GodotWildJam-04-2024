@@ -1,15 +1,16 @@
 shader_type canvas_item;
 
 uniform vec4 color: source_color = vec4(1.0f);
+uniform float radius = 0.5;
 uniform float edge_blur = 0.05f;
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	float radius_offset = abs(sin(TIME * 6.0f)) / 20.0f;
+	float radius_offset = abs(sin(TIME * 6.0f)) / 10.0f;
 	float outer_radius = 1.0f - radius_offset;
-	float inner_radius = 0.25f + radius_offset;
+	float inner_radius = radius * radius + radius_offset;
 	vec2 centered = (2.0f * UV - vec2(1.0f));
 	float l = dot(centered, centered);
 	

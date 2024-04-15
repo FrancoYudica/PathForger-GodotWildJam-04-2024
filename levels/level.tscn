@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=24 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
 [ext_resource type="Shader" path="res://levels/moving_checkboard.gdshader" id="2_rql3e"]
@@ -14,7 +14,10 @@
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 [ext_resource type="PackedScene" uid="uid://ba05jn6tk6o1a" path="res://levels/level_segments/test_level_segment_0.tscn" id="15_wj400"]
 [ext_resource type="PackedScene" uid="uid://8kb6vgkgau5o" path="res://levels/level_segments/test_level_segment_1.tscn" id="16_k4p47"]
+[ext_resource type="Texture2D" uid="uid://bm16cm0kkjyjm" path="res://levels/open_ring_thin_256x256.png" id="16_m8u4a"]
 [ext_resource type="PackedScene" uid="uid://c5i2wd8idrhj7" path="res://levels/level_segments/test_level_segment_2.tscn" id="17_mlj08"]
+[ext_resource type="Script" path="res://entities/Hookable.gd" id="17_wr7fe"]
+[ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://levels/level_segments/bar_200px.png" id="18_bik01"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
 shader = ExtResource("2_rql3e")
@@ -32,6 +35,13 @@ point_count = 3
 [sub_resource type="Curve" id="Curve_0awvd"]
 _data = [Vector2(0, 0), 0.0, 3.09249, 0, 0, Vector2(1, 1), 1.92803e-07, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u732h"]
+size = Vector2(55, 207)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upo25"]
+radius = 8.0
+height = 198.0
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
@@ -120,3 +130,60 @@ script = ExtResource("11_2xxqe")
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
 packed_level_segments = Array[PackedScene]([ExtResource("15_wj400"), ExtResource("16_k4p47"), ExtResource("17_mlj08")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(270, 0)
+texture = ExtResource("16_m8u4a")
+script = ExtResource("17_wr7fe")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/open_ring_thin_256x256.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"slice_section": false
+}
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(75, -96)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(44, 95)
+shape = SubResource("RectangleShape2D_u732h")
+
+[node name="Bar2" type="Sprite2D" parent="."]
+modulate = Color(0.25098, 1, 0.537255, 1)
+position = Vector2(74, -572)
+texture = ExtResource("18_bik01")
+script = ExtResource("17_wr7fe")
+
+[node name="Area2D" type="Area2D" parent="Bar2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar2/Area2D"]
+shape = SubResource("CapsuleShape2D_upo25")
+
+[node name="Bar" type="Sprite2D" parent="."]
+modulate = Color(0.25098, 1, 0.537255, 1)
+position = Vector2(70, -183)
+texture = ExtResource("18_bik01")
+script = ExtResource("17_wr7fe")
+
+[node name="Area2D" type="Area2D" parent="Bar"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar/Area2D"]
+shape = SubResource("CapsuleShape2D_upo25")

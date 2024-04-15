@@ -1,14 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://ju0p3v6aejso"]
+[gd_scene load_steps=11 format=3 uid="uid://ju0p3v6aejso"]
 
 [ext_resource type="Script" path="res://entities/path_node/PathNode.gd" id="1_mlfh3"]
 [ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="2_4r52w"]
 [ext_resource type="Shader" path="res://entities/path_node/path_node.gdshader" id="2_jx46s"]
+[ext_resource type="Script" path="res://entities/path_node/PathNodeSpriteSprite.gd" id="2_vee2j"]
+[ext_resource type="Shader" path="res://entities/path_node/segmented_ring.gdshader" id="4_eapb6"]
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://levels/circle.png" id="4_pni3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70e0i"]
+resource_local_to_scene = true
 shader = ExtResource("2_jx46s")
 shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
+shader_parameter/radius = 0.5
 shader_parameter/edge_blur = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uongu"]
+resource_local_to_scene = true
+shader = ExtResource("4_eapb6")
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
+shader_parameter/edge_blur = 0.05
+shader_parameter/segments_count = 5
+shader_parameter/rotation_speed = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agc30"]
 radius = 32.0156
@@ -17,10 +29,13 @@ radius = 32.0156
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.00825741, 0.0, 0, 0]
 point_count = 2
 
-[node name="PathNode" type="VisibleOnScreenNotifier2D"]
+[node name="PathNode" type="Node2D"]
 script = ExtResource("1_mlfh3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PathNodeSprite" type="Node2D" parent="."]
+script = ExtResource("2_vee2j")
+
+[node name="Body" type="Sprite2D" parent="PathNodeSprite"]
 modulate = Color(0.909804, 0.854902, 0.964706, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_70e0i")
@@ -41,8 +56,29 @@ metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
 
+[node name="Outline" type="Sprite2D" parent="PathNodeSprite"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_uongu")
+scale = Vector2(1.265, 1.265)
+texture = ExtResource("2_4r52w")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "",
+"slice": "",
+"source": "res://art/textures/circle_64x64.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 0
 monitoring = false
 
@@ -51,6 +87,7 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_agc30")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
 texture = ExtResource("4_pni3d")
 emission_shape = 5
 emission_points = PackedVector2Array(30, 0, -30, 0, 0, 30, 0, -30)

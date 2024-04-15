@@ -9,13 +9,26 @@ func _state_exit():
 func _state_input(event: InputEvent):
 	if event.is_action_pressed("click"):
 		var point = get_global_mouse_position()
-		player.hook.throw(point)
-		transition("try_connection")
+		_throw_hook_at(point)
 		
 func _state_process(_delta):
 	# Updates position to node position
-	if player.current_path_node != null:
-		player.position = player.current_path_node.global_position
+	#if player.current_hookable != null:
+	#	player.global_position = player.current_hookable.global_position
+		
+	player.look_at(get_global_mouse_position())
+	player.direction = (get_global_mouse_position() - player.global_position).normalized()
 	
-func _state_physics_process(_delta):
-	pass
+	# If a click is buffered
+	if player.buffered_mouse_click != null:
+		
+		var elapsed = Time.get_ticks_msec() - player.last_buffered_time_ms
+		if elapsed <= player.click_buffering_ms:
+			var point = player.buffered_mouse_click
+			player.buffered_mouse_click = null
+			_throw_hook_at(point)
+	
+	
+func _throw_hook_at(point):
+	player.hook.throw()
+	transition("try_connection")
