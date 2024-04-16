@@ -13,11 +13,12 @@ var focused: bool:
 
 ## Reached should be called when player is over the node
 func reached():
-	# Doesn't need collider once it's reached
+	super.reached()
 	disable_collider()
 	sprite.reached()
 
 func left():
+	super.left()
 	sprite.left()
 
 func get_fixed_intersection(current_intersection: Vector2):

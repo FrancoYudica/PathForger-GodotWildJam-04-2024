@@ -1,6 +1,7 @@
 extends PlayerStateMachineNode
 
 func _state_enter():
+	player.stick_to_hookable = true
 	player.rotating = true
 
 func _state_exit():
@@ -12,9 +13,6 @@ func _state_input(event: InputEvent):
 		_throw_hook_at(point)
 		
 func _state_process(_delta):
-	# Updates position to node position
-	#if player.current_hookable != null:
-	#	player.global_position = player.current_hookable.global_position
 		
 	# If a click is buffered
 	if player.buffered_mouse_click != null:

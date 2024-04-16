@@ -8,7 +8,7 @@ class_name LevelSegment
 
 @export var fix_path_node_heights: bool = true
 
-var path_nodes: Array[PathNode]
+@export var path_nodes: Array[PathNode]
 
 func calculate_segment_height():
 	var top = 0

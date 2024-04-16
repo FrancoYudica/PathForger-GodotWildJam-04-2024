@@ -13,6 +13,7 @@ var buffered_mouse_click = null
 var last_buffered_time_ms = 0
 var direction: Vector2 = Vector2.UP
 var rotating: bool = true
+var stick_to_hookable: bool = true
 
 func set_current_hookable(hookable: Hookable):
 	if current_hookable != null:
@@ -32,3 +33,6 @@ func _process(delta):
 	if rotating:
 		look_at(get_global_mouse_position())
 		direction = (get_global_mouse_position() - global_position).normalized()
+		
+	if current_hookable != null and stick_to_hookable and current_hookable.has_player_over:
+		global_position = current_hookable.get_intersection_point()

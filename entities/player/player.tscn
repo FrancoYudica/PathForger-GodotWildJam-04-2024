@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfqm7vopmmtbw"]
+[gd_scene load_steps=19 format=3 uid="uid://bfqm7vopmmtbw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
 [ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
@@ -19,7 +19,7 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vjy"]
 shader = ExtResource("12_pk4j0")
-shader_parameter/color = Color(0.25098, 0.615686, 1, 1)
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
 shader_parameter/useSpriteTexture = true
 shader_parameter/speed = 1.0
 shader_parameter/amplitude = 0.2
@@ -33,12 +33,16 @@ width = 64
 height = 64
 noise = SubResource("FastNoiseLite_lryjr")
 
+[sub_resource type="Curve" id="Curve_q6efa"]
+_data = [Vector2(0.0056101, 0.00453401), 0.0, -0.0655599, 0, 0, Vector2(1, 1), 1.93173e-06, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_i357n"]
 _data = [Vector2(0.0842697, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="Node2D"]
-modulate = Color(0.25098, 0.615686, 1, 1)
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
 script = ExtResource("1_y7hkf")
 click_buffering_ms = 250
@@ -61,22 +65,22 @@ curve = SubResource("Curve_j0jnm")
 duration = 0.1
 
 [node name="Head" type="Sprite2D" parent="Hook"]
-modulate = Color(0.25098, 0.615686, 1, 1)
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 top_level = true
 texture = ExtResource("2_am5xp")
 
 [node name="HookBody" type="Line2D" parent="Hook" node_paths=PackedStringArray("start_node", "end_node")]
 top_level = true
-default_color = Color(0.25098, 0.615686, 1, 1)
+default_color = Color(0.909804, 0.854902, 0.964706, 1)
 antialiased = true
 script = ExtResource("4_p21ks")
 start_node = NodePath("../..")
 end_node = NodePath("../Head")
 
 [node name="LinePath" type="Line2D" parent="."]
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
 top_level = true
 z_index = -1
-default_color = Color(0.25098, 0.615686, 1, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -111,7 +115,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 texture_repeat = 3
 material = SubResource("ShaderMaterial_p3vjy")
 rotation = 1.72898
-scale = Vector2(1, 1)
 texture = SubResource("NoiseTexture2D_wm2s6")
 
 [node name="PlayerStateMachine" type="Node2D" parent="."]
@@ -120,6 +123,7 @@ initial_state_name = "idle"
 
 [node name="translate" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("4_80ij7")
+position_interpolation_curve = SubResource("Curve_q6efa")
 
 [node name="try_connection" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("5_hxtbh")

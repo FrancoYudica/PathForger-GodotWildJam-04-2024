@@ -4,18 +4,19 @@ class_name Hookable
 @export var wants_to_fix_intersection: bool = false
 
 ## Point here intersection with hook happened
-var hook_intersection: Vector2 = Vector2.ZERO
-
+var _hook_intersection: Vector2 = Vector2.ZERO
+var has_player_over: bool = false
 ## Called when hookable is hooked
 func hooked():
 	pass
 
 ## When player leaves the hookable
 func left():
-	pass
+	has_player_over = false
 
 ## Called when player reaches the hook intersection point
 func reached():
+	has_player_over = true
 	disable_collider()
 
 func enable_collider():
@@ -23,6 +24,14 @@ func enable_collider():
 	
 func disable_collider():
 	$Area2D.collision_layer = 0
+
+## Stores the intersection point in local coordinates
+func set_intersection_point(hook_intersection: Vector2):
+	_hook_intersection = to_local(hook_intersection)
+
+## Transforms the intersection point to global coordinates
+func get_intersection_point() -> Vector2:
+	return to_global(_hook_intersection)
 
 ## When hookable wants to add any modification to the intersection
 ## returns the fixed/modifed intersection point with this method

@@ -38,7 +38,7 @@ func _process(delta):
 		# Updates head sprite position along the hook direction
 		var player = $".."
 		head_sprite.global_position = player.global_position + player.direction * length_handler.current_length
-
+		
 	# Resets variables when ray misses
 	if not _update_raycast_intersection():
 		length_handler.hit_distance = length
@@ -60,7 +60,7 @@ func _on_hook_head_reached_end():
 	head_sprite.global_position = _intersection_point
 	
 	# Sets intersection point to hookable
-	hookable.hook_intersection = _intersection_point
+	hookable.set_intersection_point(_intersection_point)
 	hookable.hooked()
 	hookable_reached.emit(hookable)
 

@@ -8,16 +8,17 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
 [ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="7_fcahg"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
-[ext_resource type="PackedScene" uid="uid://dqnpob0vccqx0" path="res://entities/path_node/path_node_movement.tscn" id="10_3ryop"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 [ext_resource type="PackedScene" uid="uid://ba05jn6tk6o1a" path="res://levels/level_segments/test_level_segment_0.tscn" id="15_wj400"]
 [ext_resource type="PackedScene" uid="uid://8kb6vgkgau5o" path="res://levels/level_segments/test_level_segment_1.tscn" id="16_k4p47"]
 [ext_resource type="Texture2D" uid="uid://bm16cm0kkjyjm" path="res://levels/open_ring_thin_256x256.png" id="16_m8u4a"]
+[ext_resource type="PackedScene" uid="uid://20spef5i7c57" path="res://levels/level_segments/horizontal_moving_path_node.tscn" id="16_pro00"]
 [ext_resource type="PackedScene" uid="uid://c5i2wd8idrhj7" path="res://levels/level_segments/test_level_segment_2.tscn" id="17_mlj08"]
 [ext_resource type="Script" path="res://entities/Hookable.gd" id="17_wr7fe"]
 [ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://levels/level_segments/bar_200px.png" id="18_bik01"]
+[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="19_y0g6n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
 shader = ExtResource("2_rql3e")
@@ -31,10 +32,6 @@ shader_parameter/rows_offset_strength = 0.0
 max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="Curve" id="Curve_0awvd"]
-_data = [Vector2(0, 0), 0.0, 3.09249, 0, 0, Vector2(1, 1), 1.92803e-07, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u732h"]
 size = Vector2(55, 207)
@@ -110,14 +107,6 @@ inactive_update_mode = 0
 [node name="Player" parent="." instance=ExtResource("7_fcahg")]
 position = Vector2(270, 0)
 
-[node name="PathNode" parent="." instance=ExtResource("9_fy437")]
-position = Vector2(436, -407)
-
-[node name="PathNodeMovement" parent="PathNode" node_paths=PackedStringArray("path_node") instance=ExtResource("10_3ryop")]
-rotation = 1.56359
-path_node = NodePath("..")
-curve = SubResource("Curve_0awvd")
-
 [node name="LevelBuilder" type="Node2D" parent="."]
 script = ExtResource("11_gospp")
 
@@ -129,7 +118,7 @@ script = ExtResource("11_2xxqe")
 
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
-packed_level_segments = Array[PackedScene]([ExtResource("15_wj400"), ExtResource("16_k4p47"), ExtResource("17_mlj08")])
+packed_level_segments = Array[PackedScene]([ExtResource("15_wj400"), ExtResource("16_k4p47"), ExtResource("17_mlj08"), ExtResource("16_pro00")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -179,7 +168,7 @@ shape = SubResource("CapsuleShape2D_upo25")
 modulate = Color(0.25098, 1, 0.537255, 1)
 position = Vector2(70, -183)
 texture = ExtResource("18_bik01")
-script = ExtResource("17_wr7fe")
+script = ExtResource("19_y0g6n")
 
 [node name="Area2D" type="Area2D" parent="Bar"]
 collision_layer = 8

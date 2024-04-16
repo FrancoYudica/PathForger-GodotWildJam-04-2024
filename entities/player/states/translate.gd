@@ -1,11 +1,22 @@
 extends PlayerStateMachineNode
 
+@export var position_interpolation_curve: Curve
+
+var _start_position: Vector2
+
 func _state_enter():
+	
+	# Unliks previous hookable so it can move
+	player.stick_to_hookable = false
+	
+	# Allows rotation to aim for netxt node
 	player.rotating = true
+	
+	_start_position = player.global_position
+	
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
-	tween.tween_property(player, "position", player.current_hookable.hook_intersection, 0.35)
-	player.line_path.add_point(global_position)
+	tween.tween_method(_set_interpolation_value, 0.0, 1.0, 0.25)
 	tween.connect("finished", _translation_completed)
 
 func _translation_completed():
@@ -13,15 +24,18 @@ func _translation_completed():
 	player.current_hookable.reached()
 
 func _state_exit():
-	pass
+	player.hook.hide()
 
 func _state_input(event: InputEvent):
 	if event.is_action_pressed("click"):
 		player.buffered_mouse_click = get_global_mouse_position()
 		player.last_buffered_time_ms = Time.get_ticks_msec()
 
-func _state_process(_delta):
-	pass
+func _set_interpolation_value(t: float):
+	player.global_position = lerp(
+		_start_position, 
+		player.current_hookable.get_intersection_point(), 
+		position_interpolation_curve.sample(t)
+	)
 	
-func _state_physics_process(_delta):
-	pass
+	
