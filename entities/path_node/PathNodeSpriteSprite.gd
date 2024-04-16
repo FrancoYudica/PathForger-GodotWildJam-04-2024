@@ -23,5 +23,34 @@ func close():
 	_tween.tween_property(body, "scale", Vector2(1, 1), 0.1)
 	_tween.tween_method(_set_body_radius, .75, 0.5, .5)
 
+func reached():
+	if _tween != null:
+		_tween.stop()
+	
+	var reached_delay = 0.1075
+	
+	var scale_tween = create_tween()
+	scale_tween.set_trans(Tween.TRANS_EXPO)
+	scale_tween.set_ease(Tween.EASE_OUT_IN)
+	scale_tween.tween_property(outline, "scale", Vector2(2.0, 2.0), reached_delay)
+	create_tween().tween_property(body, "scale", Vector2(0.0, 0.0), reached_delay)
+	
+	var radius_tween = create_tween()
+	radius_tween.tween_method(_set_inner_radius, .9, .6, reached_delay)
+	await radius_tween.finished
+	
+	radius_tween = create_tween()
+	radius_tween.tween_method(_set_inner_radius, .6, .9, 0.2)
+	
+func left():
+	create_tween().tween_property(outline, "scale", Vector2(1.0, 1.0), 0.3)
+	outline.material.set_shader_parameter("segments_count", 4)
+
 func _set_body_radius(value):
 	body.material.set_shader_parameter("radius", value)
+	
+func _set_segments_count(value):
+	outline.material.set_shader_parameter("segments_count", value)
+
+func _set_inner_radius(value):
+	outline.material.set_shader_parameter("inner_radius", value)

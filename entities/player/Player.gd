@@ -12,6 +12,12 @@ var current_hookable: Hookable = null
 var buffered_mouse_click = null
 var last_buffered_time_ms = 0
 var direction: Vector2 = Vector2.UP
+var rotating: bool = true
+
+func set_current_hookable(hookable: Hookable):
+	if current_hookable != null:
+		current_hookable.left()
+	current_hookable = hookable
 
 func _ready():
 	line_path.add_point(position)
@@ -22,3 +28,7 @@ func _process(delta):
 	
 	# Last point position in player
 	line_path.set_point_position(line_path.points.size() - 1, position)
+	
+	if rotating:
+		look_at(get_global_mouse_position())
+		direction = (get_global_mouse_position() - global_position).normalized()

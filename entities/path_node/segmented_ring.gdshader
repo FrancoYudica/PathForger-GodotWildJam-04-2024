@@ -1,20 +1,21 @@
 shader_type canvas_item;
 
 uniform vec4 color: source_color = vec4(1.0f);
+uniform float inner_radius = 0.9f;
 uniform float edge_blur = 0.05f;
-uniform int segments_count = 10;
+uniform float segments_count = 10.0f;
 uniform float rotation_speed = 2.0f;
 
 void fragment() {
 	
 	// Calculates ring values
 	float outer_radius = 1.0f;
-	float inner_radius = .81;
+	float inner_radius_squared = inner_radius * inner_radius;
 	vec2 centered = 2.0f * UV - vec2(1.0f);
 	float l = dot(centered, centered);
 	
 	float outer_circle = smoothstep(outer_radius, outer_radius - edge_blur, l);
-	float inner_circle = smoothstep(inner_radius, inner_radius - edge_blur, l);
+	float inner_circle = smoothstep(inner_radius_squared, inner_radius_squared - edge_blur, l);
 	
 	// Ring color
 	COLOR = color;

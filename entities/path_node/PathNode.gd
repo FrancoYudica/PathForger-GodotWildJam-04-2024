@@ -15,6 +15,10 @@ var focused: bool:
 func reached():
 	# Doesn't need collider once it's reached
 	disable_collider()
-	$PathNodeSprite/Outline.visible = false
-	sprite.open()
-	
+	sprite.reached()
+
+func left():
+	sprite.left()
+
+func get_fixed_intersection(current_intersection: Vector2):
+	return global_position

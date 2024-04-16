@@ -1,6 +1,7 @@
 extends PlayerStateMachineNode
 
 func _state_enter():
+	player.rotating = true
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.tween_property(player, "position", player.current_hookable.hook_intersection, 0.35)

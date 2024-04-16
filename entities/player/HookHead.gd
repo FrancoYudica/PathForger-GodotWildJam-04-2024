@@ -9,7 +9,7 @@ signal recovered
 @export var recover_duration: float = 0.3
 
 var hook_length: float = 300
-var intersection_length = 0.0
+var hit_distance = 0.0
 var _enlongating = false
 var _recovering = false
 var _t = 0.0
@@ -20,7 +20,7 @@ var progress: float:
 
 var current_length: float:
 	get:
-		return progress * intersection_length
+		return progress * hit_distance
 		
 
 func enlongate():

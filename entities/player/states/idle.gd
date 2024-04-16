@@ -1,7 +1,7 @@
 extends PlayerStateMachineNode
 
 func _state_enter():
-	pass
+	player.rotating = true
 
 func _state_exit():
 	pass
@@ -16,9 +16,6 @@ func _state_process(_delta):
 	#if player.current_hookable != null:
 	#	player.global_position = player.current_hookable.global_position
 		
-	player.look_at(get_global_mouse_position())
-	player.direction = (get_global_mouse_position() - player.global_position).normalized()
-	
 	# If a click is buffered
 	if player.buffered_mouse_click != null:
 		

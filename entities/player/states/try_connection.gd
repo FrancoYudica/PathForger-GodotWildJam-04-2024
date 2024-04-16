@@ -3,6 +3,8 @@ extends PlayerStateMachineNode
 var in_state = false
 
 func _state_enter():
+	player.rotating = false
+	
 	if not player.hook.is_connected("hookable_reached", _on_hookable_reached):
 		player.hook.connect("hookable_reached", _on_hookable_reached)
 		player.hook.connect("miss", _hook_miss)
@@ -25,7 +27,7 @@ func _state_physics_process(_delta):
 
 func _on_hookable_reached(hookable: Hookable):
 	if in_state:
-		player.current_hookable = hookable
+		player.set_current_hookable(hookable)
 		transition("translate")
 		
 func _hook_miss():
