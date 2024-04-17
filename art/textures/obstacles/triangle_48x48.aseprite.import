@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c8dpemdmrj10v"
+path="res://.godot/imported/triangle_48x48.aseprite-a2edb0b6d04028f935c0b2ff510453be.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/triangle_48x48.aseprite"
+dest_files=["res://.godot/imported/triangle_48x48.aseprite-a2edb0b6d04028f935c0b2ff510453be.res"]
+
+[params]
+

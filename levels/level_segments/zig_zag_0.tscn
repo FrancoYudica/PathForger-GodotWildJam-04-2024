@@ -8,9 +8,6 @@
 
 [node name="LevelSegment" type="Node2D" node_paths=PackedStringArray("path_nodes")]
 script = ExtResource("1_1eew8")
-manual_segment_height = true
-segment_height = 600
-fix_path_node_heights = false
 path_nodes = [NodePath("PathNode1"), NodePath("PathNode2"), NodePath("PathNode3"), NodePath("PathNode4")]
 
 [node name="PathNode1" parent="." instance=ExtResource("2_4lkdt")]

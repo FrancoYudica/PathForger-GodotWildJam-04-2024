@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=16 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
 [ext_resource type="Shader" path="res://levels/moving_checkboard.gdshader" id="2_rql3e"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
-[ext_resource type="PackedScene" uid="uid://c837pbshpt1og" path="res://levels/level_segments/zig_zag_0.tscn" id="12_gdw2r"]
+[ext_resource type="PackedScene" uid="uid://d25wmm844qssb" path="res://levels/level_segments/scenes/medium/level_segment_medium_2.tscn" id="12_oax84"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
@@ -25,6 +25,10 @@ shader_parameter/rows_offset_strength = 0.0
 max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_rtlm2"]
+_data = [Vector2(0, 0), 0.0, 1.35811, 0, 0, Vector2(1, 1), -0.0439181, 0.0, 0, 0]
+point_count = 2
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
@@ -93,8 +97,10 @@ tween_parameters = null
 tween_on_load = true
 inactive_update_mode = 0
 
-[node name="LevelBuilder" type="Node2D" parent="."]
+[node name="LevelBuilder" type="Node2D" parent="." node_paths=PackedStringArray("level")]
 script = ExtResource("11_gospp")
+level = NodePath("..")
+dynamic_difficulty_curve = SubResource("Curve_rtlm2")
 
 [node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("9_fy437")]
 position = Vector2(270, -200)
@@ -104,4 +110,4 @@ script = ExtResource("11_2xxqe")
 
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
-packed_level_segments = Array[PackedScene]([ExtResource("12_gdw2r")])
+packed_level_segments = Array[PackedScene]([ExtResource("12_oax84")])

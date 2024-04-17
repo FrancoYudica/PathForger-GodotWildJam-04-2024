@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx725glmajui7"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_558mj"]
+[ext_resource type="Script" path="res://levels/level_segments/LevelChanger.gd" id="2_u34bc"]
+
+[node name="BaseLevelSegment" type="Node2D"]
+script = ExtResource("1_558mj")
+
+[node name="LevelChanger" type="Node2D" parent="."]
+script = ExtResource("2_u34bc")
+
+[node name="BottomMarker2D" type="Marker2D" parent="."]
+
+[node name="TopMarker2D" type="Marker2D" parent="."]

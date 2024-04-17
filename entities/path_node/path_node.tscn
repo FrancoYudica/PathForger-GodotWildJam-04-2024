@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://entities/path_node/path_node.gdshader" id="2_jx46s"]
 [ext_resource type="Script" path="res://entities/path_node/PathNodeSpriteSprite.gd" id="2_vee2j"]
 [ext_resource type="Shader" path="res://entities/path_node/segmented_ring.gdshader" id="4_eapb6"]
-[ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://levels/circle.png" id="4_pni3d"]
+[ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="4_pni3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70e0i"]
 resource_local_to_scene = true

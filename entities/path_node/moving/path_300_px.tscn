@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://y4rd61nf7m6y"]
+
+[ext_resource type="Texture2D" uid="uid://b2nru0gaouhix" path="res://art/textures/paths/path_bar_300px.png" id="1_g5j1q"]
+[ext_resource type="Script" path="res://entities/path_node/moving/path_node_moving.gd" id="1_l3q62"]
+[ext_resource type="Script" path="res://levels/level_segments/CurvePathFollow.gd" id="2_sy8nm"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="3_l55bm"]
+
+[sub_resource type="Curve2D" id="Curve2D_lnegp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -150, 0, 0, 0, 0, 0, 150, 0)
+}
+point_count = 2
+
+[node name="Path300px" type="Path2D"]
+position = Vector2(0, -200)
+curve = SubResource("Curve2D_lnegp")
+script = ExtResource("1_l3q62")
+
+[node name="PathSprite" type="Sprite2D" parent="."]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("1_g5j1q")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_300px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-150, 0)
+loop = false
+script = ExtResource("2_sy8nm")
+speed = 2.0
+path_length = 300
+
+[node name="PathNode" parent="PathFollow2D" instance=ExtResource("3_l55bm")]
+
+[node name="_Timer_192888" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="_Timer_194568" type="Timer" parent="PathFollow2D"]
+wait_time = 0.2
+one_shot = true

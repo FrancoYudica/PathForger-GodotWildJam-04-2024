@@ -1,44 +1,27 @@
 extends Node2D
 class_name LevelSegment
 
-@export_category("Segment height")
-@export var manual_segment_height: bool = false
+@export_enum("Easy", "Medium", "Hard", "Super hard") var difficulty_enum_index = 0
+
+@onready var level_changer: LevelChanger = $LevelChanger
+@onready var bottom_marker = $BottomMarker2D
+@onready var top_marker = $TopMarker2D
+
+## Static difficulty mapped in range [0, 1]
+var static_difficulty: float = 0.0
+
 ## Height of the segment. All segments calculate it's height
 ## and it should only take into consideration the path nodes
 ## without adding any padding to the segment.
-@export var segment_height: int = 0
+var segment_height: float = 0.0
 
-@export var fix_path_node_heights: bool = true
-
-@export var path_nodes: Array[PathNode]
-
-func calculate_segment_height():
-	
-	if manual_segment_height:
-		return
-	
-	var top = INF
-	var bottom = -INF
-	for path_node in path_nodes:
-		top = minf(path_node.global_position.y, top)
-		bottom = maxf(path_node.global_position.y, bottom)
-		
-	segment_height = bottom - top
-
-func add_child_path_node(path_node):
-	add_child(path_node)
-	path_nodes.append(path_node)
+var dynamic_difficulty: float:
+	set(value):
+		level_changer.dynamic_difficulty = value
 
 func _ready():
+	# Maps difficulty to range [0, 1]
+	static_difficulty = float(difficulty_enum_index) / 4.0
 	
-	for child in get_children():
-		if child is PathNode:
-			
-			if path_nodes.count(child) == 0:
-				path_nodes.append(child)
-	
-	if fix_path_node_heights:
-		for i in range(path_nodes.size()):
-			path_nodes[i].position.y = -i * Globals.vertical_gap
-			
-	calculate_segment_height()
+	# Calculates segment height with markers
+	segment_height = absf(top_marker.position.y - bottom_marker.position.y)

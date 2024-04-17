@@ -7,6 +7,7 @@ class_name Player
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 
 @export var click_buffering_ms: int = 300
+@export var score: int = 0
 
 var current_hookable: Hookable = null
 var buffered_mouse_click = null

@@ -5,4 +5,5 @@ extends Obstacle
 
 func _process(delta):
 	if rotate:
-		rotation += 2.0 * PI * delta * rotations_per_second
+		var difficulty = 1.0 + dynamic_difficulty * max_dynamic_difficulty
+		rotation += 2.0 * PI * delta * rotations_per_second * difficulty

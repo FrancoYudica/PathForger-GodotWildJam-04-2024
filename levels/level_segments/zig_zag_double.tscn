@@ -25,7 +25,6 @@ position = Vector2(0, -600)
 
 [node name="Segment0" type="Node2D" parent="."]
 rotation = 0.785398
-scale = Vector2(1, 1)
 
 [node name="ObstacleBar200px" parent="Segment0" instance=ExtResource("3_4x08q")]
 position = Vector2(-100, -50)
