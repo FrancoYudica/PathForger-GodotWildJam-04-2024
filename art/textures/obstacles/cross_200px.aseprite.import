@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bnwa1jko8wkgy"
+path="res://.godot/imported/cross_200px.aseprite-e0de2dae5728e3a225ce109325622f18.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/cross_200px.aseprite"
+dest_files=["res://.godot/imported/cross_200px.aseprite-e0de2dae5728e3a225ce109325622f18.res"]
+
+[params]
+

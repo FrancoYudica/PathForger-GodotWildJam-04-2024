@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvxq67huacrw7"]
+
+[ext_resource type="Texture2D" uid="uid://dqs3spp3vj046" path="res://art/textures/obstacles/bar_400px.png" id="1_jeve2"]
+[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_b4u5l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upo25"]
+radius = 8.0
+height = 400.0
+
+[node name="ObstacleBar400px" type="Sprite2D"]
+modulate = Color(0.25098, 1, 0.537255, 1)
+texture_filter = 1
+texture = ExtResource("1_jeve2")
+script = ExtResource("2_b4u5l")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/damage/bar_400px.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_upo25")

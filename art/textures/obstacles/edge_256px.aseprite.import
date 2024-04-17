@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bbwaq2k3513qw"
+path="res://.godot/imported/edge_256px.aseprite-d3bf8a5202ef591e450975090611972c.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/edge_256px.aseprite"
+dest_files=["res://.godot/imported/edge_256px.aseprite-d3bf8a5202ef591e450975090611972c.res"]
+
+[params]
+

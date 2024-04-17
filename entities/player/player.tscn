@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfqm7vopmmtbw"]
+[gd_scene load_steps=20 format=3 uid="uid://bfqm7vopmmtbw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
 [ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
@@ -41,6 +41,9 @@ point_count = 2
 _data = [Vector2(0.0842697, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8uns"]
+radius = 15.0333
+
 [node name="Player" type="Node2D"]
 modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
@@ -62,7 +65,7 @@ length = 400.0
 [node name="HookLengthHandler" type="Node2D" parent="Hook"]
 script = ExtResource("2_hssbf")
 curve = SubResource("Curve_j0jnm")
-duration = 0.1
+duration = 0.15
 
 [node name="Head" type="Sprite2D" parent="Hook"]
 modulate = Color(0.909804, 0.854902, 0.964706, 1)
@@ -142,4 +145,13 @@ scale_amount_min = 5.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_i357n")
 
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+shape = SubResource("CircleShape2D_i8uns")
+
 [connection signal="reached_end" from="Hook/HookLengthHandler" to="Hook" method="_on_hook_head_reached_end"]
+[connection signal="area_entered" from="CollisionArea2D" to="." method="_on_collision_area_2d_area_entered"]

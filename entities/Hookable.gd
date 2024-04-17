@@ -1,11 +1,15 @@
 extends Node2D
 class_name Hookable
 
+signal hookable_reached
+signal hookable_left
+
 @export var wants_to_fix_intersection: bool = false
 
 ## Point here intersection with hook happened
 var _hook_intersection: Vector2 = Vector2.ZERO
 var has_player_over: bool = false
+
 ## Called when hookable is hooked
 func hooked():
 	pass
@@ -13,17 +17,12 @@ func hooked():
 ## When player leaves the hookable
 func left():
 	has_player_over = false
+	hookable_left.emit()
 
 ## Called when player reaches the hook intersection point
 func reached():
 	has_player_over = true
-	disable_collider()
-
-func enable_collider():
-	$Area2D.collision_layer = 8
-	
-func disable_collider():
-	$Area2D.collision_layer = 0
+	hookable_reached.emit()
 
 ## Stores the intersection point in local coordinates
 func set_intersection_point(hook_intersection: Vector2):

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dxpil0ngb0hl"
+path="res://.godot/imported/bar_300px.aseprite-a565cf9078f6cfd708726c8894e281a9.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/bar_300px.aseprite"
+dest_files=["res://.godot/imported/bar_300px.aseprite-a565cf9078f6cfd708726c8894e281a9.res"]
+
+[params]
+

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3g0wbvta25ea"]
+
+[ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://art/textures/obstacles/bar_200px.png" id="1_itv2j"]
+[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_ol552"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upo25"]
+radius = 8.0
+height = 198.0
+
+[node name="ObstacleBar200px" type="Sprite2D"]
+modulate = Color(0.25098, 1, 0.537255, 1)
+texture = ExtResource("1_itv2j")
+script = ExtResource("2_ol552")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_upo25")

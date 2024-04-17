@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://r1t3ds37ibdu"]
+
+[ext_resource type="Texture2D" uid="uid://bm16cm0kkjyjm" path="res://art/textures/obstacles/open_ring_thin_256x256.png" id="1_18qy7"]
+[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_r2yh2"]
+
+[node name="Circumference" type="Sprite2D"]
+modulate = Color(0.25098, 1, 0.537255, 1)
+texture_filter = 1
+texture = ExtResource("1_18qy7")
+script = ExtResource("2_r2yh2")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/damage/bar_400px.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-51, 103)
+rotation = 3.14159
+polygon = PackedVector2Array(0, 0, 6, 7, 25, 20, 45, 46, 53, 62, 59, 80, 61, 97, 60, 122, 51, 150, 36, 174, 22, 188, 2, 203, -1, 208, 1, 213, 4, 215, 10, 215, 35, 198, 56, 174, 69, 147, 76, 119, 77, 102, 73, 72, 65, 49, 52, 27, 37, 11, 21, -2, 8, -10, 4, -9, 0, -5)
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+position = Vector2(51, -103)
+polygon = PackedVector2Array(0, 0, 6, 7, 25, 20, 45, 46, 53, 62, 59, 80, 61, 97, 60, 122, 51, 150, 36, 174, 22, 188, 2, 203, -1, 208, 1, 213, 4, 215, 10, 215, 35, 198, 56, 174, 69, 147, 76, 119, 77, 102, 73, 72, 65, 49, 52, 27, 37, 11, 21, -2, 8, -10, 4, -9, 0, -5)

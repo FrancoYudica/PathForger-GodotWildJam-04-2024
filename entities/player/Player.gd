@@ -20,6 +20,9 @@ func set_current_hookable(hookable: Hookable):
 		current_hookable.left()
 	current_hookable = hookable
 
+func death():
+	print("Player death")
+
 func _ready():
 	line_path.add_point(position)
 	state_machine.initialize()
@@ -33,6 +36,10 @@ func _process(delta):
 	if rotating:
 		look_at(get_global_mouse_position())
 		direction = (get_global_mouse_position() - global_position).normalized()
-		
+
+func _physics_process(delta):
 	if current_hookable != null and stick_to_hookable and current_hookable.has_player_over:
 		global_position = current_hookable.get_intersection_point()
+
+func _on_collision_area_2d_area_entered(area):
+	death()

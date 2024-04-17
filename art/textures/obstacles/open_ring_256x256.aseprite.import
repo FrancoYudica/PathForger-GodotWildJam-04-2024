@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://jjefjaftes5y"
+path="res://.godot/imported/open_ring_256x256.aseprite-ba7d2b480983dfbb39273545ce904d33.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/open_ring_256x256.aseprite"
+dest_files=["res://.godot/imported/open_ring_256x256.aseprite-ba7d2b480983dfbb39273545ce904d33.res"]
+
+[params]
+

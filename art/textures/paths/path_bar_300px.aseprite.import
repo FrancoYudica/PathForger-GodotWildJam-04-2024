@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c0x640daw503y"
+path="res://.godot/imported/path_bar_300px.aseprite-dd3a46ddf7cace68d2e8ef084b67f238.res"
+
+[deps]
+
+source_file="res://art/textures/paths/path_bar_300px.aseprite"
+dest_files=["res://.godot/imported/path_bar_300px.aseprite-dd3a46ddf7cace68d2e8ef084b67f238.res"]
+
+[params]
+

@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpe80galfrwew"]
+
+[ext_resource type="Texture2D" uid="uid://c12bgd0frdi0v" path="res://art/textures/obstacles/half_circle_256px.png" id="1_xcoui"]
+[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_hb7s7"]
+
+[node name="HalfCircumference" type="Sprite2D"]
+modulate = Color(0.25098, 1, 0.537255, 1)
+texture_filter = 1
+texture = ExtResource("1_xcoui")
+script = ExtResource("2_hb7s7")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/damage/bar_400px.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-51, 103)
+rotation = 3.14159
+polygon = PackedVector2Array(62.9998, 96.0002, 60.9997, 100, 60, 122, 51, 150, 36, 174, 22, 188, -2.00051, 204, -29.0005, 213, -52.0005, 215, -73.0005, 213, -92.0005, 207, -113, 196, -122, 190, -140, 170, -153, 150, -161, 122, -163, 112, -163, 99.9996, -165, 95.9996, -169, 92.9996, -173, 92.9996, -176, 94.9996, -179, 98.9995, -178, 120, -174, 138, -168, 156, -160, 169, -147, 187, -135.001, 199, -126.001, 206, -108.001, 218, -84.0006, 227, -62.0006, 231, -41.0006, 231, -11.0006, 225, 10, 215, 35, 198, 56, 174, 69, 147, 76, 119, 76.9997, 99.0002, 72.9998, 94.0002, 66.9998, 93.0002)

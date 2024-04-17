@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bt6ceimonnuhu"
+path="res://.godot/imported/square_64px.aseprite-8d8a21c5b8a70c07aabad7d79c1709e7.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/square_64px.aseprite"
+dest_files=["res://.godot/imported/square_64px.aseprite-8d8a21c5b8a70c07aabad7d79c1709e7.res"]
+
+[params]
+

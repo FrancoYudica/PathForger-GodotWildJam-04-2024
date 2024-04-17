@@ -1,6 +1,8 @@
 extends Node2D
 class_name LevelSegment
 
+@export_category("Segment height")
+@export var manual_segment_height: bool = false
 ## Height of the segment. All segments calculate it's height
 ## and it should only take into consideration the path nodes
 ## without adding any padding to the segment.
@@ -11,11 +13,15 @@ class_name LevelSegment
 @export var path_nodes: Array[PathNode]
 
 func calculate_segment_height():
-	var top = 0
-	var bottom = 0
+	
+	if manual_segment_height:
+		return
+	
+	var top = INF
+	var bottom = -INF
 	for path_node in path_nodes:
-		top = minf(path_node.position.y, top)
-		bottom = maxf(path_node.position.y, bottom)
+		top = minf(path_node.global_position.y, top)
+		bottom = maxf(path_node.global_position.y, bottom)
 		
 	segment_height = bottom - top
 

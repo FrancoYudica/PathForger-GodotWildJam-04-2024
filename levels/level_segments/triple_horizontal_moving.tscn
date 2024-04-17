@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://20spef5i7c57"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_b3jwu"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_7bdxm"]
+[ext_resource type="Texture2D" uid="uid://datwbdhyp8kpq" path="res://art/textures/paths/path_bar_200px.png" id="2_oovfj"]
+[ext_resource type="Script" path="res://levels/level_segments/CurvePathFollow.gd" id="3_wi3p6"]
+[ext_resource type="Texture2D" uid="uid://cdodo5c3uorc5" path="res://art/textures/paths/path_bar_400px.png" id="5_qch8j"]
+[ext_resource type="Texture2D" uid="uid://b2nru0gaouhix" path="res://art/textures/paths/path_bar_300px.png" id="6_d4i8h"]
+
+[sub_resource type="Curve2D" id="Curve2D_iukwb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -100, 0, 0, 0, 0, 0, 100, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_msqfl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -150, 0, 0, 0, 0, 0, 150, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_76vk7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -200, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[node name="LevelSegmentTripleHorizontalMoving" type="Node2D" node_paths=PackedStringArray("path_nodes")]
+script = ExtResource("1_b3jwu")
+fix_path_node_heights = false
+path_nodes = [NodePath("Path200px/PathFollow2D/PathNode"), NodePath("Path400px/PathFollow2D/PathNode")]
+
+[node name="Path200px" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iukwb")
+
+[node name="PathSprite" type="Sprite2D" parent="Path200px"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("2_oovfj")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_200px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path200px"]
+position = Vector2(-100, 0)
+loop = false
+script = ExtResource("3_wi3p6")
+speed = 2.0
+
+[node name="PathNode" parent="Path200px/PathFollow2D" instance=ExtResource("2_7bdxm")]
+
+[node name="Path300px" type="Path2D" parent="."]
+position = Vector2(0, -200)
+curve = SubResource("Curve2D_msqfl")
+
+[node name="PathSprite" type="Sprite2D" parent="Path300px"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("6_d4i8h")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_300px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path300px"]
+position = Vector2(-150, 0)
+loop = false
+script = ExtResource("3_wi3p6")
+speed = 2.0
+path_length = 300
+
+[node name="PathNode" parent="Path300px/PathFollow2D" instance=ExtResource("2_7bdxm")]
+
+[node name="Path400px" type="Path2D" parent="."]
+position = Vector2(0, -400)
+curve = SubResource("Curve2D_76vk7")
+
+[node name="PathSprite" type="Sprite2D" parent="Path400px"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("5_qch8j")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_400px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path400px"]
+position = Vector2(-200, 0)
+loop = false
+script = ExtResource("3_wi3p6")
+speed = 2.0
+path_length = 400
+
+[node name="PathNode" parent="Path400px/PathFollow2D" instance=ExtResource("2_7bdxm")]

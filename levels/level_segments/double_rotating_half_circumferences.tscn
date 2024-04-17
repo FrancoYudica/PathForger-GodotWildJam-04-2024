@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://oocml3esnf77"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_8mfd6"]
+[ext_resource type="PackedScene" uid="uid://dpe80galfrwew" path="res://entities/obstacles/half_circumference.tscn" id="3_wglq2"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_5qo5c"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="4_bf4na"]
+
+[node name="LevelSegmentTripleHorizontalMoving" type="Node2D" node_paths=PackedStringArray("path_nodes")]
+position = Vector2(0, -50)
+script = ExtResource("1_8mfd6")
+manual_segment_height = true
+segment_height = 400
+fix_path_node_heights = false
+path_nodes = [NodePath("NodeWithCircumference/PathNode"), NodePath("NodeWithCircumference2/PathNode")]
+
+[node name="NodeWithCircumference" type="Node2D" parent="."]
+
+[node name="HalfCircumference" parent="NodeWithCircumference" instance=ExtResource("3_wglq2")]
+rotate = true
+
+[node name="PathNode" parent="NodeWithCircumference" instance=ExtResource("4_bf4na")]
+
+[node name="NodeWithCircumference2" type="Node2D" parent="."]
+position = Vector2(2, -300)
+
+[node name="HalfCircumference" parent="NodeWithCircumference2" instance=ExtResource("3_wglq2")]
+rotation = 3.14159
+rotate = true
+
+[node name="PathNode" parent="NodeWithCircumference2" instance=ExtResource("4_bf4na")]
+
+[node name="ObstacleSquare32px" parent="." instance=ExtResource("4_5qo5c")]
+position = Vector2(-100, -150)
+rotate = true
+
+[node name="ObstacleSquare32px2" parent="." instance=ExtResource("4_5qo5c")]
+position = Vector2(100, -150)
+rotate = true
+rotations_per_second = -0.3

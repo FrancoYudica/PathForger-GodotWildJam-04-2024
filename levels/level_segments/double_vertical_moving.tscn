@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://co3w8j6jltvo"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_cklsx"]
+[ext_resource type="Script" path="res://levels/level_segments/CurvePathFollow.gd" id="3_geaur"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="4_dheg2"]
+[ext_resource type="Texture2D" uid="uid://b2nru0gaouhix" path="res://art/textures/paths/path_bar_300px.png" id="5_ejphq"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="5_p71pa"]
+
+[sub_resource type="Curve2D" id="Curve2D_msqfl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -150, 0, 0, 0, 0, 0, 150, 0)
+}
+point_count = 2
+
+[node name="LevelSegmentTripleHorizontalMoving" type="Node2D" node_paths=PackedStringArray("path_nodes")]
+script = ExtResource("1_cklsx")
+manual_segment_height = true
+segment_height = 800
+fix_path_node_heights = false
+path_nodes = [NodePath("Path300px/PathFollow2D/PathNode"), NodePath("Path300px2/PathFollow2D/PathNode")]
+
+[node name="Path300px" type="Path2D" parent="."]
+position = Vector2(-150, -150)
+rotation = 4.71239
+curve = SubResource("Curve2D_msqfl")
+
+[node name="PathSprite" type="Sprite2D" parent="Path300px"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("5_ejphq")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_300px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path300px"]
+position = Vector2(-150, 0)
+loop = false
+script = ExtResource("3_geaur")
+speed = 4.0
+path_length = 300
+start_move_when_reached = true
+
+[node name="PathNode" parent="Path300px/PathFollow2D" instance=ExtResource("4_dheg2")]
+
+[node name="Path300px2" type="Path2D" parent="."]
+position = Vector2(150, -450)
+rotation = 4.71239
+curve = SubResource("Curve2D_msqfl")
+
+[node name="PathSprite" type="Sprite2D" parent="Path300px2"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+texture_filter = 1
+texture = ExtResource("5_ejphq")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/paths/path_bar_300px.aseprite"
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path300px2"]
+position = Vector2(-150, 0)
+loop = false
+script = ExtResource("3_geaur")
+speed = 4.0
+path_length = 300
+start_move_when_reached = true
+
+[node name="PathNode" parent="Path300px2/PathFollow2D" instance=ExtResource("4_dheg2")]
+
+[node name="PathNode" parent="." instance=ExtResource("4_dheg2")]
+position = Vector2(0, -800)
+
+[node name="ObstacleBar200px" parent="." instance=ExtResource("5_p71pa")]
+position = Vector2(150, -100)
+
+[node name="ObstacleBar200px2" parent="." instance=ExtResource("5_p71pa")]
+position = Vector2(-150, -500)

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwexrux6jxrpy"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_2k1po"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="3_4x08q"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="3_81bjm"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_3k6at"]
+
+[node name="LevelSegmentTripleHorizontalMoving" type="Node2D" node_paths=PackedStringArray("path_nodes")]
+script = ExtResource("1_2k1po")
+manual_segment_height = true
+segment_height = 600
+fix_path_node_heights = false
+path_nodes = [NodePath("PathNode1"), NodePath("PathNode2"), NodePath("PathNode3"), NodePath("PathNode4")]
+
+[node name="PathNode1" parent="." instance=ExtResource("3_81bjm")]
+
+[node name="PathNode2" parent="." instance=ExtResource("3_81bjm")]
+position = Vector2(200, -200)
+
+[node name="PathNode3" parent="." instance=ExtResource("3_81bjm")]
+position = Vector2(-100, -400)
+
+[node name="PathNode4" parent="." instance=ExtResource("3_81bjm")]
+position = Vector2(0, -600)
+
+[node name="Segment0" type="Node2D" parent="."]
+rotation = 0.785398
+scale = Vector2(1, 1)
+
+[node name="ObstacleBar200px" parent="Segment0" instance=ExtResource("3_4x08q")]
+position = Vector2(-100, -50)
+
+[node name="ObstacleBar200px2" parent="Segment0" instance=ExtResource("3_4x08q")]
+position = Vector2(99.7021, -248.195)
+
+[node name="ObstacleSquare32px" parent="." instance=ExtResource("4_3k6at")]
+position = Vector2(50, -452)
+rotate = true
+
+[node name="ObstacleSquare32px4" parent="." instance=ExtResource("4_3k6at")]
+position = Vector2(-148, -554)
+rotate = true
+
+[node name="ObstacleSquare32px2" parent="." instance=ExtResource("4_3k6at")]
+position = Vector2(156, -15)
+
+[node name="ObstacleSquare32px3" parent="." instance=ExtResource("4_3k6at")]
+position = Vector2(336, -198)
+rotate = true

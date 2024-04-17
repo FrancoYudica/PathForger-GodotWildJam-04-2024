@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_806he"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_w8iwq"]
-[ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://levels/level_segments/bar_200px.png" id="3_a4y8f"]
-[ext_resource type="Texture2D" uid="uid://bylsrs6schc7j" path="res://levels/level_segments/square_32px.png" id="4_fblvq"]
+[ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://art/textures/obstacles/bar_200px.png" id="3_a4y8f"]
+[ext_resource type="Texture2D" uid="uid://bylsrs6schc7j" path="res://art/textures/obstacles/square_32px.png" id="4_fblvq"]
 
 [node name="TestLevelSegment" type="Node2D"]
 script = ExtResource("1_806he")
@@ -17,7 +17,6 @@ position = Vector2(200, -200)
 modulate = Color(0.25098, 1, 0.537255, 1)
 position = Vector2(150, -50)
 rotation = 0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("3_a4y8f")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,

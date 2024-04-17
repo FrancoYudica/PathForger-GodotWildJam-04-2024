@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c837pbshpt1og"]
+
+[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_1eew8"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_4lkdt"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="3_iqqe2"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_658ak"]
+[ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="5_2k026"]
+
+[node name="LevelSegment" type="Node2D" node_paths=PackedStringArray("path_nodes")]
+script = ExtResource("1_1eew8")
+manual_segment_height = true
+segment_height = 600
+fix_path_node_heights = false
+path_nodes = [NodePath("PathNode1"), NodePath("PathNode2"), NodePath("PathNode3"), NodePath("PathNode4")]
+
+[node name="PathNode1" parent="." instance=ExtResource("2_4lkdt")]
+
+[node name="PathNode2" parent="." instance=ExtResource("2_4lkdt")]
+position = Vector2(200, -200)
+
+[node name="PathNode3" parent="." instance=ExtResource("2_4lkdt")]
+position = Vector2(200, -400)
+
+[node name="PathNode4" parent="." instance=ExtResource("2_4lkdt")]
+position = Vector2(-100, -400)
+
+[node name="PathNode5" parent="." instance=ExtResource("2_4lkdt")]
+position = Vector2(0, -600)
+
+[node name="ObstacleBar200px" parent="." instance=ExtResource("3_iqqe2")]
+position = Vector2(51, -168)
+rotation = 0.785398
+
+[node name="ObstacleBar200px3" parent="." instance=ExtResource("3_iqqe2")]
+position = Vector2(151, -490)
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="." instance=ExtResource("4_658ak")]
+position = Vector2(-39, -81)
+rotate = true
+
+[node name="ObstacleSquare32px2" parent="." instance=ExtResource("4_658ak")]
+position = Vector2(99, 18)
+
+[node name="ObstacleSquare32px3" parent="." instance=ExtResource("4_658ak")]
+position = Vector2(172, -51)
+rotate = true
+
+[node name="ObstacleSquare64px" parent="." instance=ExtResource("5_2k026")]
+position = Vector2(-7, -275)
+rotate = true

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dsi1bmxep27bu"
+path="res://.godot/imported/half_circle_256px.aseprite-49567162377809f3fb1f3f5ae087de9d.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/half_circle_256px.aseprite"
+dest_files=["res://.godot/imported/half_circle_256px.aseprite-49567162377809f3fb1f3f5ae087de9d.res"]
+
+[params]
+

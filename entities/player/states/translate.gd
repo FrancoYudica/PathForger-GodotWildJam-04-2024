@@ -1,5 +1,6 @@
 extends PlayerStateMachineNode
 
+@export var translation_delay_ms: int = 350
 @export var position_interpolation_curve: Curve
 
 var _start_position: Vector2
@@ -16,12 +17,13 @@ func _state_enter():
 	
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
-	tween.tween_method(_set_interpolation_value, 0.0, 1.0, 0.25)
+	tween.tween_method(_set_interpolation_value, 0.0, 1.0, translation_delay_ms / 1000.0)
 	tween.connect("finished", _translation_completed)
 
 func _translation_completed():
 	transition("idle")
 	player.current_hookable.reached()
+	
 
 func _state_exit():
 	player.hook.hide()
