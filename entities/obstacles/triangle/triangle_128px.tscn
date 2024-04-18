@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4plnq3jpoudj"]
 
 [ext_resource type="Texture2D" uid="uid://3amfc4ilvmdr" path="res://art/textures/obstacles/triangle_128x128.png" id="1_r5m62"]
-[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_hce7t"]
+[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_1jed6"]
 
 [node name="ObstacleTriangle128px" type="Sprite2D"]
 modulate = Color(0.25098, 1, 0.537255, 1)
 texture_filter = 1
 position = Vector2(-23, -26)
 texture = ExtResource("1_r5m62")
-script = ExtResource("2_hce7t")
+script = ExtResource("2_1jed6")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }

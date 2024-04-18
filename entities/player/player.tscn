@@ -48,6 +48,7 @@ modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
 script = ExtResource("1_y7hkf")
 click_buffering_ms = 250
+score = 10000
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 top_level = true
