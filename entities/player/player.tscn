@@ -1,22 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfqm7vopmmtbw"]
+[gd_scene load_steps=19 format=3 uid="uid://bfqm7vopmmtbw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
 [ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="2_am5xp"]
 [ext_resource type="Script" path="res://entities/player/PlayerRayCast2D.gd" id="2_clyl4"]
-[ext_resource type="Script" path="res://entities/player/HookHead.gd" id="2_hssbf"]
 [ext_resource type="Script" path="res://entities/player/Hook.gd" id="2_mw5fx"]
 [ext_resource type="Script" path="res://entities/player/PlayerStateMachine.gd" id="3_8radf"]
 [ext_resource type="Script" path="res://entities/player/states/translate.gd" id="4_80ij7"]
-[ext_resource type="Script" path="res://entities/player/HookBody.gd" id="4_p21ks"]
 [ext_resource type="Script" path="res://entities/player/states/try_connection.gd" id="5_hxtbh"]
 [ext_resource type="Script" path="res://entities/player/states/idle.gd" id="6_3yq2p"]
 [ext_resource type="Texture2D" uid="uid://dvlklia76dygh" path="res://entities/player/player_sprite.png" id="6_8xn8k"]
 [ext_resource type="Shader" path="res://entities/player/blob.gdshader" id="12_pk4j0"]
-
-[sub_resource type="Curve" id="Curve_j0jnm"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vjy"]
 shader = ExtResource("12_pk4j0")
@@ -38,6 +32,10 @@ noise = SubResource("FastNoiseLite_lryjr")
 _data = [Vector2(0, 0), 0.0, 3.05025, 0, 0, Vector2(1, 1), -0.0540773, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_l5teo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.367983, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Curve" id="Curve_i357n"]
 _data = [Vector2(0.0842697, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -50,7 +48,6 @@ modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
 script = ExtResource("1_y7hkf")
 click_buffering_ms = 250
-score = 1000
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 top_level = true
@@ -64,25 +61,16 @@ script = ExtResource("2_clyl4")
 top_level = true
 position = Vector2(13, 0)
 script = ExtResource("2_mw5fx")
-length = 300.0
-
-[node name="HookLengthHandler" type="Node2D" parent="Hook"]
-script = ExtResource("2_hssbf")
-curve = SubResource("Curve_j0jnm")
-duration = 0.15
 
 [node name="Head" type="Sprite2D" parent="Hook"]
 modulate = Color(0.909804, 0.854902, 0.964706, 1)
 top_level = true
 texture = ExtResource("2_am5xp")
 
-[node name="HookBody" type="Line2D" parent="Hook" node_paths=PackedStringArray("start_node", "end_node")]
+[node name="Body" type="Line2D" parent="Hook"]
 top_level = true
 default_color = Color(0.909804, 0.854902, 0.964706, 1)
 antialiased = true
-script = ExtResource("4_p21ks")
-start_node = NodePath("../..")
-end_node = NodePath("../Head")
 
 [node name="LinePath" type="Line2D" parent="."]
 modulate = Color(0.909804, 0.854902, 0.964706, 1)
@@ -132,8 +120,10 @@ initial_state_name = "idle"
 script = ExtResource("4_80ij7")
 position_interpolation_curve = SubResource("Curve_q6efa")
 
-[node name="try_connection" type="Node2D" parent="PlayerStateMachine"]
+[node name="throw_hook" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("5_hxtbh")
+hook_duration_ms = 500
+hook_curve = SubResource("Curve_l5teo")
 
 [node name="idle" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("6_3yq2p")
@@ -159,5 +149,4 @@ shape = SubResource("CircleShape2D_i8uns")
 
 [node name="RaycastOriginMarker2D" type="Marker2D" parent="."]
 
-[connection signal="reached_end" from="Hook/HookLengthHandler" to="Hook" method="_on_hook_head_reached_end"]
 [connection signal="area_entered" from="CollisionArea2D" to="." method="_on_collision_area_2d_area_entered"]

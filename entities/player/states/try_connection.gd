@@ -1,28 +1,47 @@
+## State that throws the hook and handles intersections
 extends PlayerStateMachineNode
 
-var in_state = false
+@export var length = 300
+@export var hook_duration_ms: int = 300
+@export var hook_pixel_grab_edge: int = 30
+@export var hook_curve: Curve
+
+var _hook_tween: Tween
+var _hook_length: float = 0.0
 
 func _state_enter():
 	player.rotating = false
-	player.raycast.can_rotate = true
-	
-	if not player.hook.is_connected("hookable_reached", _on_hookable_reached):
-		player.hook.connect("hookable_reached", _on_hookable_reached)
-		player.hook.connect("miss", _hook_miss)
 	
 	player.hook.show()
 		
-	in_state = true
+	_hook_length = 0.0
+	_hook_tween = create_tween()
+	_hook_tween.tween_method(_set_hook_t, 0.0, 1.0, hook_duration_ms / 1000.0)
+	_hook_tween.connect("finished", _recovered)
 
-func _state_exit():
-	in_state = false
+func _set_hook_t(t):
+	_hook_length = hook_curve.sample(t) * length
 
-func _on_hookable_reached(hookable: Hookable):
-	if in_state:
-		player.line_path.add_point(global_position)
-		player.set_current_hookable(hookable)
-		transition("translate")
+func _state_process(delta):
+	
+	# Updates hook length
+	player.hook.length = _hook_length
 		
-func _hook_miss():
-	if in_state:
-		transition("idle")
+	var hookable = player.raycast.intersecting_hookable
+		
+	if hookable != null and (player.hook.head.global_position - hookable.global_position).length() < hook_pixel_grab_edge:
+		_on_hookable_reached(hookable)
+		
+		
+func _on_hookable_reached(hookable: Hookable):
+	
+	# Stops hook animation
+	_hook_tween.stop()
+	hookable.hooked()
+	player.line_path.add_point(global_position)
+	player.set_current_hookable(hookable)
+	transition("translate")
+
+func _recovered():
+	transition("idle")
+	player.hook.hide()

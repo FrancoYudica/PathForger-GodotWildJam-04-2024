@@ -11,7 +11,6 @@ class_name Player
 @export var score: int = 0
 
 var current_hookable: Hookable = null
-var buffered_mouse_click = null
 var last_buffered_time_ms = 0
 var direction: Vector2 = Vector2.UP
 var rotating: bool = true
