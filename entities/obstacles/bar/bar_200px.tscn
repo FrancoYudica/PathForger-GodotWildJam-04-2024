@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3g0wbvta25ea"]
+[gd_scene load_steps=5 format=3 uid="uid://c3g0wbvta25ea"]
 
+[ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_fxjvm"]
 [ext_resource type="Texture2D" uid="uid://cqdtffd52bufw" path="res://art/textures/obstacles/bar_200px.png" id="1_itv2j"]
 [ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_47g7v"]
 
@@ -8,7 +9,7 @@ radius = 8.0
 height = 198.0
 
 [node name="ObstacleBar200px" type="Sprite2D"]
-modulate = Color(0.25098, 1, 0.537255, 1)
+material = ExtResource("1_fxjvm")
 texture = ExtResource("1_itv2j")
 script = ExtResource("2_47g7v")
 

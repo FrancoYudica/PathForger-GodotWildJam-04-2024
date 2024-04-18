@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=17 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
-[ext_resource type="Shader" path="res://levels/moving_checkboard.gdshader" id="2_rql3e"]
-[ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://levels/checkboard_background.png" id="3_a5du7"]
+[ext_resource type="Shader" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
+[ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://art/textures/checkboard_background.png" id="3_a5du7"]
 [ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
-[ext_resource type="PackedScene" uid="uid://cm5n87lswoumq" path="res://levels/level_segments/scenes/medium/level_segment_medium_5.tscn" id="12_ddcv1"]
+[ext_resource type="PackedScene" uid="uid://c82wtr3ee8lf6" path="res://levels/level_segments/scenes/medium/level_segment_medium_4.tscn" id="12_4twjo"]
+[ext_resource type="FontFile" uid="uid://babyeme2jhpvd" path="res://art/fonts/axaxax bd.otf" id="13_ftpfa"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
@@ -110,4 +111,15 @@ script = ExtResource("11_2xxqe")
 
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
-packed_level_segments = Array[PackedScene]([ExtResource("12_ddcv1")])
+packed_level_segments = Array[PackedScene]([ExtResource("12_4twjo")])
+
+[node name="Label" type="Label" parent="."]
+offset_left = 170.0
+offset_top = 48.0
+offset_right = 356.0
+offset_bottom = 125.0
+theme_override_fonts/font = ExtResource("13_ftpfa")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvxq67huacrw7"]
+[gd_scene load_steps=5 format=3 uid="uid://cvxq67huacrw7"]
 
 [ext_resource type="Texture2D" uid="uid://dqs3spp3vj046" path="res://art/textures/obstacles/bar_400px.png" id="1_jeve2"]
+[ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_nn2xc"]
 [ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_wphfy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upo25"]
@@ -8,8 +9,8 @@ radius = 8.0
 height = 400.0
 
 [node name="ObstacleBar400px" type="Sprite2D"]
-modulate = Color(0.25098, 1, 0.537255, 1)
 texture_filter = 1
+material = ExtResource("1_nn2xc")
 texture = ExtResource("1_jeve2")
 script = ExtResource("2_wphfy")
 metadata/_aseprite_wizard_interface_config_ = {
