@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpe80galfrwew"]
 
 [ext_resource type="Texture2D" uid="uid://c12bgd0frdi0v" path="res://art/textures/obstacles/half_circle_256px.png" id="1_xcoui"]
-[ext_resource type="Script" path="res://entities/obstacles/RotatingObstacle.gd" id="2_hb7s7"]
+[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_77lwb"]
 
 [node name="HalfCircumference" type="Sprite2D"]
 modulate = Color(0.25098, 1, 0.537255, 1)
 texture_filter = 1
 texture = ExtResource("1_xcoui")
-script = ExtResource("2_hb7s7")
+script = ExtResource("2_77lwb")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }

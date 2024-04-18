@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfqm7vopmmtbw"]
+[gd_scene load_steps=21 format=3 uid="uid://bfqm7vopmmtbw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
 [ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="2_am5xp"]
+[ext_resource type="Script" path="res://entities/player/PlayerRayCast2D.gd" id="2_clyl4"]
 [ext_resource type="Script" path="res://entities/player/HookHead.gd" id="2_hssbf"]
 [ext_resource type="Script" path="res://entities/player/Hook.gd" id="2_mw5fx"]
 [ext_resource type="Script" path="res://entities/player/PlayerStateMachine.gd" id="3_8radf"]
@@ -49,12 +50,15 @@ modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
 script = ExtResource("1_y7hkf")
 click_buffering_ms = 250
+score = 1000
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="PlayerRayCast2D" type="RayCast2D" parent="."]
+top_level = true
 target_position = Vector2(1000, 0)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
+script = ExtResource("2_clyl4")
 
 [node name="Hook" type="Node2D" parent="."]
 top_level = true
@@ -152,6 +156,8 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
 shape = SubResource("CircleShape2D_i8uns")
+
+[node name="RaycastOriginMarker2D" type="Marker2D" parent="."]
 
 [connection signal="reached_end" from="Hook/HookLengthHandler" to="Hook" method="_on_hook_head_reached_end"]
 [connection signal="area_entered" from="CollisionArea2D" to="." method="_on_collision_area_2d_area_entered"]

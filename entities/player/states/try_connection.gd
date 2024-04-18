@@ -4,6 +4,7 @@ var in_state = false
 
 func _state_enter():
 	player.rotating = false
+	player.raycast.can_rotate = true
 	
 	if not player.hook.is_connected("hookable_reached", _on_hookable_reached):
 		player.hook.connect("hookable_reached", _on_hookable_reached)

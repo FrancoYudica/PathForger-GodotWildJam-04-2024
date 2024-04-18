@@ -7,7 +7,7 @@ signal hookable_reached(hookable: Hookable)
 ## Emitted if after throwing noting is reached
 signal miss()
 
-@onready var raycast = $"../RayCast2D"
+@onready var raycast = $"../PlayerRayCast2D"
 @onready var length_handler = $HookLengthHandler 
 @onready var head_sprite = $Head
 
@@ -37,7 +37,7 @@ func _process(delta):
 	if _animating:
 		# Updates head sprite position along the hook direction
 		var player = $".."
-		head_sprite.global_position = player.global_position + player.direction * length_handler.current_length
+		head_sprite.global_position = player.global_position + player.raycast.direction * length_handler.current_length
 	
 	# Resets variables when ray misses
 	if not _update_raycast_intersection():
@@ -55,9 +55,6 @@ func _on_hook_head_reached_end():
 	
 	# Stops hook animation
 	_animating = false
-	
-	# Positions correctly hook head
-	head_sprite.global_position = _intersection_point
 	
 	# Sets intersection point to hookable
 	hookable.set_intersection_point(_intersection_point)

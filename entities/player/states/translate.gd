@@ -2,6 +2,7 @@ extends PlayerStateMachineNode
 
 @export var translation_delay_ms: int = 350
 @export var position_interpolation_curve: Curve
+@onready var hook_head = $"../../Hook/Head"
 
 var _start_position: Vector2
 
@@ -12,6 +13,7 @@ func _state_enter():
 	
 	# Allows rotation to aim for netxt node
 	player.rotating = true
+	player.raycast.can_rotate = true
 	
 	_start_position = player.global_position
 	
@@ -23,7 +25,9 @@ func _state_enter():
 func _translation_completed():
 	transition("idle")
 	player.current_hookable.reached()
-	
+
+func _state_process(_delta):
+	hook_head.global_position = player.current_hookable.get_intersection_point()
 
 func _state_exit():
 	player.hook.hide()

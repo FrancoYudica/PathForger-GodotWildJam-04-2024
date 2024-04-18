@@ -3,6 +3,7 @@ extends PlayerStateMachineNode
 func _state_enter():
 	player.stick_to_hookable = true
 	player.rotating = true
+	player.raycast.can_rotate = true
 
 func _state_exit():
 	pass

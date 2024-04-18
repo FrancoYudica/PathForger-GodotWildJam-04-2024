@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c82wtr3ee8lf6"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_6gp5f"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_nlo7b"]
+[ext_resource type="PackedScene" uid="uid://y4rd61nf7m6y" path="res://entities/path_node/moving/path_300_px.tscn" id="3_pg6xl"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_6gp5f")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(2, -600)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_nlo7b")]
+
+[node name="PathNode3" parent="." index="4" instance=ExtResource("2_nlo7b")]
+position = Vector2(1, -600)
+
+[node name="Path300px" parent="." index="5" node_paths=PackedStringArray("level_changer") instance=ExtResource("3_pg6xl")]
+rotation = 3.14159
+level_changer = NodePath("../LevelChanger")
+
+[node name="Path300px2" parent="." index="6" node_paths=PackedStringArray("level_changer") instance=ExtResource("3_pg6xl")]
+position = Vector2(0, -400)
+level_changer = NodePath("../LevelChanger")

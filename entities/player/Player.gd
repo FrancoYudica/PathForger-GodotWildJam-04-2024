@@ -5,6 +5,7 @@ class_name Player
 @onready var sprite = $PlayerSprite
 @onready var hook: Hook = $Hook
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+@onready var raycast: PlayerRaycast = $PlayerRayCast2D
 
 @export var click_buffering_ms: int = 300
 @export var score: int = 0
