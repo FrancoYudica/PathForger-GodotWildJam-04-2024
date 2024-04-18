@@ -29,11 +29,11 @@ func _state_process(delta):
 		
 	var hookable = player.raycast.intersecting_hookable
 		
-	if hookable != null and (player.hook.head.global_position - hookable.global_position).length() < hook_pixel_grab_edge:
-		_on_hookable_reached(hookable)
+	if hookable != null and (player.hook.head.global_position - hookable.get_intersection_point()).length() < hook_pixel_grab_edge:
+		_on_hookable_hooked(hookable)
 		
 		
-func _on_hookable_reached(hookable: Hookable):
+func _on_hookable_hooked(hookable: Hookable):
 	
 	# Stops hook animation
 	_hook_tween.stop()

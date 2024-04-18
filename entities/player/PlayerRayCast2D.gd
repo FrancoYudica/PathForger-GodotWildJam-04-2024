@@ -5,8 +5,10 @@ extends RayCast2D
 class_name PlayerRaycast
 
 @export var hook_length = 300
+@export var debug_hit = false
 
 @onready var origin = $"../RaycastOriginMarker2D"
+@onready var player: Player = $".."
 
 var intersecting_hookable: Hookable:
 	get:
@@ -26,6 +28,12 @@ func _process(delta):
 	look_at(_last_target_position)
 		
 	_update_raycast_intersection()
+	
+	if debug_hit and _intersecting_hookable != null:
+		$DebugSprite2D.show()
+		$DebugSprite2D.global_position = _intersecting_hookable.get_intersection_point()
+	else:
+		$DebugSprite2D.hide()
 
 ## When ray is intersecting, updates hookable and intersection point
 func _update_raycast_intersection():
@@ -44,6 +52,9 @@ func _update_raycast_intersection():
 	var hookable = collider.get_parent() as Hookable
 	if hookable == null:
 		_set_current_hookable(null)
+		return
+		
+	if hookable == player.current_hookable:
 		return
 	
 	# Gets intersection point and fix if necessary

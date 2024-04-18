@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
-[ext_resource type="PackedScene" uid="uid://il542qhl7xm2" path="res://levels/level_segments/scenes/medium/level_segment_medium_3.tscn" id="12_yctt7"]
+[ext_resource type="PackedScene" uid="uid://cm5n87lswoumq" path="res://levels/level_segments/scenes/medium/level_segment_medium_5.tscn" id="12_ddcv1"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
@@ -110,4 +110,4 @@ script = ExtResource("11_2xxqe")
 
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
-packed_level_segments = Array[PackedScene]([ExtResource("12_yctt7")])
+packed_level_segments = Array[PackedScene]([ExtResource("12_ddcv1")])

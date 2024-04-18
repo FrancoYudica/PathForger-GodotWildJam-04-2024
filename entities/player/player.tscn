@@ -48,7 +48,6 @@ modulate = Color(0.909804, 0.854902, 0.964706, 1)
 z_index = 2
 script = ExtResource("1_y7hkf")
 click_buffering_ms = 250
-score = 10000
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 top_level = true
@@ -57,6 +56,10 @@ collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_clyl4")
+
+[node name="DebugSprite2D" type="Sprite2D" parent="PlayerRayCast2D"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_am5xp")
 
 [node name="Hook" type="Node2D" parent="."]
 top_level = true
@@ -123,7 +126,7 @@ position_interpolation_curve = SubResource("Curve_q6efa")
 
 [node name="throw_hook" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("5_hxtbh")
-hook_duration_ms = 500
+hook_duration_ms = 750
 hook_curve = SubResource("Curve_l5teo")
 
 [node name="idle" type="Node2D" parent="PlayerStateMachine"]

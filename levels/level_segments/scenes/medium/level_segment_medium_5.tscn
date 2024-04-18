@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm5n87lswoumq"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_flocw"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_a4u5k"]
+[ext_resource type="PackedScene" uid="uid://ddqs3w57vp3tw" path="res://entities/obstacles/ring/ring_4_holes.tscn" id="3_voou5"]
+[ext_resource type="PackedScene" uid="uid://b4plnq3jpoudj" path="res://entities/obstacles/triangle/triangle_128px.tscn" id="4_t088b"]
+[ext_resource type="Script" path="res://entities/obstacles/RotationChangerComponent.gd" id="5_cxks8"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_flocw")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -500)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_a4u5k")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_a4u5k")]
+position = Vector2(0, -250)
+
+[node name="PathNode3" parent="." index="5" instance=ExtResource("2_a4u5k")]
+position = Vector2(0, -500)
+
+[node name="Ring4Holes" parent="." index="6" instance=ExtResource("3_voou5")]
+position = Vector2(0, -250)
+
+[node name="RotationChangerComponent" type="Node2D" parent="Ring4Holes" index="4" node_paths=PackedStringArray("level_changer")]
+position = Vector2(201, 159)
+script = ExtResource("5_cxks8")
+level_changer = NodePath("../../LevelChanger")
+rotations_per_second = 0.1
+
+[node name="ObstacleTriangle128px" parent="." index="7" instance=ExtResource("4_t088b")]
+position = Vector2(201, -91)

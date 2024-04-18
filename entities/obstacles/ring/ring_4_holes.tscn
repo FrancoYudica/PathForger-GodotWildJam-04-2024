@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddqs3w57vp3tw"]
+
+[ext_resource type="Texture2D" uid="uid://ddb3igmtslnti" path="res://art/textures/obstacles/open_ring_4_gaps_256x256.png" id="1_60ta0"]
+[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_ardum"]
+
+[node name="Ring4Holes" type="Sprite2D"]
+modulate = Color(0.25098, 1, 0.537255, 1)
+texture_filter = 1
+texture = ExtResource("1_60ta0")
+script = ExtResource("2_ardum")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/damage/bar_400px.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-105, -51)
+polygon = PackedVector2Array(-1, 1, 4, 0, 8, -5, 18, -19, 35, -37, 51, -47, 55, -53, 53, -59, 47, -62, 42, -60, 28, -51, 16, -41, 8, -32, 1, -23, -8, -9, -7, -3)
+
+[node name="Area2D2" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+position = Vector2(-105, -51)
+polygon = PackedVector2Array(-1, 1, 4, 0, 8, -5, 18, -19, 35, -37, 51, -47, 55, -53, 53, -59, 47, -62, 42, -60, 28, -51, 16, -41, 8, -32, 1, -23, -8, -9, -7, -3)
+
+[node name="Area2D3" type="Area2D" parent="."]
+rotation = 3.14159
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D3"]
+position = Vector2(-105, -51)
+polygon = PackedVector2Array(-1, 1, 4, 0, 8, -5, 18, -19, 35, -37, 51, -47, 55, -53, 53, -59, 47, -62, 42, -60, 28, -51, 16, -41, 8, -32, 1, -23, -8, -9, -7, -3)
+
+[node name="Area2D4" type="Area2D" parent="."]
+rotation = 4.71239
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D4"]
+position = Vector2(-105, -51)
+polygon = PackedVector2Array(-1, 1, 4, 0, 8, -5, 18, -19, 35, -37, 51, -47, 55, -53, 53, -59, 47, -62, 42, -60, 28, -51, 16, -41, 8, -32, 1, -23, -8, -9, -7, -3)

@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name RotationChangerComponent
 @export var level_changer: LevelChanger
 @export var rotations_per_second: float = 0.3
 

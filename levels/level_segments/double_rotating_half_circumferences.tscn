@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://oocml3esnf77"]
 
 [ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_8mfd6"]
-[ext_resource type="PackedScene" uid="uid://dpe80galfrwew" path="res://entities/obstacles/half_circumference/half_circumference.tscn" id="3_wglq2"]
+[ext_resource type="PackedScene" uid="uid://dpe80galfrwew" path="res://entities/obstacles/ring/half_circumference.tscn" id="3_wglq2"]
 [ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_5qo5c"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="4_bf4na"]
 
