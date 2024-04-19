@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=31 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
 [ext_resource type="Shader" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
@@ -11,8 +11,21 @@
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
 [ext_resource type="PackedScene" uid="uid://chfrjw0homh4i" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_1.tscn" id="12_qlptm"]
+[ext_resource type="Script" path="res://levels/ScoreAdaptableSegmentGenerator.gd" id="13_5ur8j"]
 [ext_resource type="FontFile" uid="uid://babyeme2jhpvd" path="res://art/fonts/axaxax bd.otf" id="13_ftpfa"]
+[ext_resource type="PackedScene" uid="uid://bj4avtwsfjmws" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_0.tscn" id="14_dmrme"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
+[ext_resource type="PackedScene" uid="uid://dgdt453qqqyc4" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_1.tscn" id="15_k22q7"]
+[ext_resource type="PackedScene" uid="uid://c8d3p2i1oison" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_2.tscn" id="16_1v06n"]
+[ext_resource type="PackedScene" uid="uid://c0p0xsp7afn1" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_0.tscn" id="17_7r27j"]
+[ext_resource type="PackedScene" uid="uid://dn1be2dwh3cw6" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_1.tscn" id="18_1ap4f"]
+[ext_resource type="PackedScene" uid="uid://d25wmm844qssb" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_2.tscn" id="19_jhh6g"]
+[ext_resource type="PackedScene" uid="uid://il542qhl7xm2" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_3.tscn" id="20_84o1w"]
+[ext_resource type="PackedScene" uid="uid://c82wtr3ee8lf6" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_4.tscn" id="21_djbun"]
+[ext_resource type="PackedScene" uid="uid://cm5n87lswoumq" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_5.tscn" id="22_ji6ly"]
+[ext_resource type="PackedScene" uid="uid://cc8e6v02u3ytk" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_6.tscn" id="23_eg4or"]
+[ext_resource type="PackedScene" uid="uid://b6wwajndhf360" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_7.tscn" id="24_twanf"]
+[ext_resource type="PackedScene" uid="uid://bunbxvh6hpdhy" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_0.tscn" id="25_d33e2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
 shader = ExtResource("2_rql3e")
@@ -31,8 +44,13 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 1.35811, 0, 0, Vector2(1, 1), -0.0439181, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_cgel7"]
+_data = [Vector2(0, 0), 0.0, 2.06044, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
+max_player_score = 100
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -98,9 +116,8 @@ tween_parameters = null
 tween_on_load = true
 inactive_update_mode = 0
 
-[node name="LevelBuilder" type="Node2D" parent="." node_paths=PackedStringArray("level")]
+[node name="LevelBuilder" type="Node2D" parent="."]
 script = ExtResource("11_gospp")
-level = NodePath("..")
 dynamic_difficulty_curve = SubResource("Curve_rtlm2")
 
 [node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("9_fy437")]
@@ -112,6 +129,15 @@ script = ExtResource("11_2xxqe")
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
 packed_level_segments = Array[PackedScene]([ExtResource("12_qlptm")])
+enabled = false
+
+[node name="ScoreAdaptableSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker" node_paths=PackedStringArray("_level")]
+script = ExtResource("13_5ur8j")
+_level = NodePath("../../..")
+_dynamic_difficulty_curve = SubResource("Curve_cgel7")
+packed_easy_segments = Array[PackedScene]([ExtResource("14_dmrme"), ExtResource("15_k22q7"), ExtResource("16_1v06n")])
+packed_medium_segments = Array[PackedScene]([ExtResource("17_7r27j"), ExtResource("18_1ap4f"), ExtResource("19_jhh6g"), ExtResource("20_84o1w"), ExtResource("21_djbun"), ExtResource("22_ji6ly"), ExtResource("23_eg4or"), ExtResource("24_twanf")])
+packed_hard_segments = Array[PackedScene]([ExtResource("25_d33e2"), ExtResource("12_qlptm")])
 
 [node name="Label" type="Label" parent="."]
 offset_left = 170.0

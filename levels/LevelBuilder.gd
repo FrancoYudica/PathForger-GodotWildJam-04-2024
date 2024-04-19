@@ -4,7 +4,6 @@ extends Node2D
 @onready var level_generator: SegmentGenerator = $GeneratorPicker
 @onready var camera = $"../Camera2D"
 
-@export var level: Level
 @export var viewport_height = 960
 @export var dynamic_difficulty_curve: Curve
 
@@ -32,7 +31,6 @@ func _add_random_segment():
 
 func _add_segment(segment: LevelSegment):
 	add_child(segment)
-	segment.dynamic_difficulty = _calculate_current_dynamic_difficulty()
 	segment.position = _top_position
 	_top_position.y -= segment.segment_height + Globals.vertical_gap
 	_segments.append(segment)
@@ -52,8 +50,3 @@ func _try_remove_traversed_segments():
 			# Removes segment when not visible
 			_segments.erase(segment)
 			remove_child(segment)
-
-
-## Returns the current dynamic difficulty based on score
-func _calculate_current_dynamic_difficulty() -> float:
-	return dynamic_difficulty_curve.sample(level.get_progress_normalized())

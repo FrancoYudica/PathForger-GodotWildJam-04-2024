@@ -9,5 +9,6 @@ func _ready():
 			_generators.append(child)
 	
 func generate() -> LevelSegment:
-	var generator: SegmentGenerator = _generators.pick_random()
+	var enabled_generators = _generators.filter(func(generator): return generator.enabled)
+	var generator: SegmentGenerator = enabled_generators.pick_random()
 	return generator.generate()

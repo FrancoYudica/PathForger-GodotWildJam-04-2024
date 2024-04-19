@@ -1,7 +1,7 @@
 extends Node2D
 class_name LevelSegment
 
-@export_enum("Easy", "Medium", "Hard", "Super hard") var difficulty_enum_index = 0
+@export_enum("Easy", "Medium", "Hard", "Ultra") var difficulty_enum_index = 0
 
 @onready var level_changer: LevelChanger = $LevelChanger
 @onready var bottom_marker = $BottomMarker2D
@@ -15,9 +15,7 @@ var static_difficulty: float = 0.0
 ## without adding any padding to the segment.
 var segment_height: float = 0.0
 
-var dynamic_difficulty: float:
-	set(value):
-		level_changer.dynamic_difficulty = value
+var dynamic_difficulty: float = 0.0
 
 func _ready():
 	# Maps difficulty to range [0, 1]
@@ -25,3 +23,6 @@ func _ready():
 	
 	# Calculates segment height with markers
 	segment_height = absf(top_marker.position.y - bottom_marker.position.y)
+	
+	level_changer.dynamic_difficulty = dynamic_difficulty
+	
