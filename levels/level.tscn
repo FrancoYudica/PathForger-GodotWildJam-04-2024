@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
-[ext_resource type="PackedScene" uid="uid://c82wtr3ee8lf6" path="res://levels/level_segments/scenes/medium/level_segment_medium_4.tscn" id="12_4twjo"]
+[ext_resource type="PackedScene" uid="uid://chfrjw0homh4i" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_1.tscn" id="12_qlptm"]
 [ext_resource type="FontFile" uid="uid://babyeme2jhpvd" path="res://art/fonts/axaxax bd.otf" id="13_ftpfa"]
 [ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 
@@ -111,7 +111,7 @@ script = ExtResource("11_2xxqe")
 
 [node name="RandomSegmentGenerator" type="Node2D" parent="LevelBuilder/GeneratorPicker"]
 script = ExtResource("14_m3m3h")
-packed_level_segments = Array[PackedScene]([ExtResource("12_4twjo")])
+packed_level_segments = Array[PackedScene]([ExtResource("12_qlptm")])
 
 [node name="Label" type="Label" parent="."]
 offset_left = 170.0

@@ -1,0 +1,183 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc8e6v02u3ytk"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_ka3dk"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_1yfye"]
+[ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="3_y11u5"]
+[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_opuf2"]
+[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_2dux3"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_ka3dk")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -1000)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_1yfye")]
+
+[node name="EvenRow" type="Node2D" parent="." index="4"]
+position = Vector2(0, -200)
+
+[node name="PathNode2" parent="EvenRow" index="0" instance=ExtResource("2_1yfye")]
+position = Vector2(100, 0)
+
+[node name="PathNode3" parent="EvenRow" index="1" instance=ExtResource("2_1yfye")]
+position = Vector2(-100, 0)
+
+[node name="ObstacleSquare64px" parent="EvenRow" index="2" instance=ExtResource("3_y11u5")]
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow/ObstacleSquare64px" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px2" parent="EvenRow" index="3" instance=ExtResource("3_y11u5")]
+position = Vector2(200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow/ObstacleSquare64px2" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px3" parent="EvenRow" index="4" instance=ExtResource("3_y11u5")]
+position = Vector2(-200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow/ObstacleSquare64px3" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="MovementChangerComponent" type="Node2D" parent="EvenRow" index="5" node_paths=PackedStringArray("level_changer")]
+position = Vector2(0, -800)
+script = ExtResource("5_2dux3")
+level_changer = NodePath("../../LevelChanger")
+radius = 50
+
+[node name="EvenRow2" type="Node2D" parent="." index="5"]
+position = Vector2(0, -600)
+
+[node name="PathNode2" parent="EvenRow2" index="0" instance=ExtResource("2_1yfye")]
+position = Vector2(100, 0)
+
+[node name="PathNode3" parent="EvenRow2" index="1" instance=ExtResource("2_1yfye")]
+position = Vector2(-100, 0)
+
+[node name="ObstacleSquare64px" parent="EvenRow2" index="2" instance=ExtResource("3_y11u5")]
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow2/ObstacleSquare64px" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px2" parent="EvenRow2" index="3" instance=ExtResource("3_y11u5")]
+position = Vector2(200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow2/ObstacleSquare64px2" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px3" parent="EvenRow2" index="4" instance=ExtResource("3_y11u5")]
+position = Vector2(-200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow2/ObstacleSquare64px3" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="MovementChangerComponent" type="Node2D" parent="EvenRow2" index="5" node_paths=PackedStringArray("level_changer")]
+position = Vector2(0, -400)
+script = ExtResource("5_2dux3")
+level_changer = NodePath("../../LevelChanger")
+radius = 50
+
+[node name="EvenRow3" type="Node2D" parent="." index="6"]
+position = Vector2(0, -1000)
+
+[node name="PathNode2" parent="EvenRow3" index="0" instance=ExtResource("2_1yfye")]
+position = Vector2(100, 0)
+
+[node name="PathNode3" parent="EvenRow3" index="1" instance=ExtResource("2_1yfye")]
+position = Vector2(-100, 0)
+
+[node name="ObstacleSquare64px" parent="EvenRow3" index="2" instance=ExtResource("3_y11u5")]
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow3/ObstacleSquare64px" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px2" parent="EvenRow3" index="3" instance=ExtResource("3_y11u5")]
+position = Vector2(200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow3/ObstacleSquare64px2" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="ObstacleSquare64px3" parent="EvenRow3" index="4" instance=ExtResource("3_y11u5")]
+position = Vector2(-200, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="EvenRow3/ObstacleSquare64px3" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+
+[node name="MovementChangerComponent" type="Node2D" parent="EvenRow3" index="5" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("5_2dux3")
+level_changer = NodePath("../../LevelChanger")
+radius = 50
+
+[node name="OddRow" type="Node2D" parent="." index="7"]
+position = Vector2(0, -400)
+
+[node name="PathNode2" parent="OddRow" index="0" instance=ExtResource("2_1yfye")]
+position = Vector2(-200, 0)
+
+[node name="PathNode3" parent="OddRow" index="1" instance=ExtResource("2_1yfye")]
+
+[node name="PathNode4" parent="OddRow" index="2" instance=ExtResource("2_1yfye")]
+position = Vector2(200, 0)
+
+[node name="ObstacleSquare64px" parent="OddRow" index="3" instance=ExtResource("3_y11u5")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="OddRow/ObstacleSquare64px" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+rotations_per_second = -0.3
+
+[node name="ObstacleSquare64px2" parent="OddRow" index="4" instance=ExtResource("3_y11u5")]
+position = Vector2(100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="OddRow/ObstacleSquare64px2" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+rotations_per_second = -0.3
+
+[node name="MovementChangerComponent2" type="Node2D" parent="OddRow" index="5" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("5_2dux3")
+level_changer = NodePath("../../LevelChanger")
+radius = -50
+
+[node name="OddRow2" type="Node2D" parent="." index="8"]
+position = Vector2(0, -800)
+
+[node name="PathNode2" parent="OddRow2" index="0" instance=ExtResource("2_1yfye")]
+position = Vector2(-200, 0)
+
+[node name="PathNode3" parent="OddRow2" index="1" instance=ExtResource("2_1yfye")]
+
+[node name="PathNode4" parent="OddRow2" index="2" instance=ExtResource("2_1yfye")]
+position = Vector2(200, 0)
+
+[node name="ObstacleSquare64px" parent="OddRow2" index="3" instance=ExtResource("3_y11u5")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="OddRow2/ObstacleSquare64px" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+rotations_per_second = -0.3
+
+[node name="ObstacleSquare64px2" parent="OddRow2" index="4" instance=ExtResource("3_y11u5")]
+position = Vector2(100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="OddRow2/ObstacleSquare64px2" index="1"]
+position = Vector2(0, 200)
+script = ExtResource("4_opuf2")
+rotations_per_second = -0.3
+
+[node name="MovementChangerComponent2" type="Node2D" parent="OddRow2" index="5" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("5_2dux3")
+level_changer = NodePath("../../LevelChanger")
+radius = -50

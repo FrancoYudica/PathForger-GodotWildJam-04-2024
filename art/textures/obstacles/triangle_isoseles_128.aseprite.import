@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bsm4wiy7ef5j0"
+path="res://.godot/imported/triangle_isoseles_128.aseprite-1b84954b89465ba0008fc2ba9cef17f6.res"
+
+[deps]
+
+source_file="res://art/textures/obstacles/triangle_isoseles_128.aseprite"
+dest_files=["res://.godot/imported/triangle_isoseles_128.aseprite-1b84954b89465ba0008fc2ba9cef17f6.res"]
+
+[params]
+

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8d3p2i1oison"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_64y60"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_cot6g"]
+
+[node name="LevelSegmentEasy" instance=ExtResource("1_64y60")]
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -1000)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_cot6g")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_cot6g")]
+position = Vector2(100, -200)
+
+[node name="PathNode3" parent="." index="5" instance=ExtResource("2_cot6g")]
+position = Vector2(-100, -400)
+
+[node name="PathNode4" parent="." index="6" instance=ExtResource("2_cot6g")]
+position = Vector2(100, -600)
+
+[node name="PathNode6" parent="." index="7" instance=ExtResource("2_cot6g")]
+position = Vector2(100, -1000)
+
+[node name="PathNode5" parent="." index="8" instance=ExtResource("2_cot6g")]
+position = Vector2(-100, -800)

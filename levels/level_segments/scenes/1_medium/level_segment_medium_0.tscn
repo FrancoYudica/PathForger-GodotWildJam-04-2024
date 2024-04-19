@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0p0xsp7afn1"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_r8d6q"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_wvatc"]
+[ext_resource type="PackedScene" uid="uid://cscxt5rlfm0gb" path="res://entities/obstacles/bar/bar_300px.tscn" id="3_geleu"]
+[ext_resource type="PackedScene" uid="uid://b4plnq3jpoudj" path="res://entities/obstacles/triangle/triangle_128px.tscn" id="4_pm5yy"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_r8d6q")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(-99, -500)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_wvatc")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_wvatc")]
+position = Vector2(150, -200)
+
+[node name="PathNode3" parent="." index="5" instance=ExtResource("2_wvatc")]
+position = Vector2(150, -400)
+
+[node name="PathNode4" parent="." index="6" instance=ExtResource("2_wvatc")]
+position = Vector2(-100, -300)
+
+[node name="PathNode5" parent="." index="7" instance=ExtResource("2_wvatc")]
+position = Vector2(-100, -500)
+
+[node name="ObstacleBar300px" parent="." index="8" instance=ExtResource("3_geleu")]
+position = Vector2(-32, -168)
+rotation = 0.663923
+
+[node name="ObstacleTriangle128px" parent="." index="9" instance=ExtResource("4_pm5yy")]
+position = Vector2(32, -468)
+rotation = 0.523599
+
+[node name="ObstacleTriangle128px2" parent="." index="10" instance=ExtResource("4_pm5yy")]
+position = Vector2(90, -568)
+rotation = -2.61799

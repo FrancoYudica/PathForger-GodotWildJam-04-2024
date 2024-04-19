@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcn1xk6fuhdre"]
+
+[ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_ip6rj"]
+[ext_resource type="Texture2D" uid="uid://cr3n88uqlg82y" path="res://art/textures/obstacles/triangle_isoseles_128.png" id="2_w6v0k"]
+[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="3_x775v"]
+
+[node name="ObstacleTriangle128px" type="Sprite2D"]
+texture_filter = 1
+material = ExtResource("1_ip6rj")
+position = Vector2(-23, -26)
+texture = ExtResource("2_w6v0k")
+script = ExtResource("3_x775v")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://art/textures/damage/bar_400px.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-26, -32)
+polygon = PackedVector2Array(-28, -32, 34, 30, 34, 34, -28, 96, -34, 95, -38, 90, -38, -25, -35, -30)
