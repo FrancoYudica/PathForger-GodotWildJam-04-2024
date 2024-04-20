@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cnn70av2j4f7f"
+path="res://.godot/imported/directional_particle_32.aseprite-bc30a4b490e9151d2efefe825f6d98d9.res"
+
+[deps]
+
+source_file="res://art/textures/vfx/directional_particle_32.aseprite"
+dest_files=["res://.godot/imported/directional_particle_32.aseprite-bc30a4b490e9151d2efefe825f6d98d9.res"]
+
+[params]
+

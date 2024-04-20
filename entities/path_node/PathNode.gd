@@ -14,9 +14,16 @@ var focused: bool:
 ## Reached should be called when player is over the node
 func reached():
 	super.reached()
-	# Disables collider
-	$Area2D.collision_layer = 0
+	disable()
 	sprite.reached()
+	
+
+func enable():
+	$Area2D.collision_layer = 8
+	
+func disable():
+	$Area2D.collision_layer = 0
+	
 
 func left():
 	super.left()

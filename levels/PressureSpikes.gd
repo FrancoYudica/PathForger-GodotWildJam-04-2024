@@ -14,9 +14,6 @@ signal activated
 var _t: float = 0
 var _running = false
 
-func _ready():
-	timer.start()
-
 func start():
 	timer.start()
 	

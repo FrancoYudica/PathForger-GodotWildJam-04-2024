@@ -14,9 +14,6 @@ func _state_enter():
 	# Unliks previous hookable so it can move
 	player.stick_to_hookable = false
 	
-	# Allows rotation to aim for netxt node
-	player.rotating = true
-	
 	_start_position = player.global_position
 	
 	_position_tween = create_tween()
@@ -33,6 +30,9 @@ func _state_process(_delta):
 	hook.head_global_position = player.current_hookable.get_intersection_point()
 
 func _state_exit():
+	if _position_tween != null:
+		_position_tween.stop()
+		
 	path_particles.emitting = false
 	player.hook.hide()
 
@@ -46,8 +46,3 @@ func _set_interpolation_value(t: float):
 		player.current_hookable.get_intersection_point(), 
 		position_interpolation_curve.sample(t)
 	)
-	
-func _on_collision_area_2d_area_entered(area):
-	transition("death")
-	player.death_by_obstacle()
-	_position_tween.stop()

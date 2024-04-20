@@ -90,6 +90,7 @@ shape = SubResource("CircleShape2D_agc30")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 16
+local_coords = true
 texture = ExtResource("4_pni3d")
 emission_shape = 5
 emission_points = PackedVector2Array(30, 0, -30, 0, 0, 30, 0, -30)

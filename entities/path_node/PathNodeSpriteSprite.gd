@@ -23,6 +23,13 @@ func close():
 	_tween.tween_property(body, "scale", Vector2(1, 1), 0.1)
 	_tween.tween_method(_set_body_radius, .75, 0.5, .5)
 
+func _exit_tree():
+	
+	if _tween != null:
+		_tween.stop()
+		_tween = null
+	
+
 func reached():
 	if _tween != null:
 		_tween.stop()

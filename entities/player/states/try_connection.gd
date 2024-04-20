@@ -10,7 +10,6 @@ var _hook_tween: Tween
 var _hook_length: float = 0.0
 
 func _state_enter():
-	player.rotating = false
 	
 	player.hook.show()
 		

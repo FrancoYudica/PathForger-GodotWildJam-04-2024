@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfqm7vopmmtbw"]
+[gd_scene load_steps=23 format=3 uid="uid://bfqm7vopmmtbw"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
 [ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" path="res://entities/player/states/try_connection.gd" id="5_hxtbh"]
 [ext_resource type="Script" path="res://entities/player/states/idle.gd" id="6_3yq2p"]
 [ext_resource type="Texture2D" uid="uid://dvlklia76dygh" path="res://entities/player/player_sprite.png" id="6_8xn8k"]
+[ext_resource type="Shader" path="res://resources/aim.gdshader" id="12_0w08f"]
 [ext_resource type="Shader" path="res://entities/player/blob.gdshader" id="12_pk4j0"]
 [ext_resource type="Script" path="res://entities/player/states/death.gd" id="12_u83wh"]
+[ext_resource type="Texture2D" uid="uid://bjc7pwj1e4n44" path="res://art/textures/aim/aim_32.png" id="13_8qt0d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vjy"]
 shader = ExtResource("12_pk4j0")
@@ -40,6 +42,12 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_l5teo"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.333333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wm8hw"]
+shader = ExtResource("12_0w08f")
+shader_parameter/speed = 5.0
+shader_parameter/segments_count = 7
+shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i8uns"]
 radius = 15.0333
@@ -143,6 +151,16 @@ hook_curve = SubResource("Curve_l5teo")
 [node name="idle" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("6_3yq2p")
 
+[node name="AimHint" type="Node2D" parent="PlayerStateMachine/idle"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStateMachine/idle/AimHint"]
+modulate = Color(0.909804, 0.854902, 0.964706, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_wm8hw")
+position = Vector2(119, 0)
+scale = Vector2(3.375, 0.3)
+texture = ExtResource("13_8qt0d")
+
 [node name="death" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource("12_u83wh")
 
@@ -157,4 +175,3 @@ shape = SubResource("CircleShape2D_i8uns")
 [node name="RaycastOriginMarker2D" type="Marker2D" parent="."]
 
 [connection signal="area_entered" from="CollisionArea2D" to="." method="_on_collision_area_2d_area_entered"]
-[connection signal="area_entered" from="CollisionArea2D" to="PlayerStateMachine/translate" method="_on_collision_area_2d_area_entered"]

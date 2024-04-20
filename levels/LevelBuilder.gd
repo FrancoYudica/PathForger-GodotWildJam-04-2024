@@ -2,8 +2,7 @@ extends Node2D
 
 @onready var first_path_node: PathNode = $FirstPathNode
 @onready var level_generator: SegmentGenerator = $GeneratorPicker
-@onready var camera = $"../MainCamera"
-
+@export var level: Level
 @export var viewport_height = 960
 @export var dynamic_difficulty_curve: Curve
 
@@ -13,14 +12,26 @@ var _top_position: Vector2 = Vector2.ZERO
 
 var _segments: Array[LevelSegment] = []
 
-func _ready():
+func restart():
+	
+	# Clears all segments
+	for segment in _segments:
+		remove_child(segment)
+		
+	_segments.clear()
+	
 	_top_position = first_path_node.position
-	_top_position.y -= Globals.vertical_gap
+	_top_position.y -= Globals.vertical_gap + 50
+	first_path_node.focused = true
+	first_path_node.enable()
+
+func _ready():
+	restart()
 	
 func _process(_delta):
 	
 	# When it's time to generate a new segment
-	if camera.position.y - viewport_height / 2 - _top_position.y < edge_height:
+	if level.camera.position.y - viewport_height / 2 - _top_position.y < edge_height:
 		_add_random_segment()
 		
 	_try_remove_traversed_segments()
@@ -45,7 +56,7 @@ func _try_remove_traversed_segments():
 		
 		# Tests visibility for all segments
 		var segment_top = segment.global_position.y - segment.segment_height - _extra_safety_height
-		if segment_top > camera.position.y + viewport_height / 2:
+		if segment_top > level.camera.position.y + viewport_height / 2:
 			
 			# Removes segment when not visible
 			_segments.erase(segment)

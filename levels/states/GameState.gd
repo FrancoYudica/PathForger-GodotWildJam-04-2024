@@ -1,10 +1,10 @@
 extends LevelStateMachineNode
 
 func _state_enter():
-	pass
+	level.pressure_spikes.start()
 
 func _state_exit():
-	pass
+	level.pressure_spikes.stop()
 
 func _state_input(_event: InputEvent):
 	pass

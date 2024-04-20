@@ -148,6 +148,7 @@ _data = {
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
+max_player_score = 150
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -179,7 +180,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(270, -240)
+position = Vector2(270, 153)
 limit_left = 0
 limit_right = 540
 script = ExtResource("5_swkql")
@@ -195,9 +196,10 @@ position = Vector2(270, 0)
 script = ExtResource("8_5w875")
 wants_to_fix_intersection = false
 
-[node name="Player" parent="." instance=ExtResource("7_fcahg")]
+[node name="Player" parent="." node_paths=PackedStringArray("start_path_node") instance=ExtResource("7_fcahg")]
 position = Vector2(270, 0)
 score = 10
+start_path_node = NodePath("../StartPathNode")
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(270, -240)
@@ -227,7 +229,7 @@ inactive_update_mode = 0
 position = Vector2(270, 153)
 script = ExtResource("6_c8hyj")
 priority_override = false
-priority = 0
+priority = 2
 zoom = Vector2(1, 1)
 follow_mode = 0
 frame_preview = true
@@ -243,8 +245,11 @@ tween_parameters = SubResource("Resource_2qnhp")
 tween_on_load = true
 inactive_update_mode = 0
 
-[node name="LevelBuilder" type="Node2D" parent="."]
+[node name="PressureSpikes" parent="." instance=ExtResource("30_rtuar")]
+
+[node name="LevelBuilder" type="Node2D" parent="." node_paths=PackedStringArray("level")]
 script = ExtResource("11_gospp")
+level = NodePath("..")
 dynamic_difficulty_curve = SubResource("Curve_rtlm2")
 
 [node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("9_fy437")]
@@ -269,36 +274,66 @@ packed_hard_segments = Array[PackedScene]([ExtResource("25_d33e2"), ExtResource(
 [node name="LevelStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("level")]
 script = ExtResource("29_dtp6c")
 level = NodePath("..")
-initial_state_name = "playing"
+initial_state_name = "menu"
 
 [node name="menu" type="Node2D" parent="LevelStateMachine"]
 script = ExtResource("30_ur5ev")
+
+[node name="MenuUICanvasLayer" type="CanvasLayer" parent="LevelStateMachine/menu"]
+layer = 3
+
+[node name="LocalUIControl" type="Control" parent="LevelStateMachine/menu/MenuUICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleRichTextLabel" type="RichTextLabel" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_top = -192.0
+offset_right = 278.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("13_ftpfa")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[p align=center][wave amp=50.0 freq=5.0 connected=1]Path Forger[/wave][/p]
+"
+
+[node name="ScoreRichTextLabel" type="RichTextLabel" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_top = -282.0
+offset_right = 278.0
+offset_bottom = -202.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("13_ftpfa")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[p align=center][wave amp=50.0 freq=5.0 connected=1]Score[/wave][/p]
+"
 
 [node name="playing" type="Node2D" parent="LevelStateMachine"]
 script = ExtResource("31_60qto")
 
 [node name="death" type="Node2D" parent="LevelStateMachine"]
 script = ExtResource("32_iv6fc")
-
-[node name="PressureSpikes" parent="." instance=ExtResource("30_rtuar")]
-
-[node name="LocalUIControl" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="LocalUIControl"]
-layout_mode = 0
-offset_left = 170.0
-offset_top = 48.0
-offset_right = 360.0
-offset_bottom = 125.0
-theme_override_fonts/font = ExtResource("13_ftpfa")
-theme_override_font_sizes/font_size = 64
-text = "Start"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -321,7 +356,7 @@ anchor_bottom = 1.0
 offset_left = -270.0
 offset_top = -128.0
 offset_right = 270.0
-offset_bottom = 0.00561523
+offset_bottom = 0.00585938
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("32_bbjcv")
@@ -337,4 +372,5 @@ libraries = {
 }
 
 [connection signal="death" from="Player" to="LevelStateMachine/playing" method="_on_player_death"]
+[connection signal="hooked_something" from="Player" to="LevelStateMachine/menu" method="_on_player_hooked_something"]
 [connection signal="activating" from="PressureSpikes" to="UICanvasLayer/Control/PressureWarning" method="_on_pressure_spikes_activating"]
