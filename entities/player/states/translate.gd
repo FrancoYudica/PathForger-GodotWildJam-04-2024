@@ -24,7 +24,8 @@ func _state_enter():
 func _translation_completed():
 	transition("idle")
 	player.current_hookable.reached()
-	player.score += 1
+	player.set_score(player.score + 1)
+
 
 func _state_process(_delta):
 	hook.head_global_position = player.current_hookable.get_intersection_point()

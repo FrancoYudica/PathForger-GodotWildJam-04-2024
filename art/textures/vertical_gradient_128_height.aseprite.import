@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bgp41k3ce2oo5"
+path="res://.godot/imported/vertical_gradient_128_height.aseprite-8b60b0f1880f5a6db154775ffaeb4d92.res"
+
+[deps]
+
+source_file="res://art/textures/vertical_gradient_128_height.aseprite"
+dest_files=["res://.godot/imported/vertical_gradient_128_height.aseprite-8b60b0f1880f5a6db154775ffaeb4d92.res"]
+
+[params]
+

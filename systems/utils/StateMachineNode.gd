@@ -9,7 +9,10 @@ class_name StateMachineNode
 
 # Holds reference to state machine
 var __state_machine : StateMachine
-
+var is_active: bool:
+	get:
+		return __state_machine._current_state.name == name
+	
 func __set_state_machine(machine: StateMachine):
 	__state_machine = machine
 
@@ -30,6 +33,11 @@ func _state_physics_process(_delta):
 
 ## Travels to given state name
 func transition(state_name: String):
+
+	if not __state_machine._states.has(state_name):
+		assert(false, "StateMachineNode: Trying to transition to inexistent state called: %s" % state_name)
+		return
+
 	# Changes to new state
 	var state = __state_machine._states[state_name]
 	__state_machine._set_current_state(state)
@@ -67,5 +75,3 @@ func pop_quiet():
 func get_machine() -> StateMachine:
 	return __state_machine
 	
-func is_active():
-	return __state_machine._current_state.name == name

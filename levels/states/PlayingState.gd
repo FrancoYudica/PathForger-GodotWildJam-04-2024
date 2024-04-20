@@ -1,8 +1,8 @@
 extends LevelStateMachineNode
 
-@onready var menu_ui = $MenuUICanvasLayer/LocalUIControl
-
+@onready var menu_ui = $MenuUICanvasLayer
 func _state_enter():
+	menu_ui.enter()
 	menu_ui.show()
 	level.menu_phantom_camera.set_priority(2)
 	level.pressure_spikes.position.y = level.menu_phantom_camera.position.y + 960 * 0.5 - 100
@@ -20,4 +20,8 @@ func _state_process(_delta):
 	pass
 
 func _on_player_hooked_something():
-	transition("playing")
+	
+	# Only transitions to playing state when the
+	# state is in the menu
+	if is_active:
+		transition("playing")

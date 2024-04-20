@@ -18,6 +18,10 @@ func _state_enter():
 	_hook_tween.tween_method(_set_hook_t, 0.0, 1.0, hook_duration_ms / 1000.0)
 	_hook_tween.connect("finished", _recovered)
 
+func _state_exit():
+	if _hook_tween != null:
+		_hook_tween.stop()
+
 func _set_hook_t(t):
 	_hook_length = hook_curve.sample(t) * length
 

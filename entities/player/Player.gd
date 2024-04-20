@@ -4,6 +4,7 @@ class_name Player
 signal death
 signal hooked_something()
 signal spawned
+signal score_update(score: int)
 
 @onready var line_path: Line2D = $LinePath
 @onready var sprite = $PlayerSprite
@@ -50,6 +51,8 @@ func respawn():
 	
 	spawned.emit()
 	
+	set_score(0)
+	
 	state_machine.force_transition("idle")
 	
 func set_current_hookable(hookable: Hookable):
@@ -58,6 +61,10 @@ func set_current_hookable(hookable: Hookable):
 	current_hookable = hookable
 	if current_hookable != null:
 		hooked_something.emit()
+
+func set_score(new_score: int):
+	score = new_score
+	score_update.emit(new_score)
 
 func death_by_obstacle():
 	death.emit()

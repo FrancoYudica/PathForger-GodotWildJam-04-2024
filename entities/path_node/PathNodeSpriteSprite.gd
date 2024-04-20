@@ -19,6 +19,11 @@ func close():
 		_tween.stop()
 	outline.material.set_shader_parameter("rotation_speed", 2)
 	_tween = create_tween()
+	
+	# Bad bug fix
+	if _tween == null:
+		return
+	
 	_tween.tween_property(outline, "scale", Vector2(1.3, 1.3), 0.1)
 	_tween.tween_property(body, "scale", Vector2(1, 1), 0.1)
 	_tween.tween_method(_set_body_radius, .75, 0.5, .5)

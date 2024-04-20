@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=53 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
 [ext_resource type="Shader" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
+[ext_resource type="Resource" uid="uid://dojy7g756x48y" path="res://resources/score_data.tres" id="2_yidnf"]
 [ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://art/textures/checkboard_background.png" id="3_a5du7"]
 [ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
@@ -36,6 +37,11 @@
 [ext_resource type="Script" path="res://levels/PressureWarning.gd" id="32_bbjcv"]
 [ext_resource type="Texture2D" uid="uid://cnbptlfytqdfr" path="res://art/textures/warning_128.png" id="32_h3of3"]
 [ext_resource type="Script" path="res://levels/states/DeathState.gd" id="32_iv6fc"]
+[ext_resource type="Script" path="res://levels/MenuUICanvasLayer.gd" id="32_wetd0"]
+[ext_resource type="Theme" uid="uid://dkwnv6ipf6y7w" path="res://resources/themes/score_data_labels.tres" id="34_kv717"]
+[ext_resource type="Theme" uid="uid://be3xf56kf4xo5" path="res://resources/themes/score_data_values.tres" id="35_p2dni"]
+[ext_resource type="Texture2D" uid="uid://moscpm25cegr" path="res://art/textures/ui/pointing_arrow.png" id="37_el3ui"]
+[ext_resource type="Script" path="res://levels/ScoreLabel.gd" id="39_mawj0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
 shader = ExtResource("2_rql3e")
@@ -80,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 832)]
+"values": [Vector2(206, 832)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,7 +114,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 959), Vector2(0, 832)]
+"values": [Vector2(206, 959), Vector2(206, 832)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -149,6 +155,7 @@ _data = {
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
 max_player_score = 150
+score_data = ExtResource("2_yidnf")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -180,7 +187,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2(270, 153)
+position = Vector2(270, 480)
 limit_left = 0
 limit_right = 540
 script = ExtResource("5_swkql")
@@ -192,17 +199,16 @@ _jitter_shake_strength_px = 30.0
 script = ExtResource("5_f5i52")
 
 [node name="StartPathNode" parent="." instance=ExtResource("9_fy437")]
-position = Vector2(270, 0)
+position = Vector2(270, 330)
 script = ExtResource("8_5w875")
 wants_to_fix_intersection = false
 
 [node name="Player" parent="." node_paths=PackedStringArray("start_path_node") instance=ExtResource("7_fcahg")]
-position = Vector2(270, 0)
-score = 10
+position = Vector2(270, 330)
 start_path_node = NodePath("../StartPathNode")
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(270, -240)
+position = Vector2(270, 90)
 script = ExtResource("6_c8hyj")
 priority_override = false
 priority = 1
@@ -226,7 +232,7 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="StartPhantomCamera2D2" type="Node2D" parent="."]
-position = Vector2(270, 153)
+position = Vector2(270, 480)
 script = ExtResource("6_c8hyj")
 priority_override = false
 priority = 2
@@ -246,6 +252,8 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="PressureSpikes" parent="." instance=ExtResource("30_rtuar")]
+position = Vector2(270, 879)
+travel_distance = 600
 
 [node name="LevelBuilder" type="Node2D" parent="." node_paths=PackedStringArray("level")]
 script = ExtResource("11_gospp")
@@ -253,7 +261,7 @@ level = NodePath("..")
 dynamic_difficulty_curve = SubResource("Curve_rtlm2")
 
 [node name="FirstPathNode" parent="LevelBuilder" instance=ExtResource("9_fy437")]
-position = Vector2(270, -200)
+position = Vector2(270, 130)
 
 [node name="GeneratorPicker" type="Node2D" parent="LevelBuilder"]
 script = ExtResource("11_2xxqe")
@@ -279,8 +287,10 @@ initial_state_name = "menu"
 [node name="menu" type="Node2D" parent="LevelStateMachine"]
 script = ExtResource("30_ur5ev")
 
-[node name="MenuUICanvasLayer" type="CanvasLayer" parent="LevelStateMachine/menu"]
+[node name="MenuUICanvasLayer" type="CanvasLayer" parent="LevelStateMachine/menu" node_paths=PackedStringArray("level")]
 layer = 3
+script = ExtResource("32_wetd0")
+level = NodePath("../../..")
 
 [node name="LocalUIControl" type="Control" parent="LevelStateMachine/menu/MenuUICanvasLayer"]
 layout_mode = 3
@@ -290,6 +300,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ScoreDataGridContainer" type="GridContainer" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -285.0
+offset_right = 139.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 64
+columns = 2
+
+[node name="BestscoreLabel" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("34_kv717")
+text = "Best score"
+
+[node name="BestScoreValue" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("35_p2dni")
+text = "1000"
+horizontal_alignment = 2
+
+[node name="TotalLabel" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("34_kv717")
+text = "Total"
+
+[node name="TotalValue" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("35_p2dni")
+text = "10000"
+horizontal_alignment = 2
+
+[node name="DeathsLabel" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("34_kv717")
+text = "Deaths"
+
+[node name="DeathsValue" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("35_p2dni")
+text = "16
+"
+horizontal_alignment = 2
+
+[node name="AverageLabel" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("34_kv717")
+text = "Average"
+
+[node name="AverageValue" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/ScoreDataGridContainer"]
+layout_mode = 2
+theme = ExtResource("35_p2dni")
+text = "16
+"
+horizontal_alignment = 2
+
 [node name="TitleRichTextLabel" type="RichTextLabel" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
 layout_mode = 1
 anchors_preset = 7
@@ -297,80 +369,119 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -278.0
-offset_top = -192.0
-offset_right = 278.0
-offset_bottom = -112.0
+offset_left = -244.0
+offset_top = -401.0
+offset_right = 245.0
+offset_bottom = -321.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/default_color = Color(0.909804, 0.854902, 0.964706, 1)
 theme_override_fonts/normal_font = ExtResource("13_ftpfa")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[p align=center][wave amp=50.0 freq=5.0 connected=1]Path Forger[/wave][/p]
 "
 
-[node name="ScoreRichTextLabel" type="RichTextLabel" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
-modulate = Color(0.278431, 0.101961, 0.415686, 1)
+[node name="LastScore" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -278.0
-offset_top = -282.0
-offset_right = 278.0
-offset_bottom = -202.0
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -39.5
+offset_right = 47.5
+offset_bottom = 39.5
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("13_ftpfa")
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "[p align=center][wave amp=50.0 freq=5.0 connected=1]Score[/wave][/p]
-"
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.25098, 1, 0.537255, 1)
+theme_override_fonts/font = ExtResource("13_ftpfa")
+theme_override_font_sizes/font_size = 65
+text = "96"
+horizontal_alignment = 1
+
+[node name="PlayHint" type="Control" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl"]
+anchors_preset = 0
+offset_left = 351.0
+offset_top = 103.0
+offset_right = 391.0
+offset_bottom = 143.0
+
+[node name="TextureRect" type="TextureRect" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/PlayHint"]
+modulate = Color(0.278431, 0.101961, 0.415686, 1)
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("37_el3ui")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="LevelStateMachine/menu/MenuUICanvasLayer/LocalUIControl/PlayHint"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 95.0
+offset_right = 116.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.278431, 0.101961, 0.415686, 1)
+theme_override_fonts/font = ExtResource("13_ftpfa")
+theme_override_font_sizes/font_size = 20
+text = "Play"
+horizontal_alignment = 1
 
 [node name="playing" type="Node2D" parent="LevelStateMachine"]
 script = ExtResource("31_60qto")
 
-[node name="death" type="Node2D" parent="LevelStateMachine"]
-script = ExtResource("32_iv6fc")
+[node name="InGameUI" type="CanvasLayer" parent="LevelStateMachine/playing"]
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="UICanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PressureWarning" type="MarginContainer" parent="UICanvasLayer/Control"]
+[node name="PressureWarning" type="MarginContainer" parent="LevelStateMachine/playing/InGameUI"]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -270.0
+offset_left = -64.0
 offset_top = -128.0
-offset_right = 270.0
-offset_bottom = 0.00585938
+offset_right = 64.0002
+offset_bottom = 0.00750732
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("32_bbjcv")
 
-[node name="WarningTextureRect" type="TextureRect" parent="UICanvasLayer/Control/PressureWarning"]
+[node name="WarningTextureRect" type="TextureRect" parent="LevelStateMachine/playing/InGameUI/PressureWarning"]
 layout_mode = 2
 texture = ExtResource("32_h3of3")
 stretch_mode = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UICanvasLayer/Control/PressureWarning"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelStateMachine/playing/InGameUI/PressureWarning"]
 libraries = {
 "": SubResource("AnimationLibrary_1beu2")
 }
 
+[node name="MarginContainer" type="MarginContainer" parent="LevelStateMachine/playing/InGameUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_bottom = 87.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="ScoreLabel" type="Label" parent="LevelStateMachine/playing/InGameUI/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.909804, 0.854902, 0.964706, 1)
+theme_override_fonts/font = ExtResource("13_ftpfa")
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("39_mawj0")
+
+[node name="death" type="Node2D" parent="LevelStateMachine"]
+script = ExtResource("32_iv6fc")
+
+[connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="Player" to="LevelStateMachine/playing" method="_on_player_death"]
 [connection signal="hooked_something" from="Player" to="LevelStateMachine/menu" method="_on_player_hooked_something"]
-[connection signal="activating" from="PressureSpikes" to="UICanvasLayer/Control/PressureWarning" method="_on_pressure_spikes_activating"]
+[connection signal="score_update" from="Player" to="LevelStateMachine/playing/InGameUI/MarginContainer/ScoreLabel" method="_on_player_score_update"]
+[connection signal="activating" from="PressureSpikes" to="LevelStateMachine/playing/InGameUI/PressureWarning" method="_on_pressure_spikes_activating"]

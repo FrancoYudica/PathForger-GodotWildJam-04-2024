@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ScoreData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://levels/ScoreData.gd" id="1_ho2u7"]
+
+[resource]
+script = ExtResource("1_ho2u7")
+last_score = 6
+total = 485
+best = 59
+deaths = 31
