@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgtxju5xnf2u"]
+
+[ext_resource type="Script" path="res://levels/PressureSpikes.gd" id="1_nvsml"]
+[ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="2_7x15b"]
+[ext_resource type="Texture2D" uid="uid://co3sw20t7h2v0" path="res://art/textures/pressure_spikes.png" id="3_kbgbr"]
+
+[sub_resource type="Curve" id="Curve_uoijn"]
+_data = [Vector2(0, 0.524518), 0.0, 1.34703, 0, 0, Vector2(0.899142, 0.827572), -1.08217, -1.08217, 0, 0, Vector2(1, 0), -5.46095, 0.0, 0, 0]
+point_count = 3
+
+[node name="PressureSpikes" type="Node2D"]
+position = Vector2(270, 446)
+script = ExtResource("1_nvsml")
+speed_curve = SubResource("Curve_uoijn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 235)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+material = ExtResource("2_7x15b")
+texture = ExtResource("3_kbgbr")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area2D"]
+polygon = PackedVector2Array(-266, -232, -262, -232, -241, -211, -239, -211, -218, -232, -214, -232, -193, -211, -191, -211, -170, -232, -166, -232, -145, -211, -143, -211, -122, -232, -118, -232, -97, -211, -95, -211, -74, -232, -70, -232, -49, -211, -47, -211, -26, -232, -22, -232, -1, -211, 1, -211, 22, -232, 26, -232, 47, -211, 49, -211, 70, -232, 74, -232, 95, -211, 97, -211, 118, -232, 122, -232, 144, -211, 145, -211, 166, -232, 170, -232, 191, -210, 194, -211, 214, -232, 218, -232, 239, -210, 241, -211, 262, -232, 266, -232, 287, -211, 289, -211, 310, -232, 314, -232, 335, -211, 337, -211, 358, -232, 362, -232, 383, -211, 385, -211, 406, -232, 410, -232, 431, -211, 433, -211, 454, -232, 458, -232, 479, -211, 481, -211, 502, -232, 506, -232, 527, -211, 527, -184, -528, -184, -528, -211, -506, -232, -502, -232, -481, -211, -479, -211, -457, -232, -454, -232, -433, -211, -430, -211, -409, -232, -406, -232, -385, -211, -382, -211, -362, -232, -359, -232, -337, -211, -335, -211, -314, -232, -310, -232, -289, -211, -287, -211)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

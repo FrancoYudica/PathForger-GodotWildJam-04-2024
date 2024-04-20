@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cnbcl1q3ohnfr"
+path="res://.godot/imported/pressure_spikes.aseprite-36376c488617f92d93a5e7e970592f03.res"
+
+[deps]
+
+source_file="res://art/textures/pressure_spikes.aseprite"
+dest_files=["res://.godot/imported/pressure_spikes.aseprite-36376c488617f92d93a5e7e970592f03.res"]
+
+[params]
+

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var first_path_node: PathNode = $FirstPathNode
 @onready var level_generator: SegmentGenerator = $GeneratorPicker
-@onready var camera = $"../Camera2D"
+@onready var camera = $"../MainCamera"
 
 @export var viewport_height = 960
 @export var dynamic_difficulty_curve: Curve

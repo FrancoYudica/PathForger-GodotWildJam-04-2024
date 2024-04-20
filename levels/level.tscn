@@ -1,13 +1,16 @@
-[gd_scene load_steps=31 format=3 uid="uid://bajy40qhic0ds"]
+[gd_scene load_steps=47 format=3 uid="uid://bajy40qhic0ds"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
 [ext_resource type="Shader" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
 [ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://art/textures/checkboard_background.png" id="3_a5du7"]
 [ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
+[ext_resource type="Script" path="res://levels/MainCamera.gd" id="5_swkql"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
 [ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="7_fcahg"]
+[ext_resource type="Script" path="res://entities/path_node/path_node.gd" id="8_5w875"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_qilbh"]
 [ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
 [ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
 [ext_resource type="PackedScene" uid="uid://chfrjw0homh4i" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_1.tscn" id="12_qlptm"]
@@ -26,6 +29,13 @@
 [ext_resource type="PackedScene" uid="uid://cc8e6v02u3ytk" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_6.tscn" id="23_eg4or"]
 [ext_resource type="PackedScene" uid="uid://b6wwajndhf360" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_7.tscn" id="24_twanf"]
 [ext_resource type="PackedScene" uid="uid://bunbxvh6hpdhy" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_0.tscn" id="25_d33e2"]
+[ext_resource type="Script" path="res://levels/LevelStateMachine.gd" id="29_dtp6c"]
+[ext_resource type="PackedScene" uid="uid://cgtxju5xnf2u" path="res://entities/pressure_spikes.tscn" id="30_rtuar"]
+[ext_resource type="Script" path="res://levels/states/PlayingState.gd" id="30_ur5ev"]
+[ext_resource type="Script" path="res://levels/states/GameState.gd" id="31_60qto"]
+[ext_resource type="Script" path="res://levels/PressureWarning.gd" id="32_bbjcv"]
+[ext_resource type="Texture2D" uid="uid://cnbptlfytqdfr" path="res://art/textures/warning_128.png" id="32_h3of3"]
+[ext_resource type="Script" path="res://levels/states/DeathState.gd" id="32_iv6fc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
 shader = ExtResource("2_rql3e")
@@ -40,6 +50,16 @@ max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_n5oou"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.01349, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_2qnhp"]
+script = ExtResource("9_qilbh")
+duration = 1.0
+transition = 0
+ease = 2
+
 [sub_resource type="Curve" id="Curve_rtlm2"]
 _data = [Vector2(0, 0), 0.0, 1.35811, 0, 0, Vector2(1, 1), -0.0439181, 0.0, 0, 0]
 point_count = 2
@@ -48,9 +68,86 @@ point_count = 2
 _data = [Vector2(0, 0), 0.0, 2.06044, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_k2bjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 832)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x68sf"]
+resource_name = "fadein"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 959), Vector2(0, 832)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e6s57"]
+resource_name = "warn"
+length = 2.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.5, 1.7, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1beu2"]
+_data = {
+"RESET": SubResource("Animation_k2bjs"),
+"fadein": SubResource("Animation_x68sf"),
+"warn": SubResource("Animation_e6s57")
+}
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gbe2q")
-max_player_score = 100
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -81,16 +178,26 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://art/textures/level/checkboard_background.aseprite"
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(270, -240)
 limit_left = 0
 limit_right = 540
+script = ExtResource("5_swkql")
+jitter_shake_curve = SubResource("Curve_n5oou")
+_jitter_shake_duration_ms = 750.0
+_jitter_shake_strength_px = 30.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+[node name="PhantomCameraHost" type="Node" parent="MainCamera"]
 script = ExtResource("5_f5i52")
+
+[node name="StartPathNode" parent="." instance=ExtResource("9_fy437")]
+position = Vector2(270, 0)
+script = ExtResource("8_5w875")
+wants_to_fix_intersection = false
 
 [node name="Player" parent="." instance=ExtResource("7_fcahg")]
 position = Vector2(270, 0)
+score = 10
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(270, -240)
@@ -113,6 +220,26 @@ limit/bottom = 10000000
 limit/limit_node_target = NodePath("")
 limit/smoothed = false
 tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="StartPhantomCamera2D2" type="Node2D" parent="."]
+position = Vector2(270, 153)
+script = ExtResource("6_c8hyj")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = 0
+limit/top = -10000000
+limit/right = 540
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_2qnhp")
 tween_on_load = true
 inactive_update_mode = 0
 
@@ -139,13 +266,75 @@ packed_easy_segments = Array[PackedScene]([ExtResource("14_dmrme"), ExtResource(
 packed_medium_segments = Array[PackedScene]([ExtResource("17_7r27j"), ExtResource("18_1ap4f"), ExtResource("19_jhh6g"), ExtResource("20_84o1w"), ExtResource("21_djbun"), ExtResource("22_ji6ly"), ExtResource("23_eg4or"), ExtResource("24_twanf")])
 packed_hard_segments = Array[PackedScene]([ExtResource("25_d33e2"), ExtResource("12_qlptm")])
 
-[node name="Label" type="Label" parent="."]
+[node name="LevelStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("level")]
+script = ExtResource("29_dtp6c")
+level = NodePath("..")
+initial_state_name = "playing"
+
+[node name="menu" type="Node2D" parent="LevelStateMachine"]
+script = ExtResource("30_ur5ev")
+
+[node name="playing" type="Node2D" parent="LevelStateMachine"]
+script = ExtResource("31_60qto")
+
+[node name="death" type="Node2D" parent="LevelStateMachine"]
+script = ExtResource("32_iv6fc")
+
+[node name="PressureSpikes" parent="." instance=ExtResource("30_rtuar")]
+
+[node name="LocalUIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="LocalUIControl"]
+layout_mode = 0
 offset_left = 170.0
 offset_top = 48.0
-offset_right = 356.0
+offset_right = 360.0
 offset_bottom = 125.0
 theme_override_fonts/font = ExtResource("13_ftpfa")
 theme_override_font_sizes/font_size = 64
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PressureWarning" type="MarginContainer" parent="UICanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -128.0
+offset_right = 270.0
+offset_bottom = 0.00561523
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("32_bbjcv")
+
+[node name="WarningTextureRect" type="TextureRect" parent="UICanvasLayer/Control/PressureWarning"]
+layout_mode = 2
+texture = ExtResource("32_h3of3")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UICanvasLayer/Control/PressureWarning"]
+libraries = {
+"": SubResource("AnimationLibrary_1beu2")
+}
+
+[connection signal="death" from="Player" to="LevelStateMachine/playing" method="_on_player_death"]
+[connection signal="activating" from="PressureSpikes" to="UICanvasLayer/Control/PressureWarning" method="_on_pressure_spikes_activating"]

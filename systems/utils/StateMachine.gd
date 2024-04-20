@@ -39,7 +39,10 @@ func add(state: StateMachineNode):
 func erase(state_name: String):
 	if not _states.erase(state_name):
 		push_error("StateMachine::erase. Coudln't find state named <%s>" % state_name)
-		
+
+func force_transition(state_name: String):
+	_current_state.transition(state_name)
+
 func _process(delta):
 	_current_state._state_process(delta)
 	

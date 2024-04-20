@@ -29,10 +29,10 @@ func reached():
 	
 	var reached_delay = 0.1075
 	
-	var scale_tween = create_tween()
-	scale_tween.set_trans(Tween.TRANS_EXPO)
-	scale_tween.set_ease(Tween.EASE_OUT_IN)
-	scale_tween.tween_property(outline, "scale", Vector2(2.0, 2.0), reached_delay)
+	_tween = create_tween()
+	_tween.set_trans(Tween.TRANS_EXPO)
+	_tween.set_ease(Tween.EASE_OUT_IN)
+	_tween.tween_property(outline, "scale", Vector2(2.0, 2.0), reached_delay)
 	create_tween().tween_property(body, "scale", Vector2(0.0, 0.0), reached_delay)
 	
 	var radius_tween = create_tween()
@@ -43,6 +43,8 @@ func reached():
 	radius_tween.tween_method(_set_inner_radius, .6, .9, 0.2)
 	
 func left():
+	#if _tween != null:
+#		await _tween.finished
 	create_tween().tween_property(outline, "scale", Vector2(1.0, 1.0), 0.3)
 	outline.material.set_shader_parameter("segments_count", 4)
 

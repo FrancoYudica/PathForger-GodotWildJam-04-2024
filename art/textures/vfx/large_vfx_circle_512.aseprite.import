@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://8meq5iphdsvu"
+path="res://.godot/imported/large_vfx_circle_512.aseprite-8df3fa1841c66f80cbd498a8a35bbee5.res"
+
+[deps]
+
+source_file="res://art/textures/vfx/large_vfx_circle_512.aseprite"
+dest_files=["res://.godot/imported/large_vfx_circle_512.aseprite-8df3fa1841c66f80cbd498a8a35bbee5.res"]
+
+[params]
+
