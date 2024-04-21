@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj4avtwsfjmws"]
+[gd_scene load_steps=5 format=3 uid="uid://bj4avtwsfjmws"]
 
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_2xuyw"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_taih1"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="3_7f0qk"]
+[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_cnsyv"]
 
 [node name="LevelSegmentEasy" instance=ExtResource("1_2xuyw")]
 
@@ -15,3 +17,15 @@ position = Vector2(0, -200)
 
 [node name="PathNode3" parent="." index="5" instance=ExtResource("2_taih1")]
 position = Vector2(0, -400)
+
+[node name="ObstacleSquare32px" parent="." index="6" instance=ExtResource("3_7f0qk")]
+position = Vector2(100, -100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="ObstacleSquare32px" index="1"]
+script = ExtResource("4_cnsyv")
+
+[node name="ObstacleSquare32px2" parent="." index="7" instance=ExtResource("3_7f0qk")]
+position = Vector2(-100, -300)
+
+[node name="FixedRotationComponent" type="Node2D" parent="ObstacleSquare32px2" index="1"]
+script = ExtResource("4_cnsyv")
