@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://3qpmu7d7ufca"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_7v6n4"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_xt03i"]
+[ext_resource type="PackedScene" uid="uid://y4rd61nf7m6y" path="res://entities/path_node/moving/path_300_px.tscn" id="3_2vvd5"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="4_wacoo"]
+[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_p5o8f"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="6_keymj"]
+
+[node name="LevelSegmentHard" instance=ExtResource("1_7v6n4")]
+difficulty_enum_index = 2
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -400)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_xt03i")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_xt03i")]
+position = Vector2(0, -400)
+
+[node name="Path300px" parent="." index="5" node_paths=PackedStringArray("level_changer") instance=ExtResource("3_2vvd5")]
+level_changer = NodePath("../LevelChanger")
+
+[node name="BarGroup2" type="Node2D" parent="." index="6"]
+position = Vector2(0, -100)
+
+[node name="MovementChangerComponent" type="Node2D" parent="BarGroup2" index="0" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("5_p5o8f")
+level_changer = NodePath("../../LevelChanger")
+speed = 0.5
+
+[node name="Bar1" type="Node2D" parent="BarGroup2" index="1"]
+position = Vector2(-175, 0)
+
+[node name="ObstacleBar200px2" parent="BarGroup2/Bar1" index="0" instance=ExtResource("4_wacoo")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="BarGroup2/Bar1" index="1" instance=ExtResource("6_keymj")]
+position = Vector2(100, 0)
+
+[node name="Bar2" type="Node2D" parent="BarGroup2" index="2"]
+position = Vector2(175, 0)
+
+[node name="ObstacleBar200px2" parent="BarGroup2/Bar2" index="0" instance=ExtResource("4_wacoo")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="BarGroup2/Bar2" index="1" instance=ExtResource("6_keymj")]
+position = Vector2(-100, 0)
+
+[node name="BarGroup3" type="Node2D" parent="." index="7"]
+position = Vector2(0, -300)
+
+[node name="MovementChangerComponent" type="Node2D" parent="BarGroup3" index="0" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("5_p5o8f")
+level_changer = NodePath("../../LevelChanger")
+speed = 0.5
+
+[node name="Bar1" type="Node2D" parent="BarGroup3" index="1"]
+position = Vector2(-175, 0)
+
+[node name="ObstacleBar200px2" parent="BarGroup3/Bar1" index="0" instance=ExtResource("4_wacoo")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="BarGroup3/Bar1" index="1" instance=ExtResource("6_keymj")]
+position = Vector2(100, 0)
+
+[node name="Bar2" type="Node2D" parent="BarGroup3" index="2"]
+position = Vector2(175, 0)
+
+[node name="ObstacleBar200px2" parent="BarGroup3/Bar2" index="0" instance=ExtResource("4_wacoo")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="BarGroup3/Bar2" index="1" instance=ExtResource("6_keymj")]
+position = Vector2(-100, 0)

@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwa5nqr87nwjf"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_47m7k"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_v82xa"]
+[ext_resource type="PackedScene" uid="uid://bcn1xk6fuhdre" path="res://entities/obstacles/triangle/triangle_isoseles_128px.tscn" id="5_p8bc5"]
+[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_ipfb2"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_47m7k")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -600)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_v82xa")]
+
+[node name="PathNode4" parent="." index="4" instance=ExtResource("2_v82xa")]
+position = Vector2(0, -200)
+
+[node name="PathNode5" parent="." index="5" instance=ExtResource("2_v82xa")]
+position = Vector2(0, -400)
+
+[node name="PathNode6" parent="." index="6" instance=ExtResource("2_v82xa")]
+position = Vector2(0, -600)
+
+[node name="Triangles" type="Node2D" parent="." index="7"]
+position = Vector2(0, -200)
+
+[node name="ObstacleTriangle128px" parent="Triangles" index="0" instance=ExtResource("5_p8bc5")]
+position = Vector2(-32, 0)
+rotation = 3.14159
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles/ObstacleTriangle128px" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_ipfb2")
+level_changer = NodePath("../../../LevelChanger")
+radius = 96
+
+[node name="ObstacleTriangle128px2" parent="Triangles" index="1" instance=ExtResource("5_p8bc5")]
+position = Vector2(32, 0)
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles/ObstacleTriangle128px2" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_ipfb2")
+level_changer = NodePath("../../../LevelChanger")
+radius = -96
+
+[node name="Triangles2" type="Node2D" parent="." index="8"]
+position = Vector2(1, -400)
+
+[node name="ObstacleTriangle128px" parent="Triangles2" index="0" instance=ExtResource("5_p8bc5")]
+position = Vector2(-32, 0)
+rotation = 3.14159
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles2/ObstacleTriangle128px" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_ipfb2")
+level_changer = NodePath("../../../LevelChanger")
+radius = 96
+phase_offset = 1.571
+
+[node name="ObstacleTriangle128px2" parent="Triangles2" index="1" instance=ExtResource("5_p8bc5")]
+position = Vector2(32, 0)
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles2/ObstacleTriangle128px2" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_ipfb2")
+level_changer = NodePath("../../../LevelChanger")
+radius = -96
+phase_offset = 1.571

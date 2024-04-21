@@ -12,6 +12,8 @@ var _top_position: Vector2 = Vector2.ZERO
 
 var _segments: Array[LevelSegment] = []
 
+var building = false
+
 func restart():
 	
 	# Clears all segments
@@ -29,6 +31,9 @@ func _ready():
 	restart()
 	
 func _process(_delta):
+	
+	if not building:
+		return
 	
 	# When it's time to generate a new segment
 	if level.camera.position.y - viewport_height / 2 - _top_position.y < edge_height:

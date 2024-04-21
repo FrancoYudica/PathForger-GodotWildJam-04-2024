@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c82wtr3ee8lf6"]
+[gd_scene load_steps=5 format=3 uid="uid://c82wtr3ee8lf6"]
 
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_6gp5f"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_nlo7b"]
 [ext_resource type="PackedScene" uid="uid://y4rd61nf7m6y" path="res://entities/path_node/moving/path_300_px.tscn" id="3_pg6xl"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="4_f82jg"]
 
 [node name="LevelSegmentMedium" instance=ExtResource("1_6gp5f")]
 difficulty_enum_index = 1
 
 [node name="TopMarker2D" parent="." index="2"]
-position = Vector2(0, -400)
+position = Vector2(0, -600)
 
 [node name="PathNode" parent="." index="3" instance=ExtResource("2_nlo7b")]
 
@@ -19,3 +20,30 @@ level_changer = NodePath("../LevelChanger")
 [node name="Path300px2" parent="." index="5" node_paths=PackedStringArray("level_changer") instance=ExtResource("3_pg6xl")]
 position = Vector2(0, -400)
 level_changer = NodePath("../LevelChanger")
+
+[node name="Path300px3" parent="." index="6" node_paths=PackedStringArray("level_changer") instance=ExtResource("3_pg6xl")]
+position = Vector2(0, -600)
+rotation = 3.14159
+level_changer = NodePath("../LevelChanger")
+
+[node name="Bars" type="Node2D" parent="." index="7"]
+position = Vector2(0, -300)
+
+[node name="ObstacleBar200px2" parent="Bars" index="0" instance=ExtResource("4_f82jg")]
+position = Vector2(150, 0)
+rotation = 1.5708
+
+[node name="ObstacleBar200px" parent="Bars" index="1" instance=ExtResource("4_f82jg")]
+position = Vector2(-150, 0)
+rotation = 1.5708
+
+[node name="Bars2" type="Node2D" parent="." index="8"]
+position = Vector2(0, -500)
+
+[node name="ObstacleBar200px2" parent="Bars2" index="0" instance=ExtResource("4_f82jg")]
+position = Vector2(150, 0)
+rotation = 1.5708
+
+[node name="ObstacleBar200px" parent="Bars2" index="1" instance=ExtResource("4_f82jg")]
+position = Vector2(-150, 0)
+rotation = 1.5708

@@ -8,7 +8,7 @@
 [node name="PressureSpikes" type="Node2D"]
 position = Vector2(270, 446)
 script = ExtResource("1_jqf8s")
-duration_ms = 2000
+duration_ms = 3000
 
 [node name="GlowTop" type="Sprite2D" parent="."]
 modulate = Color(0.25098, 1, 0.537255, 0.231373)

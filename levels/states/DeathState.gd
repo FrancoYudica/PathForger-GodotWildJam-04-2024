@@ -1,10 +1,12 @@
 extends LevelStateMachineNode
 
+@onready var menu_reached_stream_player = $MenuReachedAudioStreamPlayer
+
 func _state_enter():
 	# Waits and displays death
 	level.camera.shake()
 	level.pressure_spikes.stop()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	
 	# Travels to origin
 	level.menu_phantom_camera.set_priority(2)
@@ -17,6 +19,7 @@ func _state_enter():
 	
 	level.player.respawn()
 	
-
+	menu_reached_stream_player.play()
+	
 	# Todo adds new player
 	transition("menu")

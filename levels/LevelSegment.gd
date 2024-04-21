@@ -25,4 +25,3 @@ func _ready():
 	segment_height = absf(top_marker.position.y - bottom_marker.position.y)
 	
 	level_changer.dynamic_difficulty = dynamic_difficulty
-	

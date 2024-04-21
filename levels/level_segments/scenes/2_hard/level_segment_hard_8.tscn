@@ -1,0 +1,152 @@
+[gd_scene load_steps=7 format=3 uid="uid://demhp2dogh7x6"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_0l3sb"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_dar7j"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="3_rf0dd"]
+[ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="4_rxg83"]
+[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="5_5y1or"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="6_lyaoy"]
+
+[node name="LevelSegmentHard" instance=ExtResource("1_0l3sb")]
+difficulty_enum_index = 2
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -1000)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_dar7j")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_dar7j")]
+position = Vector2(100, -200)
+
+[node name="PathNode4" parent="." index="5" instance=ExtResource("2_dar7j")]
+position = Vector2(-100, -200)
+
+[node name="PathNode5" parent="." index="6" instance=ExtResource("2_dar7j")]
+position = Vector2(-150, -400)
+
+[node name="PathNode6" parent="." index="7" instance=ExtResource("2_dar7j")]
+position = Vector2(50, -400)
+
+[node name="PathNode7" parent="." index="8" instance=ExtResource("2_dar7j")]
+position = Vector2(100, -600)
+
+[node name="PathNode9" parent="." index="9" instance=ExtResource("2_dar7j")]
+position = Vector2(150, -800)
+
+[node name="PathNode11" parent="." index="10" instance=ExtResource("2_dar7j")]
+position = Vector2(150, -1000)
+
+[node name="PathNode10" parent="." index="11" instance=ExtResource("2_dar7j")]
+position = Vector2(-50, -800)
+
+[node name="PathNode8" parent="." index="12" instance=ExtResource("2_dar7j")]
+position = Vector2(-100, -600)
+
+[node name="ObstacleSquare64px2" parent="." index="13" instance=ExtResource("4_rxg83")]
+position = Vector2(426, -424)
+
+[node name="FixedRotationComponent" type="Node2D" parent="ObstacleSquare64px2" index="1"]
+script = ExtResource("5_5y1or")
+
+[node name="SquareGap" type="Node2D" parent="." index="14"]
+position = Vector2(0, -200)
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="SquareGap" index="0" instance=ExtResource("3_rf0dd")]
+position = Vector2(-40, 0)
+
+[node name="ObstacleSquare32px2" parent="SquareGap" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(40, 0)
+
+[node name="SquareGap2" type="Node2D" parent="." index="15"]
+position = Vector2(-50, -400)
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="SquareGap2" index="0" instance=ExtResource("3_rf0dd")]
+position = Vector2(-40, 0)
+
+[node name="ObstacleSquare32px2" parent="SquareGap2" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(40, 0)
+
+[node name="SquareGap3" type="Node2D" parent="." index="16"]
+position = Vector2(0, -600)
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="SquareGap3" index="0" instance=ExtResource("3_rf0dd")]
+position = Vector2(-40, 0)
+
+[node name="ObstacleSquare32px2" parent="SquareGap3" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(40, 0)
+
+[node name="SquareGap4" type="Node2D" parent="." index="17"]
+position = Vector2(50, -800)
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="SquareGap4" index="0" instance=ExtResource("3_rf0dd")]
+position = Vector2(-40, 0)
+
+[node name="ObstacleSquare32px2" parent="SquareGap4" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(40, 0)
+
+[node name="Bar" type="Node2D" parent="." index="18"]
+position = Vector2(50, -300)
+
+[node name="ObstacleBar200px" parent="Bar" index="0" instance=ExtResource("6_lyaoy")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="Bar" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bar/ObstacleSquare32px" index="1"]
+script = ExtResource("5_5y1or")
+
+[node name="Bar2" type="Node2D" parent="." index="19"]
+position = Vector2(100, -699)
+
+[node name="ObstacleBar200px" parent="Bar2" index="0" instance=ExtResource("6_lyaoy")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="Bar2" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bar2/ObstacleSquare32px" index="1"]
+script = ExtResource("5_5y1or")
+
+[node name="Bar3" type="Node2D" parent="." index="20"]
+position = Vector2(-100, -500)
+rotation = 3.14159
+
+[node name="ObstacleBar200px" parent="Bar3" index="0" instance=ExtResource("6_lyaoy")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="Bar3" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bar3/ObstacleSquare32px" index="1"]
+script = ExtResource("5_5y1or")
+
+[node name="Bar4" type="Node2D" parent="." index="21"]
+position = Vector2(-50, -900)
+rotation = 3.14159
+
+[node name="ObstacleBar200px" parent="Bar4" index="0" instance=ExtResource("6_lyaoy")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="Bar4" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bar4/ObstacleSquare32px" index="1"]
+script = ExtResource("5_5y1or")
+
+[node name="Bar5" type="Node2D" parent="." index="22"]
+position = Vector2(-100, -100)
+rotation = 3.14159
+
+[node name="ObstacleBar200px" parent="Bar5" index="0" instance=ExtResource("6_lyaoy")]
+rotation = 1.5708
+
+[node name="ObstacleSquare32px" parent="Bar5" index="1" instance=ExtResource("3_rf0dd")]
+position = Vector2(-100, 0)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bar5/ObstacleSquare32px" index="1"]
+script = ExtResource("5_5y1or")

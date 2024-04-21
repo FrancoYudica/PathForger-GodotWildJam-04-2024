@@ -7,7 +7,6 @@
 [node name="ObstacleTriangle128px" type="Sprite2D"]
 texture_filter = 1
 material = ExtResource("1_ip6rj")
-position = Vector2(-23, -26)
 texture = ExtResource("2_w6v0k")
 script = ExtResource("3_x775v")
 metadata/_aseprite_wizard_interface_config_ = {

@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjdcrpvdx2ncg"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_fdpiw"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_x2ol3"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_d56nf"]
+[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="5_4a5qs"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="6_dk0v8"]
+[ext_resource type="Script" path="res://entities/obstacles/RotationChangerComponent.gd" id="7_um17w"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_fdpiw")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -400)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_x2ol3")]
+
+[node name="PathNode4" parent="." index="4" instance=ExtResource("2_x2ol3")]
+position = Vector2(0, -200)
+
+[node name="PathNode5" parent="." index="5" instance=ExtResource("2_x2ol3")]
+position = Vector2(0, -400)
+
+[node name="Bars" type="Node2D" parent="." index="6"]
+position = Vector2(0, -200)
+
+[node name="RotatingBar1" type="Node2D" parent="Bars" index="0"]
+position = Vector2(100, 0)
+
+[node name="ObstacleSquare32px" parent="Bars/RotatingBar1" index="0" instance=ExtResource("4_d56nf")]
+position = Vector2(0, -100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars/RotatingBar1/ObstacleSquare32px" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="Bars/RotatingBar1" index="1" instance=ExtResource("4_d56nf")]
+position = Vector2(0, 100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars/RotatingBar1/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = -1.0
+
+[node name="RotationChangerComponent" type="Node2D" parent="Bars/RotatingBar1" index="2" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_um17w")
+level_changer = NodePath("../../../LevelChanger")
+rotations_per_second = 0.2
+phase_offset = 1.571
+
+[node name="ObstacleBar200px" parent="Bars/RotatingBar1" index="3" instance=ExtResource("6_dk0v8")]
+
+[node name="ObstacleSquare32px3" parent="Bars/RotatingBar1" index="4" instance=ExtResource("4_d56nf")]
+
+[node name="RotatingBar2" type="Node2D" parent="Bars" index="1"]
+position = Vector2(-100, 0)
+
+[node name="ObstacleSquare32px" parent="Bars/RotatingBar2" index="0" instance=ExtResource("4_d56nf")]
+position = Vector2(0, -100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars/RotatingBar2/ObstacleSquare32px" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="Bars/RotatingBar2" index="1" instance=ExtResource("4_d56nf")]
+position = Vector2(0, 100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars/RotatingBar2/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = -1.0
+
+[node name="RotationChangerComponent" type="Node2D" parent="Bars/RotatingBar2" index="2" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_um17w")
+level_changer = NodePath("../../../LevelChanger")
+rotations_per_second = -0.2
+phase_offset = 1.571
+
+[node name="ObstacleBar200px" parent="Bars/RotatingBar2" index="3" instance=ExtResource("6_dk0v8")]
+
+[node name="ObstacleSquare32px3" parent="Bars/RotatingBar2" index="4" instance=ExtResource("4_d56nf")]
+
+[node name="Bars2" type="Node2D" parent="." index="7"]
+position = Vector2(0, -400)
+
+[node name="RotatingBar1" type="Node2D" parent="Bars2" index="0"]
+position = Vector2(100, 0)
+
+[node name="ObstacleSquare32px" parent="Bars2/RotatingBar1" index="0" instance=ExtResource("4_d56nf")]
+position = Vector2(0, -100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars2/RotatingBar1/ObstacleSquare32px" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="Bars2/RotatingBar1" index="1" instance=ExtResource("4_d56nf")]
+position = Vector2(0, 100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars2/RotatingBar1/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = -1.0
+
+[node name="RotationChangerComponent" type="Node2D" parent="Bars2/RotatingBar1" index="2" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_um17w")
+level_changer = NodePath("../../../LevelChanger")
+rotations_per_second = 0.2
+
+[node name="ObstacleBar200px" parent="Bars2/RotatingBar1" index="3" instance=ExtResource("6_dk0v8")]
+
+[node name="ObstacleSquare32px3" parent="Bars2/RotatingBar1" index="4" instance=ExtResource("4_d56nf")]
+
+[node name="RotatingBar2" type="Node2D" parent="Bars2" index="1"]
+position = Vector2(-100, 0)
+
+[node name="ObstacleSquare32px" parent="Bars2/RotatingBar2" index="0" instance=ExtResource("4_d56nf")]
+position = Vector2(0, -100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars2/RotatingBar2/ObstacleSquare32px" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="Bars2/RotatingBar2" index="1" instance=ExtResource("4_d56nf")]
+position = Vector2(0, 100)
+
+[node name="FixedRotationComponent" type="Node2D" parent="Bars2/RotatingBar2/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_4a5qs")
+rotations_per_second = -1.0
+
+[node name="RotationChangerComponent" type="Node2D" parent="Bars2/RotatingBar2" index="2" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_um17w")
+level_changer = NodePath("../../../LevelChanger")
+rotations_per_second = -0.2
+
+[node name="ObstacleBar200px" parent="Bars2/RotatingBar2" index="3" instance=ExtResource("6_dk0v8")]
+
+[node name="ObstacleSquare32px3" parent="Bars2/RotatingBar2" index="4" instance=ExtResource("4_d56nf")]

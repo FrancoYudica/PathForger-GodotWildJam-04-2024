@@ -11,6 +11,8 @@ var _hook_length: float = 0.0
 
 func _state_enter():
 	
+	AudioManager.play_throw_hook()
+	
 	player.hook.show()
 		
 	_hook_length = 0.0

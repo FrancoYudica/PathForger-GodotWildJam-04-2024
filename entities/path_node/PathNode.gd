@@ -16,6 +16,7 @@ func reached():
 	super.reached()
 	disable()
 	sprite.reached()
+	AudioManager.play_path_node_reached()
 	
 
 func enable():

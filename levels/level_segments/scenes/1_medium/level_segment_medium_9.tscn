@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0fyu5pkej8kn"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_u7tno"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_q7mfb"]
+[ext_resource type="PackedScene" uid="uid://cscxt5rlfm0gb" path="res://entities/obstacles/bar/bar_300px.tscn" id="3_gmb1h"]
+[ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="4_hxg6p"]
+[ext_resource type="PackedScene" uid="uid://bcn1xk6fuhdre" path="res://entities/obstacles/triangle/triangle_isoseles_128px.tscn" id="5_pf7vo"]
+[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_041is"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_u7tno")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -600)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_q7mfb")]
+
+[node name="PathNode2" parent="." index="4" instance=ExtResource("2_q7mfb")]
+position = Vector2(200, -200)
+
+[node name="PathNode3" parent="." index="5" instance=ExtResource("2_q7mfb")]
+position = Vector2(0, -400)
+
+[node name="PathNode4" parent="." index="6" instance=ExtResource("2_q7mfb")]
+position = Vector2(-200, -600)
+
+[node name="Zag" type="Node2D" parent="." index="7"]
+
+[node name="ParallelBars" type="Node2D" parent="Zag" index="0"]
+position = Vector2(100, -100)
+rotation = 0.785398
+
+[node name="ObstacleBar300px" parent="Zag/ParallelBars" index="0" instance=ExtResource("3_gmb1h")]
+position = Vector2(-75, 100)
+
+[node name="ObstacleBar300px2" parent="Zag/ParallelBars" index="1" instance=ExtResource("3_gmb1h")]
+position = Vector2(75, -50)
+
+[node name="ParallelBars2" type="Node2D" parent="Zag" index="1"]
+position = Vector2(0, -400)
+rotation = -0.785398
+
+[node name="ObstacleBar300px2" parent="Zag/ParallelBars2" index="0" instance=ExtResource("3_gmb1h")]
+position = Vector2(75, 150)
+
+[node name="ObstacleBar200px" parent="Zag/ParallelBars2" index="1" instance=ExtResource("4_hxg6p")]
+position = Vector2(-75, 50)
+
+[node name="Triangles" type="Node2D" parent="." index="8"]
+position = Vector2(-100, -500)
+rotation = -0.785398
+
+[node name="ObstacleTriangle128px" parent="Triangles" index="0" instance=ExtResource("5_pf7vo")]
+position = Vector2(-75, 0)
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles/ObstacleTriangle128px" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_041is")
+level_changer = NodePath("../../../LevelChanger")
+radius = 50
+speed = 2.0
+
+[node name="ObstacleTriangle128px2" parent="Triangles" index="1" instance=ExtResource("5_pf7vo")]
+position = Vector2(75, 0)
+rotation = 3.14159
+
+[node name="MovementChangerComponent" type="Node2D" parent="Triangles/ObstacleTriangle128px2" index="1" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("6_041is")
+level_changer = NodePath("../../../LevelChanger")
+radius = -50
+speed = 2.0

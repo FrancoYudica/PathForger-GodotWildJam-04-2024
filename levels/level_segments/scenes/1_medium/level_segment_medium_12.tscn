@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dr4lpq6dxs7x7"]
+
+[ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_wv57a"]
+[ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_0arqy"]
+[ext_resource type="PackedScene" uid="uid://cvxq67huacrw7" path="res://entities/obstacles/bar/bar_400px.tscn" id="3_43mtd"]
+[ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="4_11ay7"]
+[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="5_33w3m"]
+[ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="6_xa2uw"]
+[ext_resource type="Script" path="res://entities/obstacles/RotationChangerComponent.gd" id="7_oyipw"]
+
+[node name="LevelSegmentMedium" instance=ExtResource("1_wv57a")]
+difficulty_enum_index = 1
+
+[node name="TopMarker2D" parent="." index="2"]
+position = Vector2(0, -1200)
+
+[node name="PathNode" parent="." index="3" instance=ExtResource("2_0arqy")]
+
+[node name="PathNode4" parent="." index="4" instance=ExtResource("2_0arqy")]
+position = Vector2(100, -200)
+
+[node name="PathNode5" parent="." index="5" instance=ExtResource("2_0arqy")]
+position = Vector2(100, -400)
+
+[node name="PathNode6" parent="." index="6" instance=ExtResource("2_0arqy")]
+position = Vector2(0, -600)
+
+[node name="PathNode7" parent="." index="7" instance=ExtResource("2_0arqy")]
+position = Vector2(-100, -800)
+
+[node name="PathNode8" parent="." index="8" instance=ExtResource("2_0arqy")]
+position = Vector2(-100, -1000)
+
+[node name="PathNode9" parent="." index="9" instance=ExtResource("2_0arqy")]
+position = Vector2(0, -1200)
+
+[node name="RotatingBar1" type="Node2D" parent="." index="10"]
+position = Vector2(0, -300)
+
+[node name="ObstacleBar400px" parent="RotatingBar1" index="0" instance=ExtResource("3_43mtd")]
+
+[node name="ObstacleSquare32px" parent="RotatingBar1" index="1" instance=ExtResource("4_11ay7")]
+position = Vector2(0, -200)
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar1/ObstacleSquare32px" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="RotatingBar1" index="2" instance=ExtResource("4_11ay7")]
+position = Vector2(0, 200)
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar1/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = -1.0
+
+[node name="ObstacleSquare64px" parent="RotatingBar1" index="3" instance=ExtResource("6_xa2uw")]
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar1/ObstacleSquare64px" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = 0.5
+
+[node name="RotationChangerComponent" type="Node2D" parent="RotatingBar1" index="4" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_oyipw")
+level_changer = NodePath("../../LevelChanger")
+rotations_per_second = -0.1
+phase_offset = 1.571
+
+[node name="RotatingBar2" type="Node2D" parent="." index="11"]
+position = Vector2(0, -900)
+
+[node name="ObstacleBar400px" parent="RotatingBar2" index="0" instance=ExtResource("3_43mtd")]
+
+[node name="ObstacleSquare32px" parent="RotatingBar2" index="1" instance=ExtResource("4_11ay7")]
+position = Vector2(0, -200)
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar2/ObstacleSquare32px" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = 1.0
+
+[node name="ObstacleSquare32px2" parent="RotatingBar2" index="2" instance=ExtResource("4_11ay7")]
+position = Vector2(0, 200)
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar2/ObstacleSquare32px2" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = -1.0
+
+[node name="ObstacleSquare64px" parent="RotatingBar2" index="3" instance=ExtResource("6_xa2uw")]
+
+[node name="FixedRotationComponent" type="Node2D" parent="RotatingBar2/ObstacleSquare64px" index="1"]
+script = ExtResource("5_33w3m")
+rotations_per_second = 0.5
+
+[node name="RotationChangerComponent" type="Node2D" parent="RotatingBar2" index="4" node_paths=PackedStringArray("level_changer")]
+script = ExtResource("7_oyipw")
+level_changer = NodePath("../../LevelChanger")
+rotations_per_second = 0.1

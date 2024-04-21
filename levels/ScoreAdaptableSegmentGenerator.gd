@@ -14,24 +14,17 @@ var _DIFFICULTY_TYPES_COUNT = 3
 func generate() -> LevelSegment:
 	
 	# Adds random offset to progress
-	var progress_offset = (randf() * 2.0 - 1.0) / _DIFFICULTY_TYPES_COUNT
+	var progress_offset = (randf() * 2.0 - 1.0) * 0.1
 	
 	# Calculates progress as a combination of current level progress and the offset
 	var current_level_progress = _level.get_progress_normalized()
 	var progress = clampf(current_level_progress + progress_offset, 0.0, 1.0)
 	
 	# Maps progress to [0, 1, 2, ..., _DIFFICULTY_TYPES_COUNT - 1]
-	var indexed_progress = clamp(
-		floori(progress * (_DIFFICULTY_TYPES_COUNT)),
-		0,
-		_DIFFICULTY_TYPES_COUNT - 1
-	)
-	# If _DIFFICULTY_TYPES_COUNT == 3, [0.00, 0.25, 0.50, 0.75]
-	var normalized_index = float(indexed_progress) / _DIFFICULTY_TYPES_COUNT
+	var indexed_progress = _calculate_indexed_progress(progress)
+	var dynamic_difficulty = _calculate_dynamic_difficulty(progress)
 	
-	# Difficulty is calculated as the distance from the current progress to the difficulty type floating index -> [0.0, 1.0]
-	var dynamic_difficulty: float = (progress - normalized_index) * _DIFFICULTY_TYPES_COUNT
-	#print(str(indexed_progress) + "dynamic: %s" % dynamic_difficulty)
+	print("Progress %s" % progress +  "indexed: %s" % indexed_progress + " dynamic: %s" % dynamic_difficulty)
 	
 	# Gets random level segment and instantiates
 	var packed_level_segment: PackedScene = _get_packed_scene_by_difficulty(indexed_progress)
@@ -55,3 +48,27 @@ func _get_packed_scene_by_difficulty(difficulty_index: int) -> PackedScene:
 		_:
 			assert(false, "Unimplemented difficulty")
 			return null
+			
+func _calculate_indexed_progress(progress) -> int:
+	
+	# Easy
+	if progress < 0.1:
+		return 0
+	
+	# Medium
+	if progress < 0.65:
+		return 1
+	
+	# Hard
+	return 2
+	
+func _calculate_dynamic_difficulty(progress):
+	if progress > 0.65:
+		return progress - 0.65
+	
+	if progress > 0.1:
+		return progress - 0.1
+		
+	return progress
+	
+	
