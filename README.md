@@ -7,3 +7,4 @@ Game jam in 12/04/2024 - 21/04/2024. 9 days solo dev.
 
 ![_](art/itch_page/screenshots/Screenshot_1.png)
 ![_](art/itch_page/screenshots/Screenshot_2.png)
+![_](art/itch_page/results.png)
