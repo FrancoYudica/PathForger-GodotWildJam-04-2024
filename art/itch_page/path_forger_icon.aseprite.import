@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dv6vj8pgulfty"
+path="res://.godot/imported/path_forger_icon.aseprite-5dda621ac7f3080c358d7cb435b8d711.res"
+
+[deps]
+
+source_file="res://art/itch_page/path_forger_icon.aseprite"
+dest_files=["res://.godot/imported/path_forger_icon.aseprite-5dda621ac7f3080c358d7cb435b8d711.res"]
+
+[params]
+

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_64y60"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_cot6g"]
 [ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="3_b4s0f"]
-[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_ehal5"]
+[ext_resource type="Script" uid="uid://rpqtelpllsey" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_ehal5"]
 
 [node name="LevelSegmentEasy" instance=ExtResource("1_64y60")]
 

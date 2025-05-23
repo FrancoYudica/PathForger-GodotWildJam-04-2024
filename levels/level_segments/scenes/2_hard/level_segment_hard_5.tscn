@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_ea30t"]
 [ext_resource type="PackedScene" uid="uid://dcuv5vtykjos3" path="res://entities/path_node/moving/path_200_px.tscn" id="3_21kb4"]
 [ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="3_47mge"]
-[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_qv83y"]
-[ext_resource type="Script" path="res://entities/obstacles/RotationChangerComponent.gd" id="5_x8jw8"]
+[ext_resource type="Script" uid="uid://rpqtelpllsey" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_qv83y"]
+[ext_resource type="Script" uid="uid://lxrard80esit" path="res://entities/obstacles/RotationChangerComponent.gd" id="5_x8jw8"]
 [ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="6_txmtq"]
 
 [node name="LevelSegmentHard" instance=ExtResource("1_apkvn")]

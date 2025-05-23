@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmrxmh1fk6av4"]
 
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="1_ffam5"]
-[ext_resource type="Script" path="res://entities/vfx/player_death_vfx.gd" id="2_g5gip"]
+[ext_resource type="Script" uid="uid://cmh36ck1qyf7i" path="res://entities/vfx/player_death_vfx.gd" id="2_g5gip"]
 [ext_resource type="Texture2D" uid="uid://c2g6nmy8ltuyq" path="res://art/textures/vfx/large_vfx_circle_512.png" id="3_wbcgf"]
 
 [sub_resource type="Curve" id="Curve_4bm4t"]
-max_value = 100.0
+_limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 

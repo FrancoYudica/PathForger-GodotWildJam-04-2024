@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ddb3igmtslnti" path="res://art/textures/obstacles/open_ring_4_gaps_256x256.png" id="1_60ta0"]
 [ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_jnri8"]
-[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_ardum"]
+[ext_resource type="Script" uid="uid://b4ntlynlnyr6c" path="res://entities/obstacles/Obstacle.gd" id="2_ardum"]
 
 [node name="Ring4Holes" type="Sprite2D"]
 texture_filter = 1

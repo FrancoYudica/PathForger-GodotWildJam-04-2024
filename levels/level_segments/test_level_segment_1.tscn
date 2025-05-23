@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8kb6vgkgau5o"]
 
-[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_s0nxa"]
+[ext_resource type="Script" uid="uid://7axaqg8eg7xs" path="res://levels/LevelSegment.gd" id="1_s0nxa"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_72gua"]
 
 [node name="TestLevelSegment" type="Node2D"]

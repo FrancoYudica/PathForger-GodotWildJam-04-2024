@@ -1,24 +1,24 @@
 [gd_scene load_steps=69 format=3 uid="uid://bajy40qhic0ds"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_gbe2q"]
-[ext_resource type="Shader" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
-[ext_resource type="Resource" uid="uid://p8qmxge11ylm" path="res://resources/score_data.tres" id="2_yidnf"]
+[ext_resource type="Script" uid="uid://c1jrulbw3vspu" path="res://levels/level.gd" id="1_gbe2q"]
+[ext_resource type="Shader" uid="uid://df8t8pcgnn1ag" path="res://resources/moving_checkboard.gdshader" id="2_rql3e"]
+[ext_resource type="Resource" path="res://resources/score_data.tres" id="2_yidnf"]
 [ext_resource type="Texture2D" uid="uid://diu37vtctlenx" path="res://art/textures/checkboard_background.png" id="3_a5du7"]
-[ext_resource type="Script" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
-[ext_resource type="Script" path="res://levels/MainCamera.gd" id="5_swkql"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
+[ext_resource type="Script" uid="uid://b22w4xijp01up" path="res://levels/CheckboardBackground.gd" id="4_kejbq"]
+[ext_resource type="Script" uid="uid://bbvt206c7txa3" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f5i52"]
+[ext_resource type="Script" uid="uid://d0bofgnhaommw" path="res://levels/MainCamera.gd" id="5_swkql"]
+[ext_resource type="Script" uid="uid://bgepgks5dwk3o" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_c8hyj"]
 [ext_resource type="PackedScene" uid="uid://bfqm7vopmmtbw" path="res://entities/player/player.tscn" id="7_fcahg"]
-[ext_resource type="Script" path="res://entities/path_node/path_node.gd" id="8_5w875"]
+[ext_resource type="Script" uid="uid://77m1mynb667y" path="res://entities/path_node/path_node.gd" id="8_5w875"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="9_fy437"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_qilbh"]
-[ext_resource type="Script" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
-[ext_resource type="Script" path="res://levels/LevelBuilder.gd" id="11_gospp"]
+[ext_resource type="Script" uid="uid://bf2kf2qio5yoi" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_qilbh"]
+[ext_resource type="Script" uid="uid://c0tx3vugn50mh" path="res://levels/GeneratorPicker.gd" id="11_2xxqe"]
+[ext_resource type="Script" uid="uid://co7rdi44t84p1" path="res://levels/LevelBuilder.gd" id="11_gospp"]
 [ext_resource type="PackedScene" uid="uid://chfrjw0homh4i" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_1.tscn" id="12_qlptm"]
-[ext_resource type="Script" path="res://levels/ScoreAdaptableSegmentGenerator.gd" id="13_5ur8j"]
+[ext_resource type="Script" uid="uid://wi3bcfiworp6" path="res://levels/ScoreAdaptableSegmentGenerator.gd" id="13_5ur8j"]
 [ext_resource type="FontFile" uid="uid://babyeme2jhpvd" path="res://art/fonts/axaxax bd.otf" id="13_ftpfa"]
 [ext_resource type="PackedScene" uid="uid://bj4avtwsfjmws" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_0.tscn" id="14_dmrme"]
-[ext_resource type="Script" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
+[ext_resource type="Script" uid="uid://ce0e5o3xumqc8" path="res://levels/RandomSegmentGenerator.gd" id="14_m3m3h"]
 [ext_resource type="PackedScene" uid="uid://dgdt453qqqyc4" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_1.tscn" id="15_k22q7"]
 [ext_resource type="PackedScene" uid="uid://c8d3p2i1oison" path="res://levels/level_segments/scenes/0_easy/level_segment_easy_2.tscn" id="16_1v06n"]
 [ext_resource type="PackedScene" uid="uid://cwa5nqr87nwjf" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_10.tscn" id="17_1v7uu"]
@@ -44,19 +44,19 @@
 [ext_resource type="PackedScene" uid="uid://cc8e6v02u3ytk" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_6.tscn" id="23_eg4or"]
 [ext_resource type="PackedScene" uid="uid://b6wwajndhf360" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_7.tscn" id="24_twanf"]
 [ext_resource type="PackedScene" uid="uid://bunbxvh6hpdhy" path="res://levels/level_segments/scenes/2_hard/level_segment_hard_0.tscn" id="25_d33e2"]
-[ext_resource type="Script" path="res://levels/LevelStateMachine.gd" id="29_dtp6c"]
+[ext_resource type="Script" uid="uid://cx6k8cxmwbpqu" path="res://levels/LevelStateMachine.gd" id="29_dtp6c"]
 [ext_resource type="PackedScene" uid="uid://cgtxju5xnf2u" path="res://entities/pressure_spikes.tscn" id="30_rtuar"]
-[ext_resource type="Script" path="res://levels/states/PlayingState.gd" id="30_ur5ev"]
-[ext_resource type="Script" path="res://levels/states/GameState.gd" id="31_60qto"]
-[ext_resource type="Script" path="res://levels/PressureWarning.gd" id="32_bbjcv"]
+[ext_resource type="Script" uid="uid://dh3pcfv3afxat" path="res://levels/states/PlayingState.gd" id="30_ur5ev"]
+[ext_resource type="Script" uid="uid://d0pq0toll6f5e" path="res://levels/states/GameState.gd" id="31_60qto"]
+[ext_resource type="Script" uid="uid://6i0syxs4q0vd" path="res://levels/PressureWarning.gd" id="32_bbjcv"]
 [ext_resource type="Texture2D" uid="uid://cnbptlfytqdfr" path="res://art/textures/warning_128.png" id="32_h3of3"]
-[ext_resource type="Script" path="res://levels/states/DeathState.gd" id="32_iv6fc"]
-[ext_resource type="Script" path="res://levels/MenuUICanvasLayer.gd" id="32_wetd0"]
+[ext_resource type="Script" uid="uid://cb5fcsggtv8o2" path="res://levels/states/DeathState.gd" id="32_iv6fc"]
+[ext_resource type="Script" uid="uid://bqevk11qkuwnu" path="res://levels/MenuUICanvasLayer.gd" id="32_wetd0"]
 [ext_resource type="Theme" uid="uid://dkwnv6ipf6y7w" path="res://resources/themes/score_data_labels.tres" id="34_kv717"]
 [ext_resource type="Theme" uid="uid://be3xf56kf4xo5" path="res://resources/themes/score_data_values.tres" id="35_p2dni"]
 [ext_resource type="PackedScene" uid="uid://h7fybv6halgm" path="res://levels/level_segments/scenes/1_medium/level_segment_medium_14.tscn" id="36_22nhb"]
 [ext_resource type="Texture2D" uid="uid://moscpm25cegr" path="res://art/textures/ui/pointing_arrow.png" id="37_el3ui"]
-[ext_resource type="Script" path="res://levels/ScoreLabel.gd" id="39_mawj0"]
+[ext_resource type="Script" uid="uid://db0aomrohd6lu" path="res://levels/ScoreLabel.gd" id="39_mawj0"]
 [ext_resource type="AudioStream" uid="uid://bjnhgbm0l8t3p" path="res://art/sfx/deep_hit.mp3" id="43_phqyv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehsn3"]
@@ -68,7 +68,7 @@ shader_parameter/columns_offset_strength = 0.0
 shader_parameter/rows_offset_strength = 0.0
 
 [sub_resource type="Curve" id="Curve_nb5rq"]
-max_value = 1.5
+_limits = [0.0, 1.5, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.290158, 0, 0, Vector2(0.419948, 1.36198), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.08872, 0.0, 0, 0]
 point_count = 3
 
@@ -163,9 +163,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1beu2"]
 _data = {
-"RESET": SubResource("Animation_k2bjs"),
-"fadein": SubResource("Animation_x68sf"),
-"warn": SubResource("Animation_e6s57")
+&"RESET": SubResource("Animation_k2bjs"),
+&"fadein": SubResource("Animation_x68sf"),
+&"warn": SubResource("Animation_e6s57")
 }
 
 [node name="Level" type="Node2D"]
@@ -456,10 +456,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 206.0
-offset_top = 832.0
-offset_right = 334.0
-offset_bottom = 960.008
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = 0.00799561
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("32_bbjcv")
@@ -471,7 +471,7 @@ stretch_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelStateMachine/playing/InGameUI/PressureWarning"]
 libraries = {
-"": SubResource("AnimationLibrary_1beu2")
+&"": SubResource("AnimationLibrary_1beu2")
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LevelStateMachine/playing/InGameUI"]

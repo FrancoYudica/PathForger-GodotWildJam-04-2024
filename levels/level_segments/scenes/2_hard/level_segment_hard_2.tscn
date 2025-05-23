@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_xt03i"]
 [ext_resource type="PackedScene" uid="uid://y4rd61nf7m6y" path="res://entities/path_node/moving/path_300_px.tscn" id="3_2vvd5"]
 [ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="4_wacoo"]
-[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_p5o8f"]
+[ext_resource type="Script" uid="uid://c5fx7q4d0qbn0" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_p5o8f"]
 [ext_resource type="PackedScene" uid="uid://d1hxvggpamueq" path="res://entities/obstacles/square/square_32px.tscn" id="6_keymj"]
 
 [node name="LevelSegmentHard" instance=ExtResource("1_7v6n4")]

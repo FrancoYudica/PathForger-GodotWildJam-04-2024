@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bl5bcc3vy511x" path="res://art/textures/obstacles/bar_300px.png" id="1_pgj7j"]
 [ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_s3bbj"]
-[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_lxp5s"]
+[ext_resource type="Script" uid="uid://b4ntlynlnyr6c" path="res://entities/obstacles/Obstacle.gd" id="2_lxp5s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_upo25"]
 radius = 8.0

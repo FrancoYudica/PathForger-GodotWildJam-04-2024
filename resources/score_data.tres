@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ho2u7")
-last_score = 0
-total = 0
-best = 0
-deaths = 0
+last_score = 12
+total = 50
+best = 38
+deaths = 2

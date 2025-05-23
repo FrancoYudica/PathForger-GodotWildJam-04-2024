@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://ju0p3v6aejso"]
 
-[ext_resource type="Script" path="res://entities/path_node/PathNode.gd" id="1_mlfh3"]
+[ext_resource type="Script" uid="uid://b6bbh55d3chi6" path="res://entities/path_node/PathNode.gd" id="1_mlfh3"]
 [ext_resource type="Texture2D" uid="uid://oxes71wfgygw" path="res://entities/path_node/circle_64x64.png" id="2_4r52w"]
-[ext_resource type="Shader" path="res://entities/path_node/path_node.gdshader" id="2_jx46s"]
-[ext_resource type="Script" path="res://entities/path_node/PathNodeSpriteSprite.gd" id="2_vee2j"]
-[ext_resource type="Shader" path="res://entities/path_node/segmented_ring.gdshader" id="4_eapb6"]
+[ext_resource type="Shader" uid="uid://c22go4shbq8i6" path="res://entities/path_node/path_node.gdshader" id="2_jx46s"]
+[ext_resource type="Script" uid="uid://ddx0n634vw2ib" path="res://entities/path_node/PathNodeSpriteSprite.gd" id="2_vee2j"]
+[ext_resource type="Shader" uid="uid://dw8q5owtq8544" path="res://entities/path_node/segmented_ring.gdshader" id="4_eapb6"]
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="4_pni3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70e0i"]

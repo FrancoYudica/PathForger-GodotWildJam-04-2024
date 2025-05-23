@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drfigkgmx6els" path="res://art/textures/obstacles/square_64px.png" id="1_5quw3"]
 [ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_wrw18"]
-[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="2_62ab0"]
+[ext_resource type="Script" uid="uid://b4ntlynlnyr6c" path="res://entities/obstacles/Obstacle.gd" id="2_62ab0"]
 
 [node name="ObstacleSquare64px" type="Sprite2D"]
 texture_filter = 1

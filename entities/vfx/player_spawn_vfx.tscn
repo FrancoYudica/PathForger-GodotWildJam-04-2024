@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d124l2n1o6w4g"]
 
-[ext_resource type="Script" path="res://entities/vfx/player_spawn_vfx.gd" id="1_rnemw"]
+[ext_resource type="Script" uid="uid://c7e3odbq6bchd" path="res://entities/vfx/player_spawn_vfx.gd" id="1_rnemw"]
 [ext_resource type="Texture2D" uid="uid://k2y3o3rwvuvw" path="res://art/textures/vfx/directional_particle_32.png" id="1_wx1fw"]
 [ext_resource type="Texture2D" uid="uid://c2g6nmy8ltuyq" path="res://art/textures/vfx/large_vfx_circle_512.png" id="3_emk0g"]
 
@@ -13,7 +13,7 @@ offsets = PackedFloat32Array(0, 0.530516, 1)
 colors = PackedColorArray(0.909804, 0.854902, 0.964706, 0, 0.909804, 0.854902, 0.964706, 1, 0.909804, 0.854902, 0.964706, 1)
 
 [sub_resource type="Curve" id="Curve_6rulo"]
-max_value = 100.0
+_limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 7.45033), 0.0, 0.0, 0, 0]
 point_count = 2
 

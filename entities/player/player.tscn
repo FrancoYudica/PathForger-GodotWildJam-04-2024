@@ -1,18 +1,18 @@
 [gd_scene load_steps=28 format=3 uid="uid://bfqm7vopmmtbw"]
 
-[ext_resource type="Script" path="res://entities/player/Player.gd" id="1_y7hkf"]
-[ext_resource type="Script" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
+[ext_resource type="Script" uid="uid://cpf7xep0s346h" path="res://entities/player/Player.gd" id="1_y7hkf"]
+[ext_resource type="Script" uid="uid://uf06ohmpnlsy" path="res://entities/player/LinePath.gd" id="2_8rfi1"]
 [ext_resource type="Texture2D" uid="uid://bpmauisjwlykh" path="res://art/textures/circle.png" id="2_am5xp"]
-[ext_resource type="Script" path="res://entities/player/PlayerRayCast2D.gd" id="2_clyl4"]
-[ext_resource type="Script" path="res://entities/player/Hook.gd" id="2_mw5fx"]
-[ext_resource type="Script" path="res://entities/player/PlayerStateMachine.gd" id="3_8radf"]
-[ext_resource type="Script" path="res://entities/player/states/translate.gd" id="4_80ij7"]
-[ext_resource type="Script" path="res://entities/player/states/try_connection.gd" id="5_hxtbh"]
-[ext_resource type="Script" path="res://entities/player/states/idle.gd" id="6_3yq2p"]
+[ext_resource type="Script" uid="uid://bsnqo4qx78q1i" path="res://entities/player/PlayerRayCast2D.gd" id="2_clyl4"]
+[ext_resource type="Script" uid="uid://cthxeo6g12fyj" path="res://entities/player/Hook.gd" id="2_mw5fx"]
+[ext_resource type="Script" uid="uid://dyguwsc5fdx6b" path="res://entities/player/PlayerStateMachine.gd" id="3_8radf"]
+[ext_resource type="Script" uid="uid://sknhsjyx5533" path="res://entities/player/states/translate.gd" id="4_80ij7"]
+[ext_resource type="Script" uid="uid://dghebukjpy8qg" path="res://entities/player/states/try_connection.gd" id="5_hxtbh"]
+[ext_resource type="Script" uid="uid://bsk6uip385nga" path="res://entities/player/states/idle.gd" id="6_3yq2p"]
 [ext_resource type="Texture2D" uid="uid://dvlklia76dygh" path="res://entities/player/player_sprite.png" id="6_8xn8k"]
-[ext_resource type="Shader" path="res://resources/aim.gdshader" id="12_0w08f"]
-[ext_resource type="Shader" path="res://entities/player/blob.gdshader" id="12_pk4j0"]
-[ext_resource type="Script" path="res://entities/player/states/death.gd" id="12_u83wh"]
+[ext_resource type="Shader" uid="uid://b3pdg6qxjkxd8" path="res://resources/aim.gdshader" id="12_0w08f"]
+[ext_resource type="Shader" uid="uid://kofdfiw60aix" path="res://entities/player/blob.gdshader" id="12_pk4j0"]
+[ext_resource type="Script" uid="uid://cb3vetrw2hdvc" path="res://entities/player/states/death.gd" id="12_u83wh"]
 [ext_resource type="Texture2D" uid="uid://bjc7pwj1e4n44" path="res://art/textures/aim/aim_32.png" id="13_8qt0d"]
 [ext_resource type="AudioStream" uid="uid://dmlt45nxreir2" path="res://art/sfx/death/laser1.mp3" id="15_qi8jf"]
 [ext_resource type="AudioStream" uid="uid://0bu448mywb3v" path="res://art/sfx/death/laser2.mp3" id="16_ejwfl"]
@@ -56,13 +56,9 @@ shader_parameter/color = Color(0.909804, 0.854902, 0.964706, 1)
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l58qw"]
 streams_count = 4
 stream_0/stream = ExtResource("15_qi8jf")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("16_ejwfl")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("17_o7mcq")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("18_iyhji")
-stream_3/weight = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i8uns"]
 radius = 15.0333

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_47m7k"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_v82xa"]
 [ext_resource type="PackedScene" uid="uid://bcn1xk6fuhdre" path="res://entities/obstacles/triangle/triangle_isoseles_128px.tscn" id="5_p8bc5"]
-[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_ipfb2"]
+[ext_resource type="Script" uid="uid://c5fx7q4d0qbn0" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_ipfb2"]
 
 [node name="LevelSegmentMedium" instance=ExtResource("1_47m7k")]
 difficulty_enum_index = 1

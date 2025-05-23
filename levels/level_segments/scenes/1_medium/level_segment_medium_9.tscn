@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cscxt5rlfm0gb" path="res://entities/obstacles/bar/bar_300px.tscn" id="3_gmb1h"]
 [ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="4_hxg6p"]
 [ext_resource type="PackedScene" uid="uid://bcn1xk6fuhdre" path="res://entities/obstacles/triangle/triangle_isoseles_128px.tscn" id="5_pf7vo"]
-[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_041is"]
+[ext_resource type="Script" uid="uid://c5fx7q4d0qbn0" path="res://entities/obstacles/MovementChangerComponent.gd" id="6_041is"]
 
 [node name="LevelSegmentMedium" instance=ExtResource("1_u7tno")]
 difficulty_enum_index = 1

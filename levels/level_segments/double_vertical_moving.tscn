@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://co3w8j6jltvo"]
 
-[ext_resource type="Script" path="res://levels/LevelSegment.gd" id="1_cklsx"]
-[ext_resource type="Script" path="res://levels/level_segments/CurvePathFollow.gd" id="3_geaur"]
+[ext_resource type="Script" uid="uid://7axaqg8eg7xs" path="res://levels/LevelSegment.gd" id="1_cklsx"]
+[ext_resource type="Script" uid="uid://2n0xexeprgdj" path="res://levels/level_segments/CurvePathFollow.gd" id="3_geaur"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="4_dheg2"]
 [ext_resource type="Texture2D" uid="uid://b2nru0gaouhix" path="res://art/textures/paths/path_bar_300px.png" id="5_ejphq"]
 [ext_resource type="PackedScene" uid="uid://c3g0wbvta25ea" path="res://entities/obstacles/bar/bar_200px.tscn" id="5_p71pa"]

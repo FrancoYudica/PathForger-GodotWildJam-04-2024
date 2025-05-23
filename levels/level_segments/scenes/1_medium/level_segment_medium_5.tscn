@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_flocw"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_a4u5k"]
 [ext_resource type="PackedScene" uid="uid://ddqs3w57vp3tw" path="res://entities/obstacles/ring/ring_4_holes.tscn" id="3_voou5"]
-[ext_resource type="Script" path="res://entities/obstacles/RotationChangerComponent.gd" id="5_cxks8"]
+[ext_resource type="Script" uid="uid://lxrard80esit" path="res://entities/obstacles/RotationChangerComponent.gd" id="5_cxks8"]
 
 [node name="LevelSegmentMedium" instance=ExtResource("1_flocw")]
 difficulty_enum_index = 1

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Path Forger"
 run/main_scene="res://levels/level.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
 
@@ -30,6 +30,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="Godot Wild Jam-04-2024"
+
+[editor]
+
+movie_writer/movie_file="/tmp/video.avi"
 
 [editor_plugins]
 

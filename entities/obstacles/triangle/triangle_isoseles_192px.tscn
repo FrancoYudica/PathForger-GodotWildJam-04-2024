@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://cth5f6i2cspfr" path="res://resources/obstacle_material.tres" id="1_ipc11"]
 [ext_resource type="Texture2D" uid="uid://conso185u8d8x" path="res://art/textures/obstacles/triangle_isoseles_192.png" id="2_awulm"]
-[ext_resource type="Script" path="res://entities/obstacles/Obstacle.gd" id="3_4jau1"]
+[ext_resource type="Script" uid="uid://b4ntlynlnyr6c" path="res://entities/obstacles/Obstacle.gd" id="3_4jau1"]
 
 [node name="ObstacleTriangle192px" type="Sprite2D"]
 texture_filter = 1

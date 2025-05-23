@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bx725glmajui7" path="res://levels/level_segments/base_level_segment.tscn" id="1_m12tp"]
 [ext_resource type="PackedScene" uid="uid://ju0p3v6aejso" path="res://entities/path_node/path_node.tscn" id="2_iqaed"]
 [ext_resource type="PackedScene" uid="uid://cns5milwove2n" path="res://entities/obstacles/square/square_64px.tscn" id="3_5l2mp"]
-[ext_resource type="Script" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_sawqx"]
-[ext_resource type="Script" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_5oqbs"]
+[ext_resource type="Script" uid="uid://rpqtelpllsey" path="res://entities/obstacles/FixedRotationComponent.gd" id="4_sawqx"]
+[ext_resource type="Script" uid="uid://c5fx7q4d0qbn0" path="res://entities/obstacles/MovementChangerComponent.gd" id="5_5oqbs"]
 
 [node name="LevelSegmentMedium" instance=ExtResource("1_m12tp")]
 difficulty_enum_index = 1
